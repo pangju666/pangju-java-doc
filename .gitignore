@@ -32,3 +32,5 @@ pnpm-lock.yaml
 .stylelintcache
 qodana.yaml
 
+docs/.vuepress/.cache
+docs/.vuepress/.temp
