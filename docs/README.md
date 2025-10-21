@@ -4,11 +4,11 @@ title: Home
 heroImage: https://vuejs.press/images/hero.png
 actions:
   - text: 快速上手
-    link: /get-started.html
+    link: /guide/getting-started.html
     type: primary
 
   - text: 生态简介
-    link: https://vuejs.press/guide/introduction.html
+    link: /guide/getting-started2.html
     type: secondary
 
 features:
