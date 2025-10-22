@@ -11,10 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 快速上手
-      link: /guide/getting-started
-    - theme: alt
-      text: 生态简介
-      link: /guide/getting-started2
+      link: /dependencies/getting-started
 
 features:
   - title: 依赖管理

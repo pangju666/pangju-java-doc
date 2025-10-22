@@ -1,3 +1,7 @@
+---
+layout: doc
+---
+
 # 快速上手
 
 ## 依赖环境
@@ -5,8 +9,6 @@
 - Maven
 
 ## 项目中使用
-
-<div v-pre>
 
 ```xml
 <parent>
@@ -16,5 +18,3 @@
     <relativePath/>
 </parent>
 ```
-
-</div>
