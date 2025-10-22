@@ -1,15 +1,20 @@
 ---
-home: true
-title: Home
-heroImage: https://vuejs.press/images/hero.png
-actions:
-  - text: 快速上手
-    link: /guide/getting-started.html
-    type: primary
+# https://vitepress.dev/reference/default-theme-home-page
+layout: home
 
-  - text: 生态简介
-    link: /guide/getting-started2.html
-    type: secondary
+hero:
+  name: Pangju Java
+  text: Java 项目开发辅助工具
+  tagline: 简化项目开发，统一开发规范
+  image:
+    src: /logo.jpg
+  actions:
+    - theme: brand
+      text: 快速上手
+      link: /guide/getting-started
+    - theme: alt
+      text: 生态简介
+      link: /guide/getting-started2
 
 features:
   - title: 依赖管理
@@ -24,5 +29,4 @@ features:
     details: 基于Spring Boot Starter 和 Pangju Framework，提供了例如：动态Redis数据源、动态MongoDB数据源、Mybatis Plus插件管理、
       测试、Json字段脱敏、Json字段加解密、接口参数加解密、接口签名、接口限流、接口幂等性、接口日志、接口响应包装、全局异常处理等内容
 
-footer: Apache2 Licensed | Copyright © 2025-present 胖橘
 ---
