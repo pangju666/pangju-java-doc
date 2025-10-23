@@ -1,6 +1,10 @@
 import {defineConfig} from 'vitepress'
+import dotenv from 'dotenv'
+import path from 'path'
 import navbar from "./navbar.js"
 import sidebar from "./sidebar.js"
+
+dotenv.config({ path: path.resolve('.env') })
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -47,34 +51,5 @@ export default defineConfig({
             message: '基于 Apache 许可发布',
             copyright: '版权所有 © 2025-至今 pangju666'
         }
-    },
-    plugins: [
-        {
-            name: 'markdown-dynamic-replace',
-            enforce: 'pre', // 在其他处理前执行
-            transform(code, id) {
-                if (!id.endsWith('.md')) return null
-
-                // 动态替换内容
-                let content = code
-
-                const dependenciesVersion = process.env.VITE_DEPENDENCIES_VERSION
-                content = content.replace(/\{\{__DEPENDENCIES_VERSION__}}/g, dependenciesVersion)
-
-                const commonsVersion = process.env.VITE_COMMONS_VERSION
-                content = content.replace(/\{\{__COMMONS_VERSION__}}/g, commonsVersion)
-
-                const frameworkVersion = process.env.VITE_FRAMEWORK_VERSION
-                content = content.replace(/\{\{__FRAMEWORK_VERSION__}}/g, frameworkVersion)
-
-                const frameworkSpringBootStarterVersion = process.env.VITE_FRAMEWORK_SPRING_BOOT_STARTER_VERSION
-                content = content.replace(/\{\{__FRAMEWORK_SPRING_BOOT_STARTER_VERSION__}}/g, frameworkSpringBootStarterVersion)
-
-                const viteSpringBootVersion = process.env.VITE_SPRING_BOOT_VERSION
-                content = content.replace(/\{\{__SPRING_BOOT_VERSION__}}/g, viteSpringBootVersion)
-
-                return content
-            }
-        }
-    ]
+    }
 })
