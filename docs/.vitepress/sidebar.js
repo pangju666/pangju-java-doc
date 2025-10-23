@@ -21,6 +21,18 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/lang/introduction'},
+                    {text: '字符串', link: '/commons/lang/string'},
+                    {text: '数据单位', link: '/commons/lang/data'},
+                    {text: 'JSON', link: '/commons/lang/json'},
+                    {text: '正则', link: '/commons/lang/regex'},
+                    {text: 'ID', link: '/commons/lang/id'},
+                    {text: '树', link: '/commons/lang/tree'},
+                    {text: '日期', link: '/commons/lang/date'},
+                    {text: '数组', link: '/commons/lang/array'},
+                    {text: '随机数', link: '/commons/lang/random'},
+                    {text: '金额', link: '/commons/lang/money'},
+                    {text: '序列化', link: '/commons/lang/serialize'},
+                    {text: '并发', link: '/commons/lang/concurrent'},
                 ]
             },
             {
