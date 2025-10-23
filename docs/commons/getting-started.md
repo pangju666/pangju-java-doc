@@ -2,6 +2,10 @@
 layout: doc
 ---
 
+<script setup>
+const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
+</script>
+
 # 说明
 
 基于Apache Commons、jasypt、twelvemonkeys、poi-tl等工具库，包含了基础、文件压缩、加解密、地理信息、图像、IO、PDF、
@@ -29,24 +33,24 @@ OFFICE、Jakarta参数校验用途的工具类
 
 ### 全部引入
 不推荐这种方式，如果你想图省事当我没说
-```xml
+```xml-vue
 <parent>
     <groupId>io.github.pangju666</groupId>
     <artifactId>pangju-commons-all</artifactId>
-    <version>__COMMONS_VERSION__</version>
+    <version>{{ commonsVersion }}</version>
     <relativePath/>
 </parent>
 ```
 
 ### 按需引入
 如果你想像Spring-Boot一样引入，再由子模块决定用到哪些模块，你可以在父模块中加入：
-```xml
+```xml-vue
 <dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>io.github.pangju666</groupId>
             <artifactId>pangju-commons-bom</artifactId>
-            <version>__COMMONS_VERSION__</version>
+            <version>{{ commonsVersion }}</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -54,7 +58,7 @@ OFFICE、Jakarta参数校验用途的工具类
 </dependencyManagement>
 ```
 在子模块中就可以引入自己需要的模块了：
-```xml
+```xml-vue
 <dependencies>
     <dependency>
         <groupId>io.github.pangju666</groupId>
