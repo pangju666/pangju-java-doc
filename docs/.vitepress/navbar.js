@@ -12,11 +12,11 @@ export default [
             },
             {
                 text: '框架',
-                link: '/dependencies/getting-started2',
+                link: '/framework/getting-started',
             },
             {
                 text: 'Spring Boot Starter',
-                link: '/dependencies/getting-started2',
+                link: '/starter/getting-started',
             }
         ]
     },

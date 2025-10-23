@@ -6,7 +6,7 @@ layout: doc
 基于spring-boot-starter-parent，包含了常用的各种库的依赖管理和插件管理
 
 ## Spring Boot 版本
-_SPRING_BOOT_VERSION_
+__SPRING_BOOT_VERSION__
 
 ## 如何使用
 
