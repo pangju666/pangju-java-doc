@@ -21,10 +21,11 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/lang/introduction'},
+                    {text: '常量', link: '/commons/lang/constants'},
                     {text: '字符串', link: '/commons/lang/string'},
-                    {text: '数据单位', link: '/commons/lang/data'},
+                    {text: '数据', link: '/commons/lang/data'},
                     {text: 'JSON', link: '/commons/lang/json'},
-                    {text: '正则', link: '/commons/lang/regex'},
+                    {text: '正则表达式', link: '/commons/lang/regex'},
                     {text: 'ID', link: '/commons/lang/id'},
                     {text: '树', link: '/commons/lang/tree'},
                     {text: '日期', link: '/commons/lang/date'},

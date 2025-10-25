@@ -38,7 +38,7 @@ export default defineConfig({
         },
         outline: {
             label: "页面导航",
-            level: [2, 3],
+            level: 'deep',
         },
         lightModeSwitchTitle: "切换到浅色模式",
         darkModeSwitchTitle: '切换到深色模式',
