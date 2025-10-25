@@ -41,6 +41,8 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/validation/introduction'},
+                    {text: '注解', link: '/commons/validation/annotation'},
+                    {text: '自定义', link: '/commons/validation/diy'},
                 ]
             },
             {
