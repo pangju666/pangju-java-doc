@@ -82,6 +82,10 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/image/introduction'},
+                    {text: '常量', link: '/commons/image/constants'},
+                    {text: '图像', link: '/commons/image/image'},
+                    {text: '滤镜', link: '/commons/image/filter'},
+                    {text: '缩略图', link: '/commons/image/thumbnail'},
                 ]
             },
             {
