@@ -91,6 +91,9 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/poi/introduction'},
+                    {text: '常量', link: '/commons/poi/constants'},
+                    {text: 'Excel', link: '/commons/poi/excel'},
+                    {text: 'Word', link: '/commons/poi/word'},
                 ]
             },
             {
@@ -98,6 +101,8 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/pdf/introduction'},
+                    {text: '常量', link: '/commons/pdf/constants'},
+                    {text: 'PDF', link: '/commons/pdf/pdf'},
                 ]
             },
             {
