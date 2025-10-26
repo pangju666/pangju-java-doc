@@ -10,6 +10,7 @@ dotenv.config({ path: path.resolve('.env') })
 export default defineConfig({
     lang: "zh-CN",
     title: "Pangju Java",
+    base: '/pangju-java-doc/',
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: navbar,
