@@ -72,6 +72,9 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/compress/introduction'},
+                    {text: '常量', link: '/commons/compress/constants'},
+                    {text: 'zip', link: '/commons/compress/zip'},
+                    {text: '7z', link: '/commons/compress/7z'},
                 ]
             },
             {
