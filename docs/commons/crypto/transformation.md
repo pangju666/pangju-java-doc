@@ -5,7 +5,9 @@ layout: doc
 # 加密方案
 我定义了一个RSA加密方案接口，并实现了`RSA/ECB/PKCS1Padding`和`RSA/ECB/OAEPWithSHA-256AndMGF1Padding`两种常用方案
 
-## 接口
+## RSA
+
+### 接口
 `io.github.pangju666.commons.crypto.transformation.RSATransformation`
 
 ```java
@@ -102,7 +104,7 @@ public interface RSATransformation {
 	}
 ```
 
-## 实现
+### 实现
 `io.github.pangju666.commons.crypto.transformation.impl.RSAOEAPWithSHA256Transformation`
 
 加密分块尺寸计算公式：blockSize = (modulusBitLength / 8) - 2 * hashLength - 2
