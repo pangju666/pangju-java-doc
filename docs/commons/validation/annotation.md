@@ -5,6 +5,8 @@ layout: doc
 # 注解
 
 ## 银行卡
+`io.github.pangju666.commons.validation.annotation.BankCard`
+
 验证方式：正则表达式 `^[1-9]\d{9,29}$`
 
 示例值：
@@ -19,6 +21,8 @@ layout: doc
 ```
 
 ## BASE64
+`io.github.pangju666.commons.validation.annotation.BASE64`
+
 验证方式：`org.apache.commons.codec.binary.Base64.isBase64(String)`
 
 示例值：
@@ -33,6 +37,8 @@ layout: doc
 ```
 
 ## 中文姓名
+`io.github.pangju666.commons.validation.annotation.ChineseName`
+
 验证方式：正则表达式 `^[\u4e00-\u9fa5]{2,30}$`
 
 示例值：
@@ -49,6 +55,8 @@ layout: doc
 ```
 
 ## 枚举变量
+`io.github.pangju666.commons.validation.annotation.EnumName`
+
 验证方式：`org.apache.commons.lang3.EnumUtils.isValidEnum(Class<?>, String)`
 
 ```java
@@ -60,6 +68,8 @@ layout: doc
 ```
 
 ## 文件名
+`io.github.pangju666.commons.validation.annotation.Filename`
+
 验证方式：正则表达式 `^[^\\<>:"/|?*.]+(\.[^\\<>:"/|?*]+)?$`或`^[^\\<>:"/|?*.]+$`
 
 示例值：
@@ -74,6 +84,8 @@ layout: doc
 ```
 
 ## 颜色十六进制表示
+`io.github.pangju666.commons.validation.annotation.HexColor`
+
 验证方式：正则表达式 `^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3}|[a-fA-F0-9]{8}|[a-fA-F0-9]{4})$`
 
 示例值：
@@ -90,6 +102,8 @@ layout: doc
 ```
 
 ## HTTP方法
+`io.github.pangju666.commons.validation.annotation.HttpMethod`
+
 验证方式：判断值是否存在于集合`Set.of("GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS")`
 
 示例值：
@@ -103,6 +117,8 @@ layout: doc
 ```
 
 ## 身份证
+`io.github.pangju666.commons.validation.annotation.IdCard`
+
 验证方式：`io.github.pangju666.commons.lang.utils.IdCardUtils.validate(String)`
 
 示例值：
@@ -119,6 +135,8 @@ layout: doc
 ```
 
 ## 标识符
+`io.github.pangju666.commons.validation.annotation.Identifier`
+
 验证方式：正则表达式 `^[a-zA-Z_][a-zA-Z0-9_]*$`
 
 示例值：
@@ -137,6 +155,8 @@ layout: doc
 ```
 
 ## IP地址
+`io.github.pangju666.commons.validation.annotation.IP`
+
 验证方式：正则表达式 `^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$`或`^(([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|(([0-9a-fA-F]{1,4}:){1,7}:)|(([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4})|(([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2})|(([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3})|(([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4})|(([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5})|([0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6}))|(:((:[0-9a-fA-F]{1,4}){1,7}|:)))$`
 
 示例值：
@@ -155,20 +175,24 @@ layout: doc
 ```
 
 ## MD5
+`io.github.pangju666.commons.validation.annotation.Md5`
+
 验证方式：正则表达式 `^[a-fA-F0-9]{32}$`
 
 示例值：
 - B10A8DB164E0754105B7A99BE72E3FE5
 
 ```java
-@MD5(notBlank = true)
+@Md5(notBlank = true)
 // 如果值为null、"", " "则校验不通过
 
-@MD5(notEmpty = true)
+@Md5(notEmpty = true)
 // 如果值为null、""则校验不通过
 ```
 
 ## Mime Type
+`io.github.pangju666.commons.validation.annotation.MimeType`
+
 验证方式：正则表达式 `^.+/.+$`
 
 示例值：
@@ -185,6 +209,8 @@ layout: doc
 ```
 
 ## 非空字符串集合
+`io.github.pangju666.commons.validation.annotation.NotBlankElements`
+
 验证方式：`org.apache.commons.lang3.StringUtils.isNotBlank(String)`
 
 示例值：
@@ -202,6 +228,8 @@ layout: doc
 ```
 
 ## 数字字符串
+`io.github.pangju666.commons.validation.annotation.Number`
+
 验证方式：正则表达式 `^-?\d+$`、`^\d+$`、`^(-?[1-9]\d*\.\d+|-?0\.\d*[1-9])$`或`^([1-9]\d*\.\d+|0\.\d*[1-9])$`
 
 示例值：
@@ -218,6 +246,8 @@ layout: doc
 ```
 
 ## 手机号码
+`io.github.pangju666.commons.validation.annotation.PhoneNumber`
+
 验证方式：正则表达式 `^1(?:(?:3[\d])|(?:4[5-79])|(?:5[0-35-9])|(?:6[5-7])|(?:7[0-8])|(?:8[\d])|(?:9[189]))\d{8}$`、`^1\d{10}$`或`^(?:(?:\d{3}-)?\d{8}|(?:\d{4}-)?\d{7,8})(?:-\d+)?$`
 
 示例值：
@@ -246,6 +276,8 @@ layout: doc
 ```
 
 ## 正则表达式校验
+`io.github.pangju666.commons.validation.annotation.Regex`
+
 验证方式：通过自定义的正则表达式来校验
 
 ```java
@@ -268,6 +300,8 @@ layout: doc
 ```
 
 ## 正则表达式校验字符串集合
+`io.github.pangju666.commons.validation.annotation.RegexElements`
+
 验证方式：通过自定义的正则表达式来校验
 
 ```java
@@ -293,6 +327,8 @@ layout: doc
 ```
 
 ## 请求路径
+`io.github.pangju666.commons.validation.annotation.RequestPath`
+
 验证方式：正则表达式 `^/[\w/-]+$`
 
 示例值：
@@ -303,6 +339,8 @@ layout: doc
 ```
 
 ## Xss防护校验
+`io.github.pangju666.commons.validation.annotation.Xss`
+
 验证方式：`org.jsoup.Jsoup.parse(String)`
 
 ```java

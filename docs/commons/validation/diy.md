@@ -5,6 +5,8 @@ layout: doc
 # 自定义
 
 ## 概述
+`io.github.pangju666.commons.validation.utils.ConstraintValidatorUtils`
+
 该模块也提供了通用的工具类来帮助开发者实现自己的校验注解，流程如下：
 
 ### 字符串校验

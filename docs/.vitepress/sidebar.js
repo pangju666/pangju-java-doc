@@ -50,6 +50,11 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/crypto/introduction'},
+                    {text: '常量', link: '/commons/crypto/constants'},
+                    {text: '密钥', link: '/commons/crypto/key'},
+                    {text: '加/解密', link: '/commons/crypto/encryptor'},
+                    {text: '签名/校验', link: '/commons/crypto/digester'},
+                    {text: '加密方案', link: '/commons/crypto/transformation'},
                 ]
             },
             {
