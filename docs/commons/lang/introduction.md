@@ -2,6 +2,10 @@
 layout: doc
 ---
 
+<script setup>
+const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
+</script>
+
 # 基础模块
 
 ## 概述
@@ -16,12 +20,12 @@ lang 模块是整个工具库的基础模块，提供了一系列的基础工具
 - JSON、数组、日期、脱敏、身份证、正则表达式、树、字符串、序列化、Id、金钱等常用工具类
 
 ## 安装
-```xml
+```xml-vue
 <dependency>
     <dependency>
         <groupId>io.github.pangju666</groupId>
         <artifactId>pangju-commons-lang</artifactId>
-        <version>1.0.0</version>
+        <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>
 ```

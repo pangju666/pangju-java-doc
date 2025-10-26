@@ -2,6 +2,10 @@
 layout: doc
 ---
 
+<script setup>
+const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
+</script>
+
 # IO模块
 
 ## 概述
@@ -13,12 +17,12 @@ crypto 模块是基于`commons-io`、`commons-crypto`和`tika`开发的，提供
 - IO工具类
 
 ## 安装
-```xml
+```xml-vue
 <dependency>
     <dependency>
         <groupId>io.github.pangju666</groupId>
         <artifactId>pangju-commons-io</artifactId>
-        <version>1.0.0</version>
+        <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>
 ```

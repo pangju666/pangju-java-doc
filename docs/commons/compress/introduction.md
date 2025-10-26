@@ -2,6 +2,10 @@
 layout: doc
 ---
 
+<script setup>
+const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
+</script>
+
 # 压缩模块
 
 ## 概述
@@ -11,12 +15,12 @@ compress 模块是基于`commons-compress`开发的，提供了一系列功能�
 - 7z压缩工具类
 
 ## 安装
-```xml
+```xml-vue
 <dependency>
     <dependency>
         <groupId>io.github.pangju666</groupId>
         <artifactId>pangju-commons-compress</artifactId>
-        <version>1.0.0</version>
+        <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>
 ```

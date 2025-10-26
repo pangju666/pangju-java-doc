@@ -2,6 +2,10 @@
 layout: doc
 ---
 
+<script setup>
+const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
+</script>
+
 # 校验模块
 
 ## 概述
@@ -26,12 +30,12 @@ validation 模块是基于`jakarta validation`开发的，提供了一系列的j
 - Xss
 
 ## 安装
-```xml
+```xml-vue
 <dependency>
     <dependency>
         <groupId>io.github.pangju666</groupId>
         <artifactId>pangju-commons-validation</artifactId>
-        <version>1.0.0</version>
+        <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>
 ```

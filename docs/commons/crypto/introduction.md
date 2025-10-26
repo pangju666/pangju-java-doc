@@ -2,6 +2,10 @@
 layout: doc
 ---
 
+<script setup>
+const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
+</script>
+
 # 加密模块
 
 ## 概述
@@ -18,12 +22,12 @@ crypto 模块是基于`jasypt`开发的，提供了一系列功能，例如：
 - RSA加密方案接口及其实现
 
 ## 安装
-```xml
+```xml-vue
 <dependency>
     <dependency>
         <groupId>io.github.pangju666</groupId>
         <artifactId>pangju-commons-crypto</artifactId>
-        <version>1.0.0</version>
+        <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>
 ```

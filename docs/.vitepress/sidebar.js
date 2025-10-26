@@ -103,6 +103,8 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/geo/introduction'},
+                    {text: '常量', link: '/commons/geo/constants'},
+                    {text: '坐标', link: '/commons/geo/coordinate'},
                 ]
             },
         ]
