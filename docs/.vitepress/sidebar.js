@@ -63,8 +63,6 @@ export default [
                 items: [
                     {text: '概述', link: '/commons/io/introduction'},
                     {text: '常量', link: '/commons/io/constants'},
-                    {text: '类型', link: '/commons/io/type'},
-                    {text: '文件名', link: '/commons/io/filename'},
                     {text: '文件', link: '/commons/io/file'},
                     {text: 'io', link: '/commons/io/io'},
                 ]
