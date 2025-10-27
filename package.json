@@ -1,8 +1,8 @@
 {
     "scripts": {
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs"
+        "docs:dev": "vitepress dev src/docs",
+        "docs:build": "vitepress build src/docs",
+        "docs:preview": "vitepress preview src/docs"
     },
     "devDependencies": {
         "dotenv": "^17.2.3",

@@ -13,7 +13,7 @@ export default [
     },
     {
         text: '工具库',
-        collapsed: false,
+        collapsed: true,
         items: [
             {text: '简介', link: '/commons/getting-started'},
             {
@@ -114,6 +114,13 @@ export default [
                     {text: '坐标', link: '/commons/geo/coordinate'},
                 ]
             },
+        ]
+    },
+    {
+        text: "框架",
+        collapsed: true,
+        items: [
+            {text: '简介', link: '/framework/getting-started'},
         ]
     }
 ]

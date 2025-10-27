@@ -11,6 +11,7 @@ export default defineConfig({
     lang: "zh-CN",
     title: "Pangju Java",
     base: '/pangju-java-doc/',
+    outDir: "../../docs",
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
         nav: navbar,

@@ -32,6 +32,6 @@ pnpm-lock.yaml
 .stylelintcache
 qodana.yaml
 
-docs/.vitepress/cache
+src/docs/.vitepress/cache
 
 dist
