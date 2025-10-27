@@ -33,5 +33,3 @@ pnpm-lock.yaml
 qodana.yaml
 
 src/docs/.vitepress/cache
-
-dist

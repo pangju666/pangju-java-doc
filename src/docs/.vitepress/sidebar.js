@@ -121,6 +121,36 @@ export default [
         collapsed: true,
         items: [
             {text: '简介', link: '/framework/getting-started'},
+            {
+                text: 'Spring',
+                collapsed: true,
+                items: [
+                ]
+            },
+            {
+                text: 'Web',
+                collapsed: true,
+                items: [
+                ]
+            },
+            {
+                text: 'Mybatis Plus',
+                collapsed: true,
+                items: [
+                ]
+            },
+            {
+                text: 'MongoDB',
+                collapsed: true,
+                items: [
+                ]
+            },
+            {
+                text: 'Redis',
+                collapsed: true,
+                items: [
+                ]
+            }
         ]
     }
 ]
