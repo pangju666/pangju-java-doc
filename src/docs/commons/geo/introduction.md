@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# 压缩模块
+# 地理信息模块
 
 ## 概述
 geo 模块主要用于地理信息相关项目的开发，提供了一系列功能，例如：

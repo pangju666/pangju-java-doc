@@ -5,6 +5,7 @@ export default [
     },
     {
         text: '依赖管理',
+        collapsed: true,
         items: [
             {text: '简介', link: '/dependencies/getting-started'},
             {text: '依赖管理', link: '/dependencies/dependency-management'},
@@ -125,6 +126,11 @@ export default [
                 text: 'Spring',
                 collapsed: true,
                 items: [
+                    {text: '概述', link: '/framework/spring/introduction'},
+                    {text: '常量', link: '/framework/spring/constants'},
+                    {text: 'Bean', link: '/framework/spring/bean'},
+                    {text: '反射（reflect）', link: '/framework/spring/reflect'},
+                    {text: 'SpEL表达式', link: '/framework/spring/spel'},
                 ]
             },
             {

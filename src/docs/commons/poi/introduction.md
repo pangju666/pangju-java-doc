@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# 图像模块
+# Office文档模块
 
 ## 概述
 image 模块主要基于`poi`和`poi-tl`开发，提供了一系列图像处理功能，例如： 

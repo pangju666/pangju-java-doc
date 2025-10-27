@@ -8,7 +8,7 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 
 # 说明
 
-基于`Spring Framework`和`Mybatis Plus`开发的业务用框架
+基于`Spring Framework`开发的业务框架，主要包含MongoDB、Redis、Mybatis Plus、Web几个方面
 
 ## 使用要求
 \>= JDK 17
@@ -16,13 +16,13 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 ## 组件列表
 模块的artifactId统一格式为 pangju-framework-模块名，例如：`pangju-framework-spring`
 
-| 模块                |        介绍        |
-|-------------------|:----------------:|
-| data-mongodb      |   框架MongoDB模块    |
-| data-mybatis-plus | 框架Mybatis Plus模块 |
-| data-redis        |    框架Redis模块     |
-| spring            |    框架Spring模块    |
-| web               |     框架Web模块      |
+| 模块                |                  介绍                  |
+|-------------------|:------------------------------------:|
+| data-mongodb      |   MongoDB模块，基于spring-data-mongodb    |
+| data-mybatis-plus | Mybatis Plus模块，基于mybatis-plus-spring |
+| data-redis        |     Redis模块，基于spring-data-redis      |
+| spring            |      Spring模块，基于spring-context       |
+| web               |        Web模块，基于spring-webmvc         |
 
 ## 引入
 
