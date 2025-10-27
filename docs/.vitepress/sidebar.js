@@ -13,7 +13,7 @@ export default [
     },
     {
         text: '工具库',
-        collapsed: true,
+        collapsed: false,
         items: [
             {text: '简介', link: '/commons/getting-started'},
             {
@@ -97,7 +97,7 @@ export default [
                 ]
             },
             {
-                text: 'PDF文档（pdf）',
+                text: 'Pdf文档（pdf）',
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/commons/pdf/introduction'},
