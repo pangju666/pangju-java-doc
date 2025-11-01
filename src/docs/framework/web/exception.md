@@ -15,13 +15,13 @@ layout: doc
 
 `BaseHttpException`决定了异常的日志打印规则和接口响应消息（message）。
 
-`HttpException`决定了接口响应时异常的code码、类型、是否打印日志、日志打印等级和Http响应状态码。
+`HttpException`决定了接口响应时异常的错误码、类型、是否打印日志、日志打印等级和Http响应状态码。
 
 错误码计算规则：
 
-- 最终错误码 = -(基础错误码 + |配置错误码|)
+- 最终错误码 = -(基础错误码 + |异常错误码|)
 - 基础错误码来自`HttpExceptionType`枚举值
-- 配置错误码大于1000时，仅保留后三位（如1234变为234）
+- 异常错误码大于1000时，仅保留后三位（如1234变为234）
 - 使用负数表示错误状态
 
 ### 异常基类
@@ -82,7 +82,7 @@ public class GlobalDataExceptionAdvice {
 }
 ```
 
-## 异常
+## 内置异常
 
 | 异常类                               |      概述      | code码 | 响应状态码 |   类型    | 打印日志 |
 |-----------------------------------|:------------:|:-----:|:-----:|:-------:|:----:| 
@@ -612,3 +612,42 @@ throw new DataQueryException(
 
 #### 非法标识符异常
 `io.github.pangju666.framework.web.exception.validation.identifier.InvalidIdentifierException`
+
+
+### 自定义异常
+如果框架内置的异常无法满足你的需求，那么可以通过继承`BaseHttpException`类或者基础异常类来定义自己的异常类。
+
+假设我要定义一个业务逻辑类型的异常，异常错误码设置为200，Http响应状态码设置为400
+
+```java
+@HttpException(code = 200, type = HttpExceptionType.SERVICE, description = "测试异常", status = HttpStatus.HttpStatus.BAD_REQUEST)
+public class TestException extends ServiceException {
+	public TestException(String message) {
+		super(message, message);
+	}
+	
+	public TestException(String message, String reason) {
+		super(message, reason);
+	}
+	
+	public TestException(String message, Throwable cause) {
+		super(message, message, cause);
+	}
+
+	public TestException(String message, String reason, Throwable cause) {
+		super(message, reason, cause);
+	}
+	
+	// 自定义日志打印逻辑，也可以选择不重写这个方法，直接使用父类的日志打印逻辑
+	@Override
+	public void log(Logger logger, Level level) {
+		logger.atLevel(level)
+			.setCause(this)
+			.log("自定义异常，原因：" + this.reason);
+	}
+}
+
+throw new TestException("测试错误");
+// 接口响应：{"code": -1200, "message": "测试错误", "data": null}
+// 日志打印：自定义异常，原因：测试错误
+```
