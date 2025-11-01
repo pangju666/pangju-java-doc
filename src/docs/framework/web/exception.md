@@ -6,6 +6,9 @@ layout: doc
 
 异常体系其实我构思了很久，最后才决定按这个结构去写，实在是又想要灵活性高，又想统一结构有点头疼。
 
+> [!IMPORTANT]
+> 需要搭配[`HttpServletResponseUtils.writeBeanToResponse`](/framework/web/utils#http响应)使用。
+
 ## 核心
 
 整个异常体系的核心由`BaseHttpException`类和`HttpException`注解组成。
@@ -65,6 +68,19 @@ ServiceException e = new ServerException("文件读取失败", "读取xxxxx文�
 - log: 是否记录日志（控制是否记录该异常的日志信息，默认为`true`，对于一些预期内的业务异常，可以设置为`false`以减少日志量）。
 - level: 日志等级（设置该异常的日志等级，默认为`Level.ERROR`）。
 - status: HTTP响应状态码（指定抛出此异常时返回的HTTP状态码，默认为`HttpStatus.OK`）。
+
+### 异常处理
+需要定义异常处理器来确保可以自动的处理抛出的Http异常。
+
+```java
+@RestControllerAdvice
+public class GlobalDataExceptionAdvice {
+    @ExceptionHandler(value = BaseHttpException.class)
+	public void handleBaseHttpException(BaseHttpException e, HttpServletResponse response) {
+		HttpServletResponseUtils.writeHttpExceptionToResponse(e, response);
+	}
+}
+```
 
 ## 异常
 
@@ -367,7 +383,9 @@ throw new NoPermissionException("查看所有用户信息", "删除用户信息"
 ```
 
 ### 数据操作异常
-这个系列的异常比较通用，我主要是用于搭配[数据操作断言](/framework/web/utils#数据操作断言)用的。
+
+> [!TIP]
+> 建议搭配[数据操作断言](/framework/web/utils#数据操作断言)使用。
 
 #### 数据创建异常
 `io.github.pangju666.framework.web.exception.data.DataCreateException`
