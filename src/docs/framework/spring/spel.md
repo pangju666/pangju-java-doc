@@ -25,7 +25,7 @@ layout: doc
 
 ```java
 @Aspect
-public class IdempotentAspect {
+public class TestAspect {
     private ParameterNameDiscoverer discoverer = new DefaultParameterNameDiscoverer();
 
     public void doBefore(JoinPoint point) {

@@ -137,6 +137,9 @@ export default [
                 text: 'Web',
                 collapsed: true,
                 items: [
+                    {text: '概述', link: '/framework/web/introduction'},
+                    {text: '常量', link: '/framework/web/constants'},
+                    {text: '客户端', link: '/framework/web/client'},
                 ]
             },
             {

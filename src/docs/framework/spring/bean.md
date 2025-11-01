@@ -9,7 +9,7 @@ layout: doc
 
 该工具类优化了Spring的BeanUtils功能，提供了null安全的对象转换和集合处理方法。
 
-推荐使用`Mapstruct`，建议不用`BeanUtils`
+推荐使用`Mapstruct`，而不是`BeanUtils`
 
 | 方法名               | 返回值      |       用途       |
 |-------------------|:---------|:--------------:|
