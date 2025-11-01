@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# 数据模型
+# 数据结构
 
 ## 统一响应结果
 `io.github.pangju666.framework.web.model.common.Result`
@@ -33,7 +33,8 @@ String reusltStr = Result.fail(-100, "接口请求失败").toString(); // {"code
 
 属性值我设置了`@Valid`注解，支持对列表元素进行验证。
 
-这些类需要配合`jakarta-validation`使用，否则校验机制无法生效。
+> [!TIP]
+> 这些类需要配合`jakarta-validation`使用，否则校验机制无法生效。
 
 ### 泛型列表数据传输对象
 `io.github.pangju666.framework.web.model.dto.ListDTO`

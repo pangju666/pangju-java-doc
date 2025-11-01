@@ -9,7 +9,8 @@ layout: doc
 
 该工具类优化了Spring的BeanUtils功能，提供了null安全的对象转换和集合处理方法。
 
-推荐使用`Mapstruct`，而不是`BeanUtils`
+> [!NOTE]
+> 推荐使用`Mapstruct`，而不是`BeanUtils`。
 
 | 方法名               | 返回值      |       用途       |
 |-------------------|:---------|:--------------:|
@@ -20,7 +21,8 @@ layout: doc
 ### 复制对象属性
 该方法使用Spring的`BeanUtils.copyProperties`方法复制属性，会复制所有名称相同且类型兼容的属性。
 
-如果源对象或目标对象为`null`，则不执行复制操作。
+> [!IMPORTANT]
+> 如果源对象或目标对象为`null`，则不执行复制操作。
 
 ```java
 UserDTO sourceObj;
@@ -33,7 +35,8 @@ BeanUtils.copyProperties(sourceObj, targetObj, (userDto, user) -> { /* 自定义
 ### 转换对象
 将单个源对象转换为目标类型。
 
-如果源对象为`null`，则返回`null`。
+> [!IMPORTANT]
+> 如果源对象为`null`，则返回`null`。
 
 ```java
 UserDTO sourceObj;

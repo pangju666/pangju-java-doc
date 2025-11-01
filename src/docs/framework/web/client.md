@@ -198,7 +198,8 @@ ResponseEntity<Void> response4 = RestClientHelper.fromUriString(restClient, "htt
 ```
 
 ### 设置请求体
-只有`POST`和`PUT`请求支持请求体
+> [!TIP]
+> 只有`POST`和`PUT`请求支持请求体
 
 #### multipart/form-data
 依赖于`org.springframework.http.converter.FormHttpMessageConverter`Http消息处理器
@@ -321,7 +322,8 @@ ResponseEntity<Void> response2 = RestClientHelper.fromUriString(restClient, "htt
 ##### 字节数组
 依赖于`org.springframework.http.converter.ByteArrayHttpMessageConverter`Http消息处理器
 
-一般写接口，应该不会直接用字节数组作为请求参数，基本上是用不上的，知道有这个方法就行
+> [!TIP]
+> 一般写接口不会直接用字节数组作为请求参数，基本上是用不上的，知道有这个方法就行
 
 ```java
 RestClient restClient = RestClient.builder().build();
@@ -352,7 +354,8 @@ ResponseEntity<Void> response2 = RestClientHelper.fromUriString(restClient, "htt
 ##### 资源
 依赖于`org.springframework.http.converter.ResourceHttpMessageConverter`Http消息处理器
 
-一般写接口，应该不会直接`org.springframework.core.io.Resource`对象作为请求参数，基本上是用不上的，知道有这个方法就行
+> [!TIP]
+> 一般写接口不会直接`org.springframework.core.io.Resource`对象作为请求参数，基本上是用不上的，知道有这个方法就行
 
 ```java
 RestClient restClient = RestClient.builder().build();

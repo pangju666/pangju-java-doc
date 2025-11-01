@@ -14,7 +14,8 @@ layout: doc
 | DEFAULT_EXPRESSION_PARSER  | SpelExpressionParser      | 默认的SpEL表达式解析器 |
 | DEFAULT_EVALUATION_CONTEXT | StandardEvaluationContext |  默认的表达式计算上下文  |
 
-**注意**：`DEFAULT_EVALUATION_CONTEXT`是共享的，修改其中变量会影响其他使用方。
+> [!IMPORTANT]
+> `DEFAULT_EVALUATION_CONTEXT`是共享的，修改其中变量会影响其他使用方。
 
 | 方法名                   | 返回值                          |        用途        |
 |-----------------------|:-----------------------------|:----------------:|
