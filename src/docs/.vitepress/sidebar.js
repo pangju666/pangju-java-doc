@@ -140,6 +140,10 @@ export default [
                     {text: '概述', link: '/framework/web/introduction'},
                     {text: '常量', link: '/framework/web/constants'},
                     {text: '客户端', link: '/framework/web/client'},
+                    {text: '数据模型', link: '/framework/web/data'},
+                    {text: '过滤器', link: '/framework/web/filter'},
+                    {text: '拦截器', link: '/framework/web/interceptor'},
+                    {text: '异常', link: '/framework/web/exception'},
                 ]
             },
             {
