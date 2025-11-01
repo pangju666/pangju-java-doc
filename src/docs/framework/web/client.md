@@ -2,9 +2,9 @@
 layout: doc
 ---
 
-# 客户端请求辅助
+# 客户端
 
-## 请求构建器
+## RestClient辅助器
 `io.github.pangju666.framework.web.client.RestClientHelper`
 
 提供流式API风格的HTTP请求构建器，简化RestClient的使用。

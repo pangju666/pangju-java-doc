@@ -18,7 +18,6 @@ layout: doc
 | getFieldValue            | 泛型        |    获取对象指定字段的值    |
 | setFieldValue            | void      |    设置对象指定字段的值    |
 | getSimpleClassName       | String    |     获取类的简化类名     |
-| getCollectionElementType | Class\<T> |    获取集合中元素的类型    |
 | getClassGenericType      | Class\<T> |    获取泛型类的类型参数    |
 | canMakeAccessible        | boolean   |    强制设置字段可访问     |
 
@@ -54,18 +53,6 @@ String test;
 
 ReflectionUtils.getSimpleClassName(test); // String
 ReflectionUtils.getSimpleClassName(test.getClass()); // String
-```
-
-### 获取集合中元素的类型
-通过检查第一个元素的运行时类型进行判断，如果集合为空的话会返回null
-
-```java
-List<String> list = new ArrayList<>(1);
-
-ReflectionUtils.getCollectionElementType(list); // null
-
-list.add("test");
-ReflectionUtils.getCollectionElementType(list); // java.lang.String
 ```
 
 ### 获取父类中定义的泛型类型

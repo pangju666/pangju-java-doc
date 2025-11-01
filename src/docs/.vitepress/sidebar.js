@@ -144,6 +144,7 @@ export default [
                     {text: '过滤器', link: '/framework/web/filter'},
                     {text: '拦截器', link: '/framework/web/interceptor'},
                     {text: '异常', link: '/framework/web/exception'},
+                    {text: '工具类', link: '/framework/web/utils'},
                 ]
             },
             {
