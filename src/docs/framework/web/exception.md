@@ -7,7 +7,7 @@ layout: doc
 异常体系其实我构思了很久，最后才决定按这个结构去写，实在是又想要灵活性高，又想统一结构有点头疼。
 
 > [!IMPORTANT]
-> 需要搭配[Http响应辅助](/framework/web/response#处理http异常)使用。
+> 需要搭配[Http响应构建器](/framework/web/response#处理http异常)使用。
 
 ## 核心
 
@@ -77,7 +77,7 @@ throw new ServerException("文件读取失败", "读取xxxxx文件失败，文�
 public class GlobalDataExceptionAdvice {
     @ExceptionHandler(value = BaseHttpException.class)
 	public void handleBaseHttpException(BaseHttpException e, HttpServletResponse response) {
-		HttpServletResponseHelper.fromResponse(response).buffer(false).writeHttpException(e);
+		HttpResponseBuilder.fromResponse(response).buffer(false).writeHttpException(e);
 	}
 }
 ```

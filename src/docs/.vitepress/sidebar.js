@@ -84,7 +84,8 @@ export default [
                 items: [
                     {text: '概述', link: '/commons/image/introduction'},
                     {text: '常量', link: '/commons/image/constants'},
-                    {text: '图像', link: '/commons/image/image'},
+                    {text: '图像信息', link: '/commons/image/image'},
+                    {text: '图像处理', link: '/commons/image/editor'},
                 ]
             },
             {
