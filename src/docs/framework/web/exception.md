@@ -7,7 +7,7 @@ layout: doc
 异常体系其实我构思了很久，最后才决定按这个结构去写，实在是又想要灵活性高，又想统一结构有点头疼。
 
 > [!IMPORTANT]
-> 需要搭配[`HttpServletResponseUtils.writeBeanToResponse`](/framework/web/utils#http响应)使用。
+> 需要搭配[Http响应辅助](/framework/web/response#处理http异常)使用。
 
 ## 核心
 
@@ -35,7 +35,7 @@ layout: doc
 
 示例：
 ```java
-ServiceException e = new ServerException("文件读取失败", "读取xxxxx文件失败，文件可能并不存在");
+throw new ServerException("文件读取失败", "读取xxxxx文件失败，文件可能并不存在");
 // 接口响应：{"code": -1000, "message": "文件读取失败", "data": null}
 // 日志打印：原因：读取xxxxx文件失败，文件可能并不存在
 ```
@@ -77,7 +77,7 @@ ServiceException e = new ServerException("文件读取失败", "读取xxxxx文�
 public class GlobalDataExceptionAdvice {
     @ExceptionHandler(value = BaseHttpException.class)
 	public void handleBaseHttpException(BaseHttpException e, HttpServletResponse response) {
-		HttpServletResponseUtils.writeHttpExceptionToResponse(e, response);
+		HttpServletResponseHelper.fromResponse(response).buffer(false).writeHttpException(e);
 	}
 }
 ```
@@ -385,7 +385,7 @@ throw new NoPermissionException("查看所有用户信息", "删除用户信息"
 ### 数据操作异常
 
 > [!TIP]
-> 建议搭配[数据操作断言](/framework/web/utils#数据操作断言)使用。
+> 建议搭配[数据操作断言](/framework/web/data-assert)使用。
 
 #### 数据创建异常
 `io.github.pangju666.framework.web.exception.data.DataCreateException`
@@ -613,9 +613,8 @@ throw new DataQueryException(
 #### 非法标识符异常
 `io.github.pangju666.framework.web.exception.validation.identifier.InvalidIdentifierException`
 
-
 ### 自定义异常
-如果框架内置的异常无法满足你的需求，那么可以通过继承`BaseHttpException`类或者基础异常类来定义自己的异常类。
+如果框架内置的异常无法满足你的需求，那么可以通过继承`BaseHttpException`类或者内置异常类来定义自己的异常类。
 
 假设我要定义一个业务逻辑类型的异常，异常错误码设置为200，Http响应状态码设置为400
 
@@ -623,7 +622,7 @@ throw new DataQueryException(
 @HttpException(code = 200, type = HttpExceptionType.SERVICE, description = "测试异常", status = HttpStatus.HttpStatus.BAD_REQUEST)
 public class TestException extends ServiceException {
 	public TestException(String message) {
-		super(message, message);
+		super(message);
 	}
 	
 	public TestException(String message, String reason) {
@@ -631,7 +630,7 @@ public class TestException extends ServiceException {
 	}
 	
 	public TestException(String message, Throwable cause) {
-		super(message, message, cause);
+		super(message, cause);
 	}
 
 	public TestException(String message, String reason, Throwable cause) {

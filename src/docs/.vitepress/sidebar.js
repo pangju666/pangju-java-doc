@@ -144,26 +144,32 @@ export default [
                     {text: '过滤器', link: '/framework/web/filter'},
                     {text: '拦截器', link: '/framework/web/interceptor'},
                     {text: '异常', link: '/framework/web/exception'},
-                    {text: '工具类', link: '/framework/web/utils'},
+                    {
+                        text: "工具类",
+                        items: [
+                            {text: '数据操作断言', link: '/framework/web/data-assert'},
+                            {text: 'IP地址', link: '/framework/web/ip'},
+                            {text: 'Http请求', link: '/framework/web/request'},
+                            {text: 'Http响应', link: '/framework/web/response'},
+                            {text: '分片下载', link: '/framework/web/range'},
+                        ]
+                    }
                 ]
             },
             {
                 text: 'Mybatis Plus',
                 collapsed: true,
-                items: [
-                ]
+                items: []
             },
             {
                 text: 'MongoDB',
                 collapsed: true,
-                items: [
-                ]
+                items: []
             },
             {
                 text: 'Redis',
                 collapsed: true,
-                items: [
-                ]
+                items: []
             }
         ]
     }

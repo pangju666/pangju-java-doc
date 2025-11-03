@@ -21,9 +21,3 @@ class TestHttpRequestFilter extends BaseHttpRequestFilter {
 	}
 }
 ```
-
-## 内容缓存包装过滤器
-`io.github.pangju666.framework.web.filter.ContentCachingWrapperHttpRequestFilter`
-
-这个过滤器主要是将`HttpServletRequest`转换为`ContentCachingRequestWrapper`，将`HttpServletResponse`转换为`ContentCachingResponseWrapper`，
-保证请求体和响应体可以重复读取或写入。

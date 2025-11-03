@@ -159,7 +159,7 @@ ImageUtils.getExifOrientation(metadata);
 ```
 
 ## 缩略图
-`io.github.pangju666.commons.image.utils.ThumbnailUtils`
+`io.github.pangju666.commons.image.utils.Thumbnails`
 
 基于`twelvemonkeys`的`ResampleOp`实现
 
