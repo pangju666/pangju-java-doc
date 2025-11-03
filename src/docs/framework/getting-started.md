@@ -30,8 +30,8 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 不推荐这种方式，如果你想图省事当我没说
 ```xml-vue
 <parent>
-    <groupId>io.github.pangju666</groupId>
-    <artifactId>pangju-framework-all</artifactId>
+    <groupId>io.github.pangju666.framework</groupId>
+    <artifactId>framework-all</artifactId>
     <version>{{ frameworkVersion }}</version>
     <relativePath/>
 </parent>
@@ -43,8 +43,8 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>io.github.pangju666</groupId>
-            <artifactId>pangju-framework-bom</artifactId>
+            <groupId>io.github.pangju666.framework</groupId>
+            <artifactId>framework-bom</artifactId>
             <version>{{ frameworkVersion }}</version>
             <type>pom</type>
             <scope>import</scope>
@@ -56,8 +56,8 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 ```xml-vue
 <dependencies>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-framework-spring</artifactId>
+        <groupId>io.github.pangju666.framework</groupId>
+        <artifactId>framework-spring</artifactId>
     </dependency>
 </dependencies>
 ```

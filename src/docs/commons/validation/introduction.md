@@ -33,8 +33,8 @@ validation 模块是基于`jakarta validation`开发的，提供了一系列的j
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-validation</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-validation</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

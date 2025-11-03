@@ -19,8 +19,8 @@ Spring 模块是基于`Spring Context`开发的， 提供了一些Spring相关�
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-framework-spring</artifactId>
+        <groupId>io.github.pangju666.framework</groupId>
+        <artifactId>framework-spring</artifactId>
         <version>{{ frameworkVersion }}</version>
     </dependency>
 </dependency>

@@ -27,8 +27,8 @@ Web 模块是基于`Spring WebMVC`开发的，定义了一系列Web开发常用�
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-framework-web</artifactId>
+        <groupId>io.github.pangju666.framework</groupId>
+        <artifactId>framework-web</artifactId>
         <version>{{ frameworkVersion }}</version>
     </dependency>
 </dependency>

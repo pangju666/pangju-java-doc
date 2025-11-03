@@ -19,8 +19,8 @@ geo 模块主要用于地理信息相关项目的开发，提供了一系列功�
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-geo</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-geo</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

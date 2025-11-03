@@ -25,8 +25,8 @@ crypto 模块是基于`jasypt`开发的，提供了一系列功能，例如：
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-crypto</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-crypto</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

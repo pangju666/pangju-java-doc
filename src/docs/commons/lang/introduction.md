@@ -23,8 +23,8 @@ lang 模块是整个工具库的基础模块，提供了一系列的基础工具
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-lang</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-lang</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

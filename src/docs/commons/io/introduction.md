@@ -20,8 +20,8 @@ crypto 模块是基于`commons-io`、`commons-crypto`和`tika`开发的，提供
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-io</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-io</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

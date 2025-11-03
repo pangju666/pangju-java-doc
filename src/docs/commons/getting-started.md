@@ -35,8 +35,8 @@ OFFICE、Jakarta参数校验用途的工具类
 不推荐这种方式，如果你想图省事当我没说
 ```xml-vue
 <parent>
-    <groupId>io.github.pangju666</groupId>
-    <artifactId>pangju-commons-all</artifactId>
+    <groupId>io.github.pangju666.commons</groupId>
+    <artifactId>commons-all</artifactId>
     <version>{{ commonsVersion }}</version>
     <relativePath/>
 </parent>
@@ -48,8 +48,8 @@ OFFICE、Jakarta参数校验用途的工具类
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>io.github.pangju666</groupId>
-            <artifactId>pangju-commons-bom</artifactId>
+            <groupId>io.github.pangju666.commons</groupId>
+            <artifactId>commons-bom</artifactId>
             <version>{{ commonsVersion }}</version>
             <type>pom</type>
             <scope>import</scope>
@@ -61,8 +61,8 @@ OFFICE、Jakarta参数校验用途的工具类
 ```xml-vue
 <dependencies>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-lang</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-lang</artifactId>
     </dependency>
 </dependencies>
 ```

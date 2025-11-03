@@ -18,8 +18,8 @@ image 模块主要基于`pdfbox`开发，提供了一系列图像处理功能，
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-pdf</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-pdf</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

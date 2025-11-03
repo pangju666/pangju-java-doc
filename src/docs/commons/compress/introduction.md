@@ -18,8 +18,8 @@ compress 模块是基于`commons-compress`开发的，提供了一系列功能�
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-compress</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-compress</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>

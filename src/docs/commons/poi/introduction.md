@@ -20,8 +20,8 @@ image 模块主要基于`poi`和`poi-tl`开发，提供了一系列图像处理�
 ```xml-vue
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666</groupId>
-        <artifactId>pangju-commons-poi</artifactId>
+        <groupId>io.github.pangju666.commons</groupId>
+        <artifactId>commons-poi</artifactId>
         <version>{{ commonsVersion }}</version>
     </dependency>
 </dependency>
