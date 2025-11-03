@@ -11,7 +11,7 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 ## 概述
 Web 模块是基于`Spring WebMVC`开发的，定义了一系列Web开发常用的工具，例如：
 - 业务异常体系
-- 客户端请求辅助
+- 客户端请求构建器
 - 基础拦截器
 - 基础过滤器
 - 基础请求数据结构
@@ -19,7 +19,7 @@ Web 模块是基于`Spring WebMVC`开发的，定义了一系列Web开发常用�
 - Web相关常量
 - 分片下载工具类
 - HTTP请求工具类
-- HTTP响应辅助
+- HTTP响应构建器
 - IP工具类
 - 数据操作断言
 

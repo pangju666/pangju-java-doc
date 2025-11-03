@@ -3,7 +3,7 @@ layout: doc
 ---
 
 # Http请求工具类
-`io.github.pangju666.framework.web.utils.HttpRequestUtils`
+`io.github.pangju666.framework.web.servlet.utils.HttpRequestUtils`
 
 | 方法名                  | 返回值                            |       说明        |
 |----------------------|:-------------------------------|:---------------:|

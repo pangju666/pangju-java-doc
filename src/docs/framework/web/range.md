@@ -3,7 +3,7 @@ layout: doc
 ---
 
 # Http响应工具类
-`io.github.pangju666.framework.web.utils.RangeDownloadUtils`
+`io.github.pangju666.framework.web.servlet.utils.RangeDownloadUtils`
 
 这个工具类主要就一个方法`download`，其他都是我暴露出去方便用户自己处理分片下载的。
 

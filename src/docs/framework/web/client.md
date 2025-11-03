@@ -4,8 +4,8 @@ layout: doc
 
 # 客户端
 
-## RestClient辅助器
-`io.github.pangju666.framework.web.helper.RestRequest`
+## Rest请求构建器
+`io.github.pangju666.framework.web.client.builder.RestRequestBuilder`
 
 提供流式API风格的HTTP请求构建器，简化RestClient的使用。
 
@@ -15,47 +15,47 @@ layout: doc
 - 请求体处理：支持JSON、表单数据、文本、二进制、资源格式
 - 响应处理：支持多种响应类型的转换（JSON、资源、二进制、文本）
 
-| 方法名                  | 静态 | 返回值                        |           用途           |
-|----------------------|:---|:---------------------------|:----------------------:|
-| fromUriString        | 是  | RestRequest                | 从URI字符串创建RestRequest实例 |
-| fromUri              | 是  | RestRequest                | 从URI对象创建RestRequest实例  |
-| method               | 否  | RestRequest                |       设置HTTP请求方法       |
-| path                 | 否  | RestRequest                |         添加请求路径         |
-| queryParam           | 否  | RestRequest                |        添加单个查询参数        |
-| queryParams          | 否  | RestRequest                |        批量添加查询参数        |
-| query                | 否  | RestRequest                |       设置原始查询字符串        |
-| uriVariable          | 否  | RestRequest                |       添加单个URI变量        |
-| uriVariables         | 否  | RestRequest                |       批量添加URI变量        |
-| header               | 否  | RestRequest                |        添加单个请求头         |
-| headers              | 否  | RestRequest                |        批量添加请求头         |
-| formPart             | 否  | RestRequest                |      添加资源类型的表单字段       |
-| formData             | 否  | RestRequest                |         添加表单字段         |
-| jsonBody             | 否  | RestRequest                |       设置JSON请求体        |
-| textBody             | 否  | RestRequest                |        设置文本请求体         |
-| bytesBody            | 否  | RestRequest                |        设置二进制请求体        |
-| resourceBody         | 否  | RestRequest                |        设置资源请求体         |
-| body                 | 否  | RestRequest                |      设置请求体，指定媒体类型      |
-| toResourceEntity     | 否  | ResponseEntity\<Resource>  |  将请求结果转换为Resource响应实体  |
-| toBytesEntity        | 否  | ResponseEntity\<byte[]>    |    将请求结果转换为字节数组响应实体    |
-| toStringEntity       | 否  | ResponseEntity\<String>    |    将请求结果转换为字符串响应实体     |
-| toJsonEntity         | 否  | ResponseEntity\<T>         | 将请求结果转换为指定类型的JSON响应实体  |
-| toEntity             | 否  | ResponseEntity\<T>         |   将请求结果转换为指定类型的响应实体    |
-| toBodilessEntity     | 否  | ResponseEntity\<Void>      |   将请求结果转换为无响应体的响应实体    |
-| buildRequestBodySpec | 否  | RestClient.RequestBodySpec |          构建请求          |
+| 方法名                  | 静态 | 返回值                        |              用途               |
+|----------------------|:---|:---------------------------|:-----------------------------:|
+| fromUriString        | 是  | RestRequestBuilder         | 从URI字符串创建RestRequestBuilder实例 |
+| fromUri              | 是  | RestRequestBuilder         | 从URI对象创建RestRequestBuilder实例  |
+| method               | 否  | RestRequestBuilder         |          设置HTTP请求方法           |
+| path                 | 否  | RestRequestBuilder         |            添加请求路径             |
+| queryParam           | 否  | RestRequestBuilder         |           添加单个查询参数            |
+| queryParams          | 否  | RestRequestBuilder         |           批量添加查询参数            |
+| query                | 否  | RestRequestBuilder         |           设置原始查询字符串           |
+| uriVariable          | 否  | RestRequestBuilder         |           添加单个URI变量           |
+| uriVariables         | 否  | RestRequestBuilder         |           批量添加URI变量           |
+| header               | 否  | RestRequestBuilder         |            添加单个请求头            |
+| headers              | 否  | RestRequestBuilder         |            批量添加请求头            |
+| formPart             | 否  | RestRequestBuilder         |          添加资源类型的表单字段          |
+| formData             | 否  | RestRequestBuilder         |            添加表单字段             |
+| jsonBody             | 否  | RestRequestBuilder         |           设置JSON请求体           |
+| textBody             | 否  | RestRequestBuilder         |            设置文本请求体            |
+| bytesBody            | 否  | RestRequestBuilder         |           设置二进制请求体            |
+| resourceBody         | 否  | RestRequestBuilder         |            设置资源请求体            |
+| body                 | 否  | RestRequestBuilder         |         设置请求体，指定媒体类型          |
+| toResourceEntity     | 否  | ResponseEntity\<Resource>  |     将请求结果转换为Resource响应实体      |
+| toBytesEntity        | 否  | ResponseEntity\<byte[]>    |       将请求结果转换为字节数组响应实体        |
+| toStringEntity       | 否  | ResponseEntity\<String>    |        将请求结果转换为字符串响应实体        |
+| toJsonEntity         | 否  | ResponseEntity\<T>         |     将请求结果转换为指定类型的JSON响应实体     |
+| toEntity             | 否  | ResponseEntity\<T>         |       将请求结果转换为指定类型的响应实体       |
+| toBodilessEntity     | 否  | ResponseEntity\<Void>      |       将请求结果转换为无响应体的响应实体       |
+| buildRequestBodySpec | 否  | RestClient.RequestBodySpec |             构建请求              |
 
 ### 从URI构建请求
 ```java
 RestClient restClient = RestClient.builder().build();
 
 // 使用URI字符串构建
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1/xxxx")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1/xxxx")
 		.method(HttpMethod.GET)
 		.buildRequestBodySpec()
 		.retrieve()
 		.toBodilessEntity();
 
 // 使用URI对象构建
-ResponseEntity<Void> response2 = RestRequest.fromUri(restClient, "http://xxxxx/api/v1/xxxx")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUri(restClient, "http://xxxxx/api/v1/xxxx")
 		.method(HttpMethod.GET)
 		.buildRequestBodySpec()
 		.retrieve()
@@ -67,7 +67,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUri(restClient, "http://xxxxx/a
 RestClient restClient = RestClient.builder().build();
 
 // http://xxxxx/api/v1/user
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.buildRequestBodySpec()
@@ -75,7 +75,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();		
 		
 // http://xxxxx/api/v1/user/info
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.path("/info")
@@ -89,7 +89,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://x
 RestClient restClient = RestClient.builder().build();
 
 // http://xxxxx/api/v1/user?name=Tom&age=2
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.queryParam("name", "Tom")
@@ -99,7 +99,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();		
 		
 // http://xxxxx/api/v1/user?name=Tom&age=2
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.queryParams(MultiValueMap.of("name", "test", "age", 2))
@@ -108,7 +108,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // http://xxxxx/api/v1/user?name=Tom&age=2
-ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.queryParams(Map.of("name", "test", "age", 2))
@@ -117,7 +117,7 @@ ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // http://xxxxx/api/v1/user?name=Tom&age=2
-ResponseEntity<Void> response4 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response4 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.query("name=Tom&age=2")
@@ -131,7 +131,7 @@ ResponseEntity<Void> response4 = RestRequest.fromUriString(restClient, "http://x
 RestClient restClient = RestClient.builder().build();
 
 // http://xxxxx/api/v1/user/1
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.path("/{id}")
@@ -141,7 +141,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // http://xxxxx/api/v1/user/1/Tom
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.path("/{id}")
@@ -157,7 +157,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://x
 RestClient restClient = RestClient.builder().build();
 
 // http://xxxxx/api/v1/user
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.header(HttpHeaders.AUTHORIZATION, "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
@@ -167,7 +167,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // http://xxxxx/api/v1/user
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.headers(Map.of(HttpHeaders.AUTHORIZATION, "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 
@@ -177,7 +177,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 
 // http://xxxxx/api/v1/user
-ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.headers(MultiValueMap.of(HttpHeaders.AUTHORIZATION, "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 
@@ -187,7 +187,7 @@ ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // http://xxxxx/api/v1/user
-ResponseEntity<Void> response4 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response4 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.header(HttpHeaders.AUTHORIZATION, List.of("Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"))
@@ -208,7 +208,7 @@ ResponseEntity<Void> response4 = RestRequest.fromUriString(restClient, "http://x
 RestClient restClient = RestClient.builder().build();
 
 // 上传文件
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.formPart("file", new FileSystemResource(new File("example.txt")))
@@ -217,7 +217,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // 构建form参数
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.formData("name", "Tom")
@@ -225,7 +225,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://x
 		.retrieve()
 		.toBodilessEntity();
 
-ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.formData(MultiValueMap.of("name", "Tom", "file", new FileSystemResource(new File("example.txt"))))
@@ -249,7 +249,7 @@ TestDTO testDTO = new TestDTO();
 testDTO.setName("Tom");
 testDTO.setAge(2);
 
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.jsonBody(testDTO)
@@ -260,7 +260,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 // 将null请求体转换为空json字符串（{}）
 TestDTO testDTO = null;
 
-ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.jsonBody(testDTO, true)
@@ -269,7 +269,7 @@ ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // 使用Gson库的JsonElement
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.jsonBody(JsonUtils.parseString("{ \"name\": \"Tom\", \"age\": 2 }"))
@@ -283,7 +283,7 @@ ObjectNode body = objectMapper.createObjectNode();
 result.put("name", "Tom");
 result.put("age", 2);
 
-ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.jsonBody(body)
@@ -298,7 +298,7 @@ ResponseEntity<Void> response3 = RestRequest.fromUriString(restClient, "http://x
 ```java
 RestClient restClient = RestClient.builder().build();
 
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.textBody("Hello World")
@@ -308,7 +308,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		
 // 将null请求体转换为空字符串（""）
 String body = null;
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.textBody(body, true)
@@ -331,7 +331,7 @@ RestClient restClient = RestClient.builder().build();
 byte[] bytes = new byte[1024];
 Arrays.fill(bytes, (byte) 0x00);
 
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.bytesBody(bytes)
@@ -342,7 +342,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 // 将null请求体转换为空字节数组
 byte[] bytes = null;
 
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.bytesBody(bytes, true)
@@ -362,7 +362,7 @@ RestClient restClient = RestClient.builder().build();
 
 Resource body = new FileSystemResource(new File("example.txt"));
 
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.resourceBody(body)
@@ -371,7 +371,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 		.toBodilessEntity();
 		
 // 自定义资源类型
-ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.resourceBody(body, MediaType.TEXT_MARKDOWN)
@@ -389,7 +389,7 @@ ResponseEntity<Void> response2 = RestRequest.fromUriString(restClient, "http://x
 RestClient restClient = RestClient.builder().build();
 
 // json请求体
-ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.POST)
 		.path("/user")
 		.body(JsonUtils.parseString("{ \"name\": \"Tom\", \"age\": 2 }"), MediaType.APPLICATION_JSON)
@@ -404,7 +404,7 @@ ResponseEntity<Void> response1 = RestRequest.fromUriString(restClient, "http://x
 ```java
 RestClient restClient = RestClient.builder().build();
 
-RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toBodilessEntity();
@@ -418,13 +418,13 @@ RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
 ```java
 RestClient restClient = RestClient.builder().build();
 
-Resource resource1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+Resource resource1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toResourceEntity();
 		
 // 设置可接受响应类型
-Resource resource2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+Resource resource2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toResourceEntity(MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_MARKDOWN);	
@@ -436,13 +436,13 @@ Resource resource2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1"
 ```java
 RestClient restClient = RestClient.builder().build();
 
-byte[] bytes1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+byte[] bytes1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toBytesEntity();
 		
 // 设置可接受响应类型
-byte[] bytes2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+byte[] bytes2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toBytesEntity(MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_MARKDOWN);
@@ -454,13 +454,13 @@ byte[] bytes2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
 ```java
 RestClient restClient = RestClient.builder().build();
 
-String str1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+String str1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toStringEntity();
 		
 // 设置可接受响应类型
-String str2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+String str2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toStringEntity(MediaType.APPLICATION_OCTET_STREAM, MediaType.TEXT_MARKDOWN);
@@ -477,13 +477,13 @@ class TestVO {
     Integer age;
 }
 
-TestVO testVO1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+TestVO testVO1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toJsonEntity(TestVO.class);
 
 // 如果响应类型为泛型，建议使用ParameterizedTypeReference定义返回类型
-TestVO testVO2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+TestVO testVO2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toJsonEntity(new ParameterizedTypeReference<List<TestVO>>() {});
@@ -500,13 +500,13 @@ class TestVO {
     Integer age;
 }
 
-TestVO testVO1 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+TestVO testVO1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toJsonEntity(TestVO.class, MediaType.APPLICATION_JSON);
 		
 // 如果响应类型为泛型，建议使用ParameterizedTypeReference定义返回类型
-TestVO testVO2 = RestRequest.fromUriString(restClient, "http://xxxxx/api/v1")
+TestVO testVO2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
 		.toEntity(new ParameterizedTypeReference<List<TestVO>>() {}, MediaType.APPLICATION_JSON);

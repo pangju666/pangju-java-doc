@@ -3,7 +3,7 @@ layout: doc
 ---
 
 # Http响应构建器
-`io.github.pangju666.framework.web.helper.HttpResponseBuilder`
+`io.github.pangju666.framework.web.servlet.builder.HttpResponseBuilder`
 
 这个类我本来是写成工具类的，但是实在是重载方法太多了，显得特别繁琐，我就改成类似构建器的链式调用了。
 
