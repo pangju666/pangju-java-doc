@@ -34,7 +34,7 @@ layout: doc
 | contrast            | ImageEditor |            调整图像对比度            |
 | brightness          | ImageEditor |            调整图像亮度             |
 | filter              | ImageEditor |          对图像应用自定义过滤器          |
-| forceScale          | ImageEditor |    强制将图像缩放到指定的尺寸，不保持原始宽高比     |
+| resize              | ImageEditor |    强制将图像缩放到指定的尺寸，不保持原始宽高比     |
 | scaleByWidth        | ImageEditor |     按指定宽度等比例缩放图像，保持原始宽高比      |
 | scaleByHeight       | ImageEditor |     按指定高度等比例缩放图像，保持原始宽高比      |
 | scale               | ImageEditor | 将图像缩放到指定的最大宽度和最大高度范围内，保持原始宽高比 |
@@ -210,8 +210,8 @@ ImageEditor.of(imageFile).filter(new GrayFilter()); // 对图像使用灰度化�
 
 ```java
 File imageFile;
-ImageEditor.of(imageFile).forceScale(500, 500); // 强制将图像缩放为500x500
-ImageEditor.of(imageFile).forceScale(new ImageSize(500, 500)); // 强制将图像缩放为500x500
+ImageEditor.of(imageFile).resize(500, 500); // 强制将图像缩放为500x500
+ImageEditor.of(imageFile).resize(new ImageSize(500, 500)); // 强制将图像缩放为500x500
 ```
 
 ### 等比例缩放
@@ -226,6 +226,7 @@ File imageFile;
 ImageEditor.of(imageFile).scaleByWidth(500); // 按500宽度等比例缩放图像，保持原始宽高比
 ImageEditor.of(imageFile).scaleByHeight(500); // 按500高度等比例缩放图像，保持原始宽高比
 ImageEditor.of(imageFile).scale(500, 400); // 将图像缩放到500x400范围内，保持原始宽高比
+ImageEditor.of(imageFile).scale(0.5); // 将图像缩放到原本的0.5倍
 ```
 
 缩放效果图：
