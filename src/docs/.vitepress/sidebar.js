@@ -43,7 +43,6 @@ export default [
                 items: [
                     {text: '概述', link: '/commons/validation/introduction'},
                     {text: '注解', link: '/commons/validation/annotation'},
-                    {text: '自定义', link: '/commons/validation/diy'},
                 ]
             },
             {
@@ -160,7 +159,9 @@ export default [
             {
                 text: 'Mybatis Plus',
                 collapsed: true,
-                items: []
+                items: [
+                    {text: '概述', link: '/framework/mybatisplus/introduction'},
+                ]
             },
             {
                 text: 'MongoDB',

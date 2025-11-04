@@ -22,12 +22,17 @@ validation 模块是基于`jakarta validation`开发的，提供了一系列的j
 - IP地址
 - MD5
 - Mime Type
-- 字符串集合
 - 数字
 - 手机号码
-- 正则
 - 请求路径
 - Xss
+- NanoId
+- NanoId集合
+- ObjectId
+- ObjectId集合
+- UUID集合
+- 字符串集合正则表达式验证
+- 字符串集合非空白验证
 
 ## 安装
 ```xml-vue
