@@ -387,6 +387,8 @@ ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "h
 2. 如果想要复用错误处理器实例的话（包括在不同线程中共享），那么需要在定义的时候就完成初始化，然后调用`init`方法，锁定对属性的修改。
 3. `RestClient`必须注册`BufferingResponseInterceptor`（或者你自己实现一个类似的，实现响应内容重复读取就行），不然的话响应状态码为`200`的业务性错误是直接忽略掉的。
 4. 非`JSON`响应类型的请求建议别用错误处理器，没有意义还白白占内存。
+5. 如果你有`IO`类型的请求的话，建议创建两个`RestClient`（一个注册`BufferingResponseInterceptor`，一个不注册），
+因为`BufferingResponseInterceptor`底层实现是将响应内容复制到内存里，如果响应体很大的话内存会疯狂飙升。
 :::
 
 #### 使用
@@ -396,9 +398,6 @@ ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "h
 > 一般情况下直接设置成功业务码就行了，现在写接口基本都要求返回一个业务码。
 > 
 > 当然如果你要请求的接口实现是另类，那就只能用谓词自定义判断逻辑了。
-
->[!DANGER]
-> `IO`类型的请求千万不要用错误处理器，如果响应内容很大的话，内存会疯狂飙升。
 
 ```java
 // 一定要注册 BufferingResponseInterceptor，不然错误处理器也不会生效
