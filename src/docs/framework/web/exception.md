@@ -227,50 +227,30 @@ throw new DataOperationException(
 ### 远程服务异常
 
 > [!TIP]
-> 建议配合`HttpRemoteServiceErrorBuilder`和[`RestClientHelper`](/framework/web/client)使用。
+> 建议配合[`RestRequestBuilder`](/framework/web/client)使用。
 
 #### Http远程服务异常
 `io.github.pangju666.framework.web.exception.remote.HttpRemoteServiceException`
 
 `io.github.pangju666.framework.web.model.error.HttpRemoteServiceError`
 
-`io.github.pangju666.framework.web.model.error.HttpRemoteServiceErrorBuilder`
-
 请求第三方接口时产生的错误。
 
 特点：
 - 存在属性`error`用于表示远程服务错误信息。
 - 构建时需要传入远程服务错误信息。
-- 日志打印格式：http远程服务请求失败，服务：{error.service}，功能：{error.api}，链接：{error.uri}，http状态码：{error.httpStatus} 错误码：{error.code} 错误信息：{error.message}
+- 日志打印格式：http远程服务请求失败，服务：{error.service}，功能：{error.api}，链接：{error.url}，http状态码：{error.httpStatus} 错误码：{error.code} 错误信息：{ error\.message}
 
 ```java
-// 直接构建错误信息
-HttpRemoteServiceError error = new HttpRemoteServiceError("测试服务", "测试接口", "http://xxxxx/api/v1/test");
+HttpRemoteServiceError error = new HttpRemoteServiceError.Builder("测试服务", "测试接口")
+    .url("http://xxxxx/api/v1/test")
+    .code("API_CAN_NOT_USE")
+    .message("接口暂时不可用")
+    .httpStatus(HttpStatus.NOT_FOUND)
+    .build();
 throw new HttpRemoteServiceException("调用用户服务失败", error);
 // 接口响应：{"code": -1100, "message": "调用用户服务失败", "data": null}
-// 日志打印：http远程服务请求失败，服务：测试服务，功能：测试接口，链接：http://xxxxx/api/v1/test，http状态码：404 错误码：无 错误信息：无
-
-// 使用构建器
-HttpRemoteServiceError error = new HttpRemoteServiceErrorBuilder("测试服务", "测试接口")
-    .uri("http://xxxxx/api/v1/test")
-    .message("接口暂时不可用")
-    .code("API_CAN_NOT_USE")
-    .build();
-throw new HttpRemoteServiceException(error);
-// 接口响应：{"code": -1100, "message": "远程服务请求失败", "data": null}
 // 日志打印：http远程服务请求失败，服务：测试服务，功能：测试接口，链接：http://xxxxx/api/v1/test，http状态码：404 错误码：API_CAN_NOT_USE 错误信息：接口暂时不可用
-
-// 处理RestClientResponseException
-try {
-    // 接口请求逻辑
-} catch (RestClientException e) {
-    HttpRemoteServiceError error = new HttpRemoteServiceErrorBuilder("测试服务", "测试接口")
-        .uri("http://xxxxx/api/v1/test")
-        .toException(e, "code", "message");
-    throw new HttpRemoteServiceException(error);
-    // 接口响应：{"code": -1100, "message": "远程服务请求失败", "data": null}
-    // 日志打印：http远程服务请求失败，服务：测试服务，功能：测试接口，链接：http://xxxxx/api/v1/test，http状态码：404 错误码：API_CAN_NOT_USE 错误信息：接口暂时不可用
-}
 ```
 
 #### Http远程服务超时异常
@@ -278,41 +258,20 @@ try {
 
 `io.github.pangju666.framework.web.model.error.HttpRemoteServiceError`
 
-`io.github.pangju666.framework.web.model.error.HttpRemoteServiceErrorBuilder`
-
 请求第三方接口超时产生的错误。
 
 特点：
 - 存在属性`error`用于表示远程服务错误信息。
 - 构建时需要传入远程服务错误信息。
-- 日志打印格式：http远程服务请求超时，服务：{error.service}，功能：{error.api}，链接：{error.uri}
+- 日志打印格式：http远程服务请求超时，服务：{error.service}，功能：{error.api}，链接：{error.url}
 
 ```java
-// 直接构建错误信息
-HttpRemoteServiceError error = new HttpRemoteServiceError("测试服务", "测试接口", "http://xxxxx/api/v1/test");
-throw new HttpRemoteServiceException("调用用户服务超时", error);
+HttpRemoteServiceError error = new HttpRemoteServiceError.Builder("测试服务", "测试接口")
+    .url("http://xxxxx/api/v1/test")
+    .build();
+throw new HttpRemoteServiceTimeoutException("调用用户服务超时", error);
 // 接口响应：{"code": -1110, "message": "调用用户服务超时", "data": null}
 // 日志打印：http远程服务请求超时，服务：测试服务，功能：测试接口，链接：http://xxxxx/api/v1/test
-
-// 使用构建器
-HttpRemoteServiceError error = new HttpRemoteServiceErrorBuilder("测试服务", "测试接口")
-    .uri("http://xxxxx/api/v1/test")
-    .build();
-throw new HttpRemoteServiceException(error);
-// 接口响应：{"code": -1110, "message": "远程服务请求超时", "data": null}
-// 日志打印：http远程服务请求超时，服务：测试服务，功能：测试接口，链接：http://xxxxx/api/v1/test
-
-// 处理HttpServerErrorException.GatewayTimeout
-try {
-    // 接口请求逻辑
-} catch (HttpServerErrorException.GatewayTimeout e) {
-    HttpRemoteServiceError error = new HttpRemoteServiceErrorBuilder("测试服务", "测试接口")
-        .uri("http://xxxxx/api/v1/test")
-        .toTimeoutException(e);
-    throw new HttpRemoteServiceException(error);
-    // 接口响应：{"code": -1110, "message": "远程服务请求超时", "data": null}
-    // 日志打印：http远程服务请求超时，服务：测试服务，功能：测试接口，链接：http://xxxxx/api/v1/test
-}
 ```
 
 ### 认证授权异常
