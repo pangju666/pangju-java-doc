@@ -5,7 +5,7 @@ layout: doc
 # 数据结构
 
 ## 统一响应结果
-`io.github.pangju666.framework.web.model.common.Result`
+`io.github.pangju666.framework.web.model.Result`
 
 这个是一个比较重要的类，框架里所有的Web相关的内容都是使用这个类做成统一响应结果
 

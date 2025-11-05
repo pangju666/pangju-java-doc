@@ -5,7 +5,7 @@ layout: doc
 # 拦截器
 
 ## 基础拦截器
-`io.github.pangju666.framework.web.servlet.interceptor.BaseHttpInterceptor`
+`io.github.pangju666.framework.web.servlet.BaseHttpInterceptor`
 
 我在`org.springframework.web.servlet.HandlerInterceptor`的基础上，增加了一些常用属性：
 - order：执行顺序

@@ -3,7 +3,7 @@ layout: doc
 ---
 
 # 常量
-`io.github.pangju666.framework.web.pool.WebConstants`
+`io.github.pangju666.framework.web.lang.WebConstants`
 
 | 常量名                     | 值               |    说明     |
 |-------------------------|:----------------|:---------:|
