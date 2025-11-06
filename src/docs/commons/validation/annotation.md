@@ -4,6 +4,9 @@ layout: doc
 
 # 注解
 
+> [!NOTE]
+> 我没加的常用校验注解，大概率是`jakarta.validation.constraints`或`org.hibernate.validator.constraints`包里已经有了。
+
 ## 银行卡
 `io.github.pangju666.commons.validation.annotation.BankCard`
 
@@ -218,7 +221,7 @@ String fileMd5;
 
 `null`视为有效，空白字符串视为无效。
 
-验证方式：正则表达式 `^.+/.+$`
+验证方式：正则表达式 `^[a-z0-9!#$&.+-^_]+/[a-z0-9!#$&.+-^_]+(?:\s*;\s*[a-z0-9!#$&.+-^_]+=(?:[a-z0-9!#$&.+-^_]+|"[^"]*"))*$`
 
 示例值：
 - text/plain
@@ -398,6 +401,9 @@ Set<String> ids;
 ## UUID集合
 `io.github.pangju666.commons.validation.annotation.UUIDS`
 
+> [!TIP]
+> 如果需要校验单个`UUID`，请使用`org.hibernate.validator.constraints.UUID`。
+ 
 支持的类型是`Collection<? extends CharSequence>`，`null`或空集合视为有效。
 
 验证方式：根据UUID规则校验（代码来源于`org.hibernate.validator.internal.constraintvalidators.hv.UUIDValidator`）
@@ -413,6 +419,9 @@ Set<String> ids;
 
 ## 非空字符串集合
 `io.github.pangju666.commons.validation.annotation.NotBlankElements`
+
+> [!TIP]
+> 如果需要校验单个字符串是否为非空，请使用`jakarta.validation.constraints.NotBlank`。
 
 支持的类型是`Collection<? extends CharSequence>`，`null`或空集合视为有效。
 
@@ -433,6 +442,9 @@ Set<String> usernames;
 
 ## 字符串集合正则表达式验证
 `io.github.pangju666.commons.validation.annotation.PatternElements`
+
+> [!TIP]
+> 如果需要校验单个字符串是否匹配正则表达式，请使用`jakarta.validation.constraints.Pattern`。
 
 支持的类型是`Collection<? extends CharSequence>`，`null`或空集合视为有效。
 

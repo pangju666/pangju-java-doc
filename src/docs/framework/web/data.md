@@ -36,7 +36,7 @@ String reusltStr = Result.fail(-100, "接口请求失败").toString(); // {"code
 > [!TIP]
 > 这些类需要配合`jakarta-validation`使用，否则校验机制无法生效。
 
-### 泛型列表数据传输对象
+### 泛型列表
 `io.github.pangju666.framework.web.model.dto.ListDTO`
 
 ```java
@@ -44,7 +44,7 @@ List<String> list = Arrays.asList("1", "2", "3");
 ListDTO<String> listDTO = new ListDTO<>(list);
 /*
 {
-  "list": [
+  "values": [
     "1",
     "2",
     "3"
@@ -69,7 +69,7 @@ ListDTO<String> listDTO = new ListDTO<>(list);
 
 `io.github.pangju666.framework.web.model.dto.RequiredUniqueListDTO`
 
-### 字符串列表数据传输对象
+### 字符串列表
 `io.github.pangju666.framework.web.model.dto.StringListDTO`
 
 这个类和`ListDTO`的区别在于，列表中的字符串元素不能为空白。
@@ -78,10 +78,10 @@ ListDTO<String> listDTO = new ListDTO<>(list);
 
 ```java
 List<String> list = Arrays.asList("1", "2", "3");
-StringListDTO listDTO = new StringListDTO<>(list);
+StringListDTO listDTO = new StringListDTO(list);
 /*
 {
-  "list": [
+  "values": [
     "1",
     "2",
     "3"

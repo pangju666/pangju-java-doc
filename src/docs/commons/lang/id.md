@@ -68,20 +68,8 @@ IdUtils.simpleRandomUUID(); // 07dff44684e345f39176c14ebd6f338a
 // 生成高性能标准格式UUID
 IdUtils.fastUUID(); // dd2796ab-6bf6-4ebf-a3bf-06cb947d9096
 
-// 使用自定义随机数生成器生成高性能标准格式UUID
-IdUtils.fastUUID(new SecureRandom()); // 99e198a7-99ae-4a5c-ba13-f9127f7acd23
-
-// 使用自定义随机数生成器生成高性能标准格式UUID
-IdUtils.fastUUID(ThreadLocalRandom.current()); // 420c9fa7-4263-47a8-b819-19d3e9f575ef
-
 // 生成高性能简写格式UUID
 IdUtils.simpleFastUUID(); // 214e9a7664ba42b08b71f3f34d803993
-
-// 使用自定义随机数生成器生成高性能简写格式UUID
-IdUtils.simpleFastUUID(new SecureRandom()); // f01dbc9f2ffb4f2f8eb32ac967330220
-
-// 使用自定义随机数生成器生成高性能简写格式UUID
-IdUtils.simpleFastUUID(ThreadLocalRandom.current()); // 2888acb090a641d1badcc3398ab19cdb
 ```
 
 ### MongoDB风格ObjectId
