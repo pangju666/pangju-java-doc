@@ -161,6 +161,12 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/framework/mybatisplus/introduction'},
+                    {text: 'ID校验', link: '/framework/mybatisplus/validation'},
+                    {text: '数据结构', link: '/framework/mybatisplus/data'},
+                    {text: '实体类', link: '/framework/mybatisplus/entity'},
+                    {text: '类型处理器', link: '/framework/mybatisplus/type-handler'},
+                    {text: 'CRUD', link: '/framework/mybatisplus/crud'},
+                    {text: '工具类', link: '/framework/mybatisplus/utils'},
                 ]
             },
             {
