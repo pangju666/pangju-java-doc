@@ -11,6 +11,7 @@ layout: doc
 
 支持以下功能：
 - URI构建：支持路径、查询参数、URI变量的设置
+- 错误处理：业务失败抛出`HttpRemoteServiceException`，网关超时抛出`HttpRemoteServiceTimeoutException`
 - 请求头管理：支持单个或批量添加请求头
 - 请求体处理：支持JSON、表单数据、文本、二进制、资源格式
 - 响应处理：支持多种响应类型的转换（JSON、资源、二进制、文本）
@@ -19,6 +20,7 @@ layout: doc
 |------------------------|:---|:---------------------------|:-------------------------------:|
 | fromUriString          | 是  | RestRequestBuilder         |  从URI字符串创建RestRequestBuilder实例  |
 | fromUri                | 是  | RestRequestBuilder         |  从URI对象创建RestRequestBuilder实例   |
+| withErrorHandler       | 否  | RestRequestBuilder         |         配置 JSON 响应错误处理器         |
 | method                 | 否  | RestRequestBuilder         |           设置HTTP请求方法            |
 | errorService           | 否  | RestRequestBuilder         |         设置错误信息中的远程服务名称          |
 | errorApi               | 否  | RestRequestBuilder         |        设置错误信息中的 API 接口名称        |
@@ -55,12 +57,12 @@ layout: doc
 RestClient restClient = RestClient.builder().build();
 
 // 使用URI字符串构建
-ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1/xxxx")
+ResponseEntity<Void> response = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1/xxxx")
 		.method(HttpMethod.GET)
 		.toBodilessEntity();
 
 // 使用URI对象构建
-ResponseEntity<Void> response2 = RestRequestBuilder.fromUri(restClient, new URI("http://xxxxx/api/v1/xxxx"))
+ResponseEntity<Void> response = RestRequestBuilder.fromUri(restClient, new URI("http://xxxxx/api/v1/xxxx"))
 		.method(HttpMethod.GET)
 		.toBodilessEntity();	
 ```
@@ -68,8 +70,7 @@ ResponseEntity<Void> response2 = RestRequestBuilder.fromUri(restClient, new URI(
 #### 实例化
 ```java
 RestClient restClient = RestClient.builder().build();
-
-ResponseEntity<Void> response1 = new RestRequestBuilder(restClient, UriComponentsBuilder.fromUriString("http://xxxxx/api/v1/xxxx"))
+ResponseEntity<Void> response = RestRequestBuilder.fromUrlString(restClient, "http://xxxxx/api/v1/xxxx")
 		.method(HttpMethod.GET)
 		.toBodilessEntity();
 		
@@ -77,9 +78,9 @@ ResponseEntity<Void> response1 = new RestRequestBuilder(restClient, UriComponent
 RestClient restClient = RestClient.builder()
 			.requestInterceptors(interceptors -> interceptors.add(0, new BufferingResponseInterceptor()))
 			.build();
-JsonResponseErrorHandler errorHandler = new JsonResponseErrorHandler("SUCCESS");
-ResponseEntity<Void> response1 = new RestRequestBuilder(restClient, UriComponentsBuilder.fromUriString("http://xxxxx/api/v1/xxxx"), errorHandler)
+ResponseEntity<Void> response = RestRequestBuilder.fromUrlString(restClient, "http://xxxxx/api/v1/xxxx")
         .method(HttpMethod.GET)
+        .withErrorHandler("SUCCESS")
 		.toBodilessEntity();
 ```
 
@@ -261,18 +262,6 @@ ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "h
 		.path("/user")
 		.jsonBody(JsonUtils.parseString("{ \"name\": \"Tom\", \"age\": 2 }"))
 		.toBodilessEntity();
-
-// 使用Jackson库的JsonNode
-ObjectMapper objectMapper = new ObjectMapper();
-ObjectNode body = objectMapper.createObjectNode();
-result.put("name", "Tom");
-result.put("age", 2);
-
-ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
-		.method(HttpMethod.POST)
-		.path("/user")
-		.jsonBody(body)
-		.toBodilessEntity();
 ```
 
 #### text/plain
@@ -385,10 +374,7 @@ ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "h
 ::: tip 注意事项
 1. 错误处理器不是一个通用的错误处理器，里面的配置需要针对不同的接口去调整，所以最好不要在不同请求中共享（我个人是建议每种请求定义一个错误处理器）。
 2. 如果想要复用错误处理器实例的话（包括在不同线程中共享），那么需要在定义的时候就完成初始化，然后调用`init`方法，锁定对属性的修改。
-3. `RestClient`必须注册`BufferingResponseInterceptor`（或者你自己实现一个类似的，实现响应内容重复读取就行），不然的话响应状态码为`200`的业务性错误是直接忽略掉的。
-4. 非`JSON`响应类型的请求建议别用错误处理器，没有意义还白白占内存。
-5. 如果你有`IO`类型的请求的话，建议创建两个`RestClient`（一个注册`BufferingResponseInterceptor`，一个不注册），
-因为`BufferingResponseInterceptor`底层实现是将响应内容复制到内存里，如果响应体很大的话内存会疯狂飙升。
+3. `RestClient`必须注册[响应体缓冲拦截器](/framework/web/client#响应体缓冲拦截器)，不然的话响应状态码为`200`的业务性错误是直接忽略掉的。
 :::
 
 #### 使用
@@ -406,32 +392,36 @@ RestClient restClient = RestClient.builder()
 			.build(); 
 
 // 使用成功业务码初始化
-RestRequestBuilder.fromUriString(restClient, "https://api.example.com", "SUCCESS")
+RestRequestBuilder.fromUriString(restClient, "https://api.example.com")
     .path("/api/test/{id}")
     .method(HttpMethod.POST)
+    .withErrorHandler("SUCCESS")
     .jsonBody(new User("admin", "password"))
     .toJson(Result.class);
     
 // 使用自定义判断条件初始化
-RestRequestBuilder.fromUriString(restClient, "https://api.example.com", response -> response.getAsJsonPrimitive("code").getAsLong() == 0)
+RestRequestBuilder.fromUriString(restClient, "https://api.example.com")
     .path("/api/test/{id}")
     .method(HttpMethod.POST)
+    .withErrorHandler(response -> response.getAsJsonPrimitive("code").getAsLong() == 0)
     .jsonBody(new User("admin", "password"))
     .toJson(Result.class);
     
 // 直接使用现有错误处理器初始化
 JsonResponseErrorHandler errorHandler = new JsonResponseErrorHandler("SUCCESS");
-new RestRequestBuilder(restClient, UriComponentsBuilder.fromUriString("https://api.example.com"), errorHandler)
+RestRequestBuilder.fromUriString(restClient, "https://api.example.com")
     .path("/api/test/{id}")
     .method(HttpMethod.POST)
+    .withErrorHandler(errorHandler)
     .jsonBody(new User("admin", "password"))
     .toJson(Result.class);    
     
 // 直接使用现有错误处理器初始化
 JsonResponseErrorHandler errorHandler = new JsonResponseErrorHandler(response -> response.getAsJsonPrimitive("code").getAsLong() == 0);
-new RestRequestBuilder(restClient, UriComponentsBuilder.fromUriString("https://api.example.com"), errorHandler)
+RestRequestBuilder.fromUriString(restClient, "https://api.example.com")
     .path("/api/test/{id}")
     .method(HttpMethod.POST)
+    .withErrorHandler(errorHandler)
     .jsonBody(new User("admin", "password"))
     .toJson(Result.class);    
 ```
@@ -462,9 +452,10 @@ errorHandler.setMessageField("message");
 errorHandler.init(); // 初始化配置（调用后就无法修改其中的配置了，会忽略setxx()等方法的执行）。
 
 // 直接在构建请求过程中配置
-RestRequestBuilder.fromUriString(restClient, "https://api.example.com", "SUCCESS")
+RestRequestBuilder.fromUriString(restClient, "https://api.example.com")
     .path("/api/test/{id}")
     .method(HttpMethod.POST)
+    .withErrorHandler("SUCCESS")
     .errorService("测试服务")
     .errorApi("测试接口")
     .exceptionMessage("测试接口调用失败")
@@ -632,4 +623,29 @@ ResponseEntity<String> responseEntity = RestRequestBuilder.fromUriString(restCli
     .accept(acceptableMediaTypes) // 设置可接受的响应类型
 	.retrieve() // 执行请求操作
 	.toEntity(String.class); // 返回响应内容
+```
+
+### 响应内容缓存拦截器
+通过将`ClientHttpResponse`包装为`BufferingClientHttpResponseWrapper`，缓存响应体数据以支持对响应体的重复读取（例如日志打印、错误处理器解析等）。
+
+> [!TIP]
+> 该拦截器本身无状态，适用于在多线程环境下复用。
+> 
+> 建议将拦截器的排序设置第1位。
+
+默认会将`application/json`和`application/json;charset=UTF-8`类型的响应内容进行缓存，当然也可以自行设置要缓存的类型。
+
+> [!TIP]
+> 别对`application/octet-stream`这种流类型进行缓存，内存开销过大且没有意义。
+
+```java
+RestClient restClient = RestClient.builder()
+.requestInterceptors(interceptors -> interceptors.add(0, new BufferingResponseInterceptor()))
+.build();
+
+// 设置要缓存的响应内容类型
+BufferingResponseInterceptor interceptor = new BufferingResponseInterceptor(MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE);
+RestClient restClient = RestClient.builder()
+.requestInterceptors(interceptors -> interceptors.add(0, interceptor))
+.build();
 ```
