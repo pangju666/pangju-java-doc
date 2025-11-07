@@ -6,48 +6,50 @@ layout: doc
 
 `io.github.pangju666.framework.data.mybatisplus.repository.BaseRepository<M extends BaseMapper<T>, T>`
 
-我继承了[
-`com.baomidou.mybatisplus.extension.repository.CrudRepository`](https://baomidou.com/guides/data-interface/#_top)
-，并在其基础上了增加了一系列常用的`CRUD`方法。
+`io.github.pangju666.framework.data.mybatisplus.repository.BaseViewRepository<M extends BaseMapper<T>, T>`
 
-| 方法名                             | 返回值          |         用途          |
-|---------------------------------|:-------------|:-------------------:|
-| listByJsonColumnKey             | List\<T>     |    根据JSON对象字段值查询    |
-| listByJsonColumnKeyValue        | List\<T>     |    根据JSON对象字段值查询    |
-| listByJsonArrayColumnValue      | List\<T>     |    查询列为空JSON对象的行    |
-| listByJsonArrayColumnValues     | List\<T>     |     根据JSON数组值查询     |
-| listByEmptyJsonArray            | List\<T>     |   查询指定列为空JSON数组的行   |
-| listByEmptyJsonObject           | List\<T>     |   查询指定列为空JSON数组的行   |
-| existsById                      | boolean      |      检查ID是否存在       |
-| notExistsById                   | boolean      |      检查ID是否不存在      |
-| existsByColumnValue             | boolean      |     检查指定列的值是否存在     |
-| notExistsByColumnValue          | boolean      |    检查某指定列的值是否不存在    |
-| getByColumnValue                | T            |      根据指定列的值查询      |
-| getOptByColumnValue             | Optional\<T> |      根据指定列的值查询      |
-| listColumnValue                 | List\<?>     |      查询指定列的全部值      |
-| listUniqueColumnValue           | List\<?>     |    获取指定列的全部不重复值     |
-| listByIds                       | List\<T>     |      根据ID集合查询       |
-| listByColumnValue               | List\<T>     |      根据指定列的值查询      |
-| listByColumnValues              | List\<T>     |     根据指定列的值集合查询     |
-| listByNotNullColumn             | List\<T>     |    查询指定列不为null的行    |
-| listByNullColumn                | List\<T>     |    查询指定列为null的行     |
-| listByLikeColumnValue           | List\<T>     |    根据列值进行模糊全匹配查询    |
-| listByLikeLeftColumnValue       | List\<T>     |    根据列值进行模糊左匹配查询    |
-| listByLikeRightColumnValue      | List\<T>     |    根据列值进行模糊右匹配查询    |
-| listByNotLikeColumnValue        | List\<T>     |    根据列值进行模糊全排除查询    |
-| listByNotLikeLeftColumnValue    | List\<T>     |    根据列值进行模糊左排除查询    |
-| listByNotLikeRightColumnValue   | List\<T>     |    根据列值进行模糊右排除查询    |
-| replaceColumnValue              | boolean      |     替换指定列符合条件的值     |
-| removeByColumnValue             | boolean      |       根据列值删除        |
-| removeByColumnValues            | boolean      |     根据列值集合批量删除      |
-| removeByLikeColumnValue         | boolean      |    根据列值进行模糊全匹配删除    |
-| removeByNotLikeColumnValue      | boolean      |    根据列值进行模糊全排除删除    |
-| removeByLikeLeftColumnValue     | boolean      |    根据列值进行模糊左匹配删除    |
-| removeByNotLikeLeftColumnValue  | boolean      |    根据列值进行模糊左排除删除    |
-| removeByLikeRightColumnValue    | boolean      |    根据列值进行模糊右匹配删除    |
-| removeByNotLikeRightColumnValue | boolean      |    根据列值进行模糊右排除删除    |
-| getJsonValue                    | String       | 将对象转换为JSON字符串（内部方法） |
-| columnToString                  | String       | 将对象转换为JSON字符串（内部方法） |
+基于Mybatis Plus的[`CrudRepository`](https://baomidou.com/guides/data-interface/#_top)开发，在其基础上了增加了一系列常用的简单`CRUD`方法。
+
+针对视图，我也做了一个`BaseViewRepository`类，禁用了所有插入、修改、删除操作，如果执行相关操作会抛出`UnsupportedOperationException`异常。
+
+| 方法名                             | 返回值          |                     用途                      |
+|---------------------------------|:-------------|:-------------------------------------------:|
+| listByJsonColumnKey             | List\<T>     |          查询指定 JSON 列中存在给定键（路径）的记录           |
+| listByJsonColumnKeyValue        | List\<T>     |          查询指定 JSON 列中某键的值与给定值相等的记录          |
+| listByJsonArrayColumnValue      | List\<T>     |            查询指定 JSON 数组列包含某个值的记录            |
+| listByJsonArrayColumnValues     | List\<T>     |         查询指定 JSON 数组列与给定值集合存在交集的记录          |
+| listByEmptyJsonArray            | List\<T>     |      查询指定 JSON 列为“空对象 {}”或列值为 null 的记录      |
+| listByEmptyJsonObject           | List\<T>     |      查询指定 JSON 列为“空数组 []”或列值为 null 的记录      |
+| existsById                      | boolean      |                根据主键判断记录是否存在                 |
+| notExistsById                   | boolean      |                根据主键判断记录是否不存在                |
+| existsByColumnValue             | boolean      |                 判断某列的值是否存在                  |
+| notExistsByColumnValue          | boolean      |                 判断某列的值是否不存在                 |
+| getByColumnValue                | T            |                 根据列值获取单个实体。                 |
+| getOptByColumnValue             | Optional\<T> |      根据列值获取单个实体的 {@link Optional} 包装。       |
+| listColumnValue                 | List\<?>     |            列选择查询并返回该列的值列表（允许重复）             |
+| listUniqueColumnValue           | List\<?>     |              列选择查询并返回该列的去重值列表。              |
+| listByIds                       | List\<T>     |     根据主键集合查询，支持分批执行以降低单条 SQL 的 in 列表长度      |
+| listByColumnValue               | List\<T>     |                 根据列值获取多个实体                  |
+| listByColumnValues              | List\<T>     |     根据列值集合查询，支持分批执行以降低单条 SQL 的 in 列表长度      |
+| listByNotNullColumn             | List\<T>     |              查询指定列不为 null 的记录               |
+| listByNullColumn                | List\<T>     |               查询指定列为 null 的记录               |
+| listByLikeColumnValue           | List\<T>     |               使用 LIKE 模式匹配列值                |
+| listByLikeLeftColumnValue       | List\<T>     |           使用 LIKE LEFT 模式匹配（右侧模糊）           |
+| listByLikeRightColumnValue      | List\<T>     |          使用 LIKE RIGHT 模式匹配（左侧模糊）           |
+| listByNotLikeColumnValue        | List\<T>     |             使用 NOT LIKE 模式匹配列值              |
+| listByNotLikeLeftColumnValue    | List\<T>     |         使用 NOT LIKE LEFT 模式匹配（右侧模糊）         |
+| listByNotLikeRightColumnValue   | List\<T>     |        使用 NOT LIKE RIGHT 模式匹配（左侧模糊）         |
+| replaceColumnValue              | boolean      |                   替换指定列的值                   |
+| removeByColumnValue             | boolean      |                  根据列值删除记录                   |
+| removeByColumnValues            | boolean      |                 根据列值集合删除记录                  |
+| removeByLikeColumnValue         | boolean      |             使用 LIKE 模式根据列值删除记录              |
+| removeByNotLikeColumnValue      | boolean      |           使用 NOT LIKE 模式根据列值删除记录            |
+| removeByLikeLeftColumnValue     | boolean      |        使用 LIKE LEFT 模式（右侧模糊）根据列值删除记录        |
+| removeByNotLikeLeftColumnValue  | boolean      |      使用 NOT LIKE LEFT 模式（右侧模糊）根据列值删除记录      |
+| removeByLikeRightColumnValue    | boolean      |       使用 LIKE RIGHT 模式（左侧模糊）根据列值删除记录        |
+| removeByNotLikeRightColumnValue | boolean      |     使用 NOT LIKE RIGHT 模式（左侧模糊）根据列值删除记录      |
+| getJsonValue                    | String       | 将 Java 值序列化为用于 SQL 拼接的 JSON/文本字面量    （内部方法） |
+| columnToString                  | String       |        将列的 Lambda 引用解析为数据库物理列名（内部方法）        |
 
 ## 使用
 
