@@ -6,23 +6,22 @@ layout: doc
 const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 </script>
 
-# Mybatis Plus模块
+# MongoDB 模块
 
 ## 概述
-Mybatis Plus 模块是基于`Mybatis Plus`开发的，定义了一系列Mybatis Plus开发辅助工具，例如：
-- ID校验
-- 常用请求数据结构
+MongoDB 模块是基于`spring-data-mongodb`开发的，定义了一系列MongoDB辅助工具，例如：
 - 基础实体类
-- `CrudRepository`拓展
-- 常用类型处理器
-- 实体类工具类
+- 常用请求数据结构
+- `MongoDB`常量
+- `CRUD`封装
+- 查询工具类
 
 ## 安装
 ```xml-vue
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework</groupId>
-        <artifactId>framework-data-mybatis-plus</artifactId>
+        <artifactId>framework-data-mongodb</artifactId>
         <version>{{ frameworkVersion }}</version>
     </dependency>
 </dependency>
