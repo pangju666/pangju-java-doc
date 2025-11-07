@@ -10,44 +10,44 @@ layout: doc
 `com.baomidou.mybatisplus.extension.repository.CrudRepository`](https://baomidou.com/guides/data-interface/#_top)
 ，并在其基础上了增加了一系列常用的`CRUD`方法。
 
-| 方法名                             | 返回值      |         用途          |
-|---------------------------------|:---------|:-------------------:|
-| listByJsonObjectValue           | List\<T> |    根据JSON对象字段值查询    |
-| listByEmptyJsonObject           | List\<T> |    查询列为空JSON对象的行    |
-| listByJsonArrayValue            | List\<T> |     根据JSON数组值查询     |
-| listByEmptyJsonArray            | List\<T> |   查询指定列为空JSON数组的行   |
-| existsById                      | boolean  |      检查ID是否存在       |
-| notExistsById                   | boolean  |      检查ID是否不存在      |
-| existsByColumnValue             | boolean  |     检查指定列的值是否存在     |
-| notExistsByColumnValue          | boolean  |    检查某指定列的值是否不存在    |
-| getByColumnValue                | T        |      根据指定列的值查询      |
-| listColumnValue                 | List\<?> |      查询指定列的全部值      |
-| listUniqueColumnValue           | List\<?> |    获取指定列的全部不重复值     |
-| listByIds                       | List\<T> |      根据ID集合查询       |
-| listByColumnValue               | List\<T> |      根据指定列的值查询      |
-| listByColumnValues              | List\<T> |     根据指定列的值集合查询     |
-| listByNotNullColumn             | List\<T> |    查询指定列不为null的行    |
-| listByNullColumn                | List\<T> |    查询指定列为null的行     |
-| listByLikeColumnValue           | List\<T> |    根据列值进行模糊全匹配查询    |
-| listByLikeLeftColumnValue       | List\<T> |    根据列值进行模糊左匹配查询    |
-| listByLikeRightColumnValue      | List\<T> |    根据列值进行模糊右匹配查询    |
-| listByNotLikeColumnValue        | List\<T> |    根据列值进行模糊全排除查询    |
-| listByNotLikeLeftColumnValue    | List\<T> |    根据列值进行模糊左排除查询    |
-| listByNotLikeRightColumnValue   | List\<T> |    根据列值进行模糊右排除查询    |
-| saveBatch                       | boolean  |        批量保存         |
-| updateBatchById                 | boolean  |      根据Id批量更新       |
-| saveOrUpdateBatch               | boolean  |      批量保存或更新实体      |
-| replaceColumnValue              | boolean  |     替换指定列符合条件的值     |
-| removeByIds                     | boolean  |      根据ID批量删除       |
-| removeByColumnValue             | boolean  |       根据列值删除        |
-| removeByColumnValues            | boolean  |     根据列值集合批量删除      |
-| removeByLikeColumnValue         | boolean  |    根据列值进行模糊全匹配删除    |
-| removeByNotLikeColumnValue      | boolean  |    根据列值进行模糊全排除删除    |
-| removeByLikeLeftColumnValue     | boolean  |    根据列值进行模糊左匹配删除    |
-| removeByNotLikeLeftColumnValue  | boolean  |    根据列值进行模糊左排除删除    |
-| removeByLikeRightColumnValue    | boolean  |    根据列值进行模糊右匹配删除    |
-| removeByNotLikeRightColumnValue | boolean  |    根据列值进行模糊右排除删除    |
-| getJsonValue                    | String   | 将对象转换为JSON字符串（内部方法） |
+| 方法名                             | 返回值          |         用途          |
+|---------------------------------|:-------------|:-------------------:|
+| listByJsonColumnKey             | List\<T>     |    根据JSON对象字段值查询    |
+| listByJsonColumnKeyValue        | List\<T>     |    根据JSON对象字段值查询    |
+| listByJsonArrayColumnValue      | List\<T>     |    查询列为空JSON对象的行    |
+| listByJsonArrayColumnValues     | List\<T>     |     根据JSON数组值查询     |
+| listByEmptyJsonArray            | List\<T>     |   查询指定列为空JSON数组的行   |
+| listByEmptyJsonObject           | List\<T>     |   查询指定列为空JSON数组的行   |
+| existsById                      | boolean      |      检查ID是否存在       |
+| notExistsById                   | boolean      |      检查ID是否不存在      |
+| existsByColumnValue             | boolean      |     检查指定列的值是否存在     |
+| notExistsByColumnValue          | boolean      |    检查某指定列的值是否不存在    |
+| getByColumnValue                | T            |      根据指定列的值查询      |
+| getOptByColumnValue             | Optional\<T> |      根据指定列的值查询      |
+| listColumnValue                 | List\<?>     |      查询指定列的全部值      |
+| listUniqueColumnValue           | List\<?>     |    获取指定列的全部不重复值     |
+| listByIds                       | List\<T>     |      根据ID集合查询       |
+| listByColumnValue               | List\<T>     |      根据指定列的值查询      |
+| listByColumnValues              | List\<T>     |     根据指定列的值集合查询     |
+| listByNotNullColumn             | List\<T>     |    查询指定列不为null的行    |
+| listByNullColumn                | List\<T>     |    查询指定列为null的行     |
+| listByLikeColumnValue           | List\<T>     |    根据列值进行模糊全匹配查询    |
+| listByLikeLeftColumnValue       | List\<T>     |    根据列值进行模糊左匹配查询    |
+| listByLikeRightColumnValue      | List\<T>     |    根据列值进行模糊右匹配查询    |
+| listByNotLikeColumnValue        | List\<T>     |    根据列值进行模糊全排除查询    |
+| listByNotLikeLeftColumnValue    | List\<T>     |    根据列值进行模糊左排除查询    |
+| listByNotLikeRightColumnValue   | List\<T>     |    根据列值进行模糊右排除查询    |
+| replaceColumnValue              | boolean      |     替换指定列符合条件的值     |
+| removeByColumnValue             | boolean      |       根据列值删除        |
+| removeByColumnValues            | boolean      |     根据列值集合批量删除      |
+| removeByLikeColumnValue         | boolean      |    根据列值进行模糊全匹配删除    |
+| removeByNotLikeColumnValue      | boolean      |    根据列值进行模糊全排除删除    |
+| removeByLikeLeftColumnValue     | boolean      |    根据列值进行模糊左匹配删除    |
+| removeByNotLikeLeftColumnValue  | boolean      |    根据列值进行模糊左排除删除    |
+| removeByLikeRightColumnValue    | boolean      |    根据列值进行模糊右匹配删除    |
+| removeByNotLikeRightColumnValue | boolean      |    根据列值进行模糊右排除删除    |
+| getJsonValue                    | String       | 将对象转换为JSON字符串（内部方法） |
+| columnToString                  | String       | 将对象转换为JSON字符串（内部方法） |
 
 ## 使用
 
@@ -150,18 +150,6 @@ List<String> names = repository.listColumnValue(TestDO::getName);
 
 List<String> names = repository.listUniqueColumnValue(TestDO::getName);
 // 等价SQL：select distinct `name` from test where `name` is not null;
-```
-
-如果只是判断字段不可为null的话，查询条件好像过于简单了，所以我也提供了另一种用法。
-
-```java
-var queryWrapper = lambdaQuery().gt(TestDO::getId, 100); // 查询条件: id > 100
-
-List<String> names = repository.listColumnValue(queryWrapper, TestDO::getName);
-// 等价SQL：select `name` from test where `name` is not null and `id` > 100;
-
-List<String> names = repository.listUniqueColumnValue(queryWrapper, TestDO::getName);
-// 等价SQL：select distinct `name` from test where `name` is not null and `id` > 100;
 ```
 
 ### 单行查询
