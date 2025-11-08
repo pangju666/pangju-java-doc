@@ -5,7 +5,7 @@ layout: home
 hero:
   name: Pangju Java
   text: Java 项目开发辅助工具
-  tagline: 简化项目开发，统一开发规范
+  tagline: 简化项目开发，统一开发规范，写的一般，多多包涵
   image:
     src: /logo.jpg
   actions:

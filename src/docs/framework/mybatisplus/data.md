@@ -13,7 +13,7 @@ layout: doc
 ### 自增ID列表
 `io.github.pangju666.framework.data.mybatisplus.model.dto.AutoIdListDTO`
 
-id列表需要保证不能重复，我增加了`org.hibernate.validator.constraints.UniqueElements`校验注解。
+id列表需要保证不能重复，我设置了`org.hibernate.validator.constraints.UniqueElements`校验注解。
 
 ```java
 AutoIdListDTO idListDTO = new AutoIdListDTO<>(Arrays.asList(1L, 2L, 3L));
@@ -40,7 +40,7 @@ AutoIdListDTO idListDTO = new AutoIdListDTO<>(Arrays.asList(1L, 2L, 3L));
 > 
 > 是去掉中划线的`UUID`，千万不要用带中划线的版本，验证会不通过。
 
-id列表需要保证不能重复，我增加了`org.hibernate.validator.constraints.UniqueElements`校验注解。
+id列表需要保证不能重复，我设置了`org.hibernate.validator.constraints.UniqueElements`校验注解。
 
 ```java
 UUIDListDTO idListDTO = new UUIDListDTO<>(Arrays.asList("7d3436e7ac0547b881bf742a91192c0b", "5b21c805940d40998e965047610d8089", "3845f44b988f416482c01fc7947a1f17"));

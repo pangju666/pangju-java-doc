@@ -186,7 +186,8 @@ export default [
                 items: [
                     {text: '概述', link: '/framework/mongodb/introduction'},
                     {text: '常量', link: '/framework/mongodb/constants'},
-                    {text: '数据结构', link: '/framework/mongodb/document'},
+                    {text: '数据结构', link: '/framework/mongodb/data'},
+                    {text: '实体类', link: '/framework/mongodb/document'},
                     {text: '工具类', link: '/framework/mongodb/utils'},
                     {text: 'CRUD', link: '/framework/mongodb/crud'},
                 ]
