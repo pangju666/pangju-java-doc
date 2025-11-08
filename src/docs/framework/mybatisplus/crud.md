@@ -4,13 +4,10 @@ layout: doc
 
 # CRUD
 
+## BaseRepository
 `io.github.pangju666.framework.data.mybatisplus.repository.BaseRepository<M extends BaseMapper<T>, T>`
 
-`io.github.pangju666.framework.data.mybatisplus.repository.BaseViewRepository<M extends BaseMapper<T>, T>`
-
 基于Mybatis Plus的[`CrudRepository`](https://baomidou.com/guides/data-interface/#_top)开发，在其基础上了增加了一系列常用的简单`CRUD`方法。
-
-针对视图，我也做了一个`BaseViewRepository`类，禁用了所有插入、修改、删除操作，如果执行相关操作会抛出`UnsupportedOperationException`异常。
 
 | 方法名                             | 返回值          |                     用途                      |
 |---------------------------------|:-------------|:-------------------------------------------:|
@@ -51,7 +48,7 @@ layout: doc
 | getJsonValue                    | String       | 将 Java 值序列化为用于 SQL 拼接的 JSON/文本字面量    （内部方法） |
 | columnToString                  | String       |        将列的 Lambda 引用解析为数据库物理列名（内部方法）        |
 
-## 使用
+### 使用
 
 这个类是一个抽象类，需要用你自己的类继承它，然后就可以愉快的使用了。
 
@@ -90,7 +87,7 @@ repository.listUniqueColumnValue(TestDO::getName); // 查询表中所有name字�
 repository.listName(); // 查询表中所有name字段的值并去重
 ```
 
-## 方法说明
+### 方法说明
 
 这个类也算是我耗费了不少脑细胞，能写到的我都写上去了。
 
@@ -124,7 +121,7 @@ CREATE TABLE `test` (
 )
 ```
 
-### 是否存在
+#### 是否存在
 
 判断是否存在这块我只写了两个常用的：根据id判断和根据字段值判断
 
@@ -142,7 +139,7 @@ repository.notExistsByColumnValue(TestDO::getName, null); // 判断表中是否�
 repository.notExistsByColumnValue(TestDO::getName, "dKnBNHBKSE"); // 判断表中是否不存在name为dKnBNHBKSE的行
 ```
 
-### 指定列查询
+#### 指定列查询
 
 有些场景下，我们会有查询表中某个字段全部值的需求，所以我就封装了一下。
 
@@ -154,7 +151,7 @@ List<String> names = repository.listUniqueColumnValue(TestDO::getName);
 // 等价SQL：select distinct `name` from test where `name` is not null;
 ```
 
-### 单行查询
+#### 单行查询
 
 这个方法类似于父类的`getById`，只是从根据`id`查询变成了根据指定字段查询。
 
@@ -177,9 +174,9 @@ Optional<TestDO> testDO = repository.getOptByColumnValue(TestDO::getName, "dKnBN
 // 等价SQL：select * from test where `name` = 'dKnBNHBKSE';
 ```
 
-### 多行查询
+#### 多行查询
 
-#### 字段值
+##### 字段值
 
 查询表中所有字段为指定值的行，这个也是比较常用的。
 
@@ -191,7 +188,7 @@ List<TestDO> list = repository.listByColumnValue(TestDO::getName, "dKnBNHBKSE");
 // 等价SQL：select * from test where `name` = 'dKnBNHBKSE';
 ```
 
-#### id集合
+##### id集合
 
 这个方法基于父类的`listByIds`，只是增加了空值处理和分批处理。
 
@@ -211,7 +208,7 @@ List<TestDO> list = repository.listByIds(ids);
 List<TestDO> list = repository.listByIds(ids, 2000);
 ```
 
-#### 字段值集合
+##### 字段值集合
 
 查询表中所有字段存在集合中的值的行，这个也是比较常用的，我就封装了一下并增加了空值处理和分批处理。
 
@@ -239,7 +236,7 @@ List<TestDO> list = repository.listByColumnValues(TestDO::getName, names, 2000, 
 			.gt(TestDO::getId, 100));
 ```
 
-#### null字段
+##### null字段
 
 查询指定列为`null`的所有行，很常见的查询，简单封装了一下。
 
@@ -248,7 +245,7 @@ List<TestDO> list = repository.listByNullColumn(TestDO::getName);
 // 等价SQL：select * from test where `name` is null;
 ```
 
-#### 非null字段
+##### 非null字段
 
 查询指定列不为`null`的所有行，很常见的查询，简单封装了一下。
 
@@ -257,7 +254,7 @@ List<TestDO> list = repository.listByNotNullColumn(TestDO::getName);
 // 等价SQL：select * from test where `name` is not null;
 ```
 
-### 模糊匹配查询
+#### 模糊匹配查询
 
 这个就是模糊匹配查询的封装，我只是增加了空字符串处理。
 
@@ -275,7 +272,7 @@ List<TestDO> list = repository.listByLikeRightColumnValue(TestDO::getName, "test
 // 等价SQL：select * from test where `name` like 'test%';
 ```
 
-### 模糊排除查询
+#### 模糊排除查询
 
 这个就是模糊排除查询的封装，我只是增加了空字符串处理。
 
@@ -293,7 +290,7 @@ List<TestDO> list = repository.listByNotLikeRightColumnValue(TestDO::getName, "t
 // 等价SQL：select * from test where `name` not like 'test%';
 ```
 
-### JSON查询
+#### JSON查询
 
 > [!IMPORTANT]
 > JSON相关方法我只在MySQL环境下测试过。
@@ -309,7 +306,7 @@ List<TestDO> list = repository.listByNotLikeRightColumnValue(TestDO::getName, "t
 | 3  | TZmFtmldEn | \{"size": 2, "user": "test"}                | \["test"]                | 
 | 4  | kuJYcVeLxG | \{}                                         | \[]                      | 
 
-#### 空JSON对象
+##### 空JSON对象
 
 查询所有为`null`或空JSON的行。
 
@@ -324,7 +321,7 @@ List<TestDO> list = repository.listByEmptyJsonObject(TestDO::getMetaData);
 // 等价SQL：select * from test where `id` > 100 and (`meta_data` like '{}' or `meta_data` is null);
 ```
 
-#### 空JSON数组
+##### 空JSON数组
 
 查询所有为`null`或空JSON数组的行。
 
@@ -339,7 +336,7 @@ List<TestDO> list = repository.listByEmptyJsonArray(TestDO::getTags);
 // 等价SQL：select * from test where `id` > 100 and (`tags` like '[]' or `tags` is null);
 ```
 
-#### JSON键
+##### JSON键
 根据json字段中键是否存在来查询
 
 ```java
@@ -348,18 +345,18 @@ List<TestDO> result = repository.listByJsonColumnKey(TestDO::getMetaData, "size"
 // 等价SQL：select * from test where JSON_CONTAINS_PATH(meta_data, 'one', '$.size');
 
 // 也支持嵌套查询，返回存在json字段中存在tree.user这个键的所有行
-List<TestDO> result = repository.listByJsonColumnKey(TestDO::getMetaData, "size");
+List<TestDO> result = repository.listByJsonColumnKey(TestDO::getMetaData, "tree.user");
 // 等价SQL：select * from test where JSON_CONTAINS_PATH(meta_data, 'one', '$.tree.user');
 
 // 也可以直接使用列名而不是lamada写法
 List<TestDO> result = repository.listByJsonColumnKey("meta_data", "size");
 // 等价SQL：select * from test where JSON_CONTAINS_PATH(meta_data, 'one', '$.size');
 
-List<TestDO> result = repository.listByJsonColumnKey("meta_data", "size");
+List<TestDO> result = repository.listByJsonColumnKey("meta_data", "tree.user");
 // 等价SQL：select * from test where JSON_CONTAINS_PATH(meta_data, 'one', '$.tree.user');
 ```
 
-#### JSON键值
+##### JSON键值
 根据json字段中键和值来查询
 
 > [!IMPORTANT]
@@ -390,7 +387,7 @@ List<TestDO> result = repository.listByJsonArrayColumnValue("meta_data", "width"
 // 等价SQL：select * from test where meta_data->>'$.width' = 'null';
 ```
 
-#### JSON数组值
+##### JSON数组值
 根据json字段中数组是否存在某个值来查询
 
 ```java
@@ -410,7 +407,7 @@ List<TestDO> result = repository.listByJsonArrayColumnValue("tags", null);
 // 等价SQL：select * from test where JSON_CONTAINS(tags, 'null');
 ```
 
-#### JSON数组值集合
+##### JSON数组值集合
 根据json字段中数组是否存在集合中任意一个值来查询
 
 > [!IMPORTANT]
@@ -429,7 +426,7 @@ List<TestDO> result = repository.listByJsonArrayColumnValues("tags", "test");
 // 等价SQL：select * from test where JSON_OVERLAPS(tags, '["test2", "test3"]');
 ```
 
-### 批量替换
+#### 批量替换
 
 > [!WARNING]
 > 这个方法用的时候需要非常慎重，因为是直接用新的值替换掉所有旧的值，可能会影响到很多行。
@@ -442,12 +439,12 @@ boolean result = repository.replaceColumnValue(TestDO::getName, "old", "new");
 // 等价SQL：update test set `name` = 'test' where `name` = 'old';
 ```
 
-### 删除
+#### 删除
 
 > [!WARNING]
 > 调用删除相关方法的时候一定要慎重，非必要情况下建议还是使用`id`删除。
 
-#### 字段值
+##### 字段值
 
 ```java
 boolean result = repository.removeByColumnValue(TestDO::getName, null);
@@ -457,7 +454,7 @@ boolean result = repository.removeByColumnValue(TestDO::getName, "test");
 // 等价SQL：delete from test where `name` = 'test';
 ```
 
-#### 字段值集合
+##### 字段值集合
 
 > [!NOTE]
 > 如果传入的集合为`null`或空集合，则会返回`false`。
@@ -470,7 +467,7 @@ boolean result = repository.removeByColumnValues(TestDO::getName, names);
 // 等价SQL：delete from test where `name` in ("test1", "test2", "test3");
 ```
 
-#### 模糊匹配删除
+##### 模糊匹配删除
 
 > [!NOTE]
 > 如果传入的字符串为`null`、空字符串、空白字符串则返回`false`。
@@ -486,7 +483,7 @@ boolean result = repository.removeByLikeRightColumnValue(TestDO::getName, "test"
 // 等价SQL：delete from test where `name` like 'test%';
 ```
 
-#### 模糊排除删除
+##### 模糊排除删除
 
 > [!NOTE]
 > 如果传入的字符串为`null`、空字符串、空白字符串则返回`false`。
@@ -501,3 +498,8 @@ boolean result = repository.removeByLikeLeftColumnValue(TestDO::getName, "test")
 boolean result = repository.removeByLikeRightColumnValue(TestDO::getName, "test");
 // 等价SQL：delete from test where `name` not like 'test%';
 ```
+
+## BaseViewRepository
+`io.github.pangju666.framework.data.mybatisplus.repository.BaseViewRepository<M extends BaseMapper<T>, T>`
+
+针对视图，我也做了一个`BaseViewRepository`类，禁用了所有插入、修改、删除操作，如果执行相关操作会抛出`UnsupportedOperationException`异常。
