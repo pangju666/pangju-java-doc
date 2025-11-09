@@ -7,14 +7,13 @@ layout: doc
 
 这个类我本来是写成工具类的，但是实在是重载方法太多了，显得特别繁琐，我就改成链式调用了。
 
-> [!NOTE]
-> 默认启用缓冲模式以提高性能。
-
 | 方法名                | 返回值                 |               说明                |
 |--------------------|:--------------------|:-------------------------------:|
 | contentType        | HttpResponseBuilder |            设置响应内容类型             |
 | status             | HttpResponseBuilder |             设置响应状态码             |
 | buffer             | HttpResponseBuilder |           设置是否启用缓冲模式            |
+| characterEncoding  | HttpResponseBuilder |            设置响应字符编码             |
+| cacheControl       | HttpResponseBuilder |             设置缓存控制              |
 | contentDisposition | HttpResponseBuilder |  设置文件下载的Content-Disposition响应头  |
 | write              | void                |           将内容写入响应输出流            |
 | writeFile          | void                |          将文件内容写入响应输出流           |
@@ -22,6 +21,17 @@ layout: doc
 | writeBean          | void                | 将Java对象包装为Result并以JSON格式写入响应输出流 |
 | writeHttpException | void                |  处理HTTP异常并将错误信息以JSON格式写入响应输出流   |
 
+
+## 设置启用缓冲模式
+> [!TIP]
+> 如果响应内容不是很大的话，没必要用缓冲。
+
+```java
+HttpResponseBuilder.from(response).buffer();
+
+// 设置缓冲区大小
+HttpResponseBuilder.from(response).buffer(8192);
+```
 
 ## 设置响应内容类型
 如果传入的contentType为null或空白字符串，则不执行任何操作。
@@ -40,6 +50,33 @@ HttpResponseBuilder.from(response).contentType("application/octet-stream");
 HttpResponseBuilder.from(response).status(HttpStatus.OK);
 
 HttpResponseBuilder.from(response).status(200);
+```
+
+## 设置响应字符编码
+如果传入的charset为null或空白字符串，则不执行任何操作。
+
+> [!TIP]
+> 一般不需要设置这个，直接用默认的`UTF-8`就行。
+
+```java
+HttpResponseBuilder.from(response).characterEncoding(StandardCharsets.UTF_8);
+
+// 也可以直接用字符串设置
+HttpResponseBuilder.from(response).characterEncoding("UTF-8");
+```
+
+## 设置缓存控制头
+如果传入的参数为null，则不执行任何操作。
+
+> [!TIP]
+> 一般不需要设置这个，如果你是返回静态资源的话，建议加上这个。
+
+```java
+// 设置缓存时间为1天
+HttpResponseBuilder.from(response).cacheControl(Duration.ofDays(1));
+
+// 想要精细控制的话，可以传入CacheControl对象
+HttpResponseBuilder.from(response).cacheControl(CacheControl.maxAge(Duration.ofDays(1)).cachePublic());
 ```
 
 ## 设置文件下载响应头
@@ -65,12 +102,9 @@ HttpResponseBuilder.from(response).contentDisposition("test.txt", StandardCharse
 HttpResponseBuilder.from(response)
     .write(bytes);
 
-// 一般情况下，类型、状态码和缓冲区请保持默认设置
 HttpResponseBuilder.from(response)
     // 设置响应内容类型
     .contentType("image/jpeg")
-    // 不使用缓冲区
-    .buffer(false)
     // 设置响应状态码
     .status(HttpStatus.FOUND)
     .write(bytes);
@@ -88,15 +122,12 @@ HttpResponseBuilder.from(response)
 HttpResponseBuilder.from(response)
 .write(inputstream);
 
-// 一般情况下，类型、状态码和缓冲区请保持默认设置
 HttpResponseBuilder.from(response)
-// 设置响应内容类型
-.contentType("image/jpeg")
-// 不使用缓冲区
-.buffer(false)
-// 设置响应状态码
-.status(HttpStatus.FOUND)
-.write(inputstream);
+    // 设置响应内容类型
+    .contentType("image/jpeg")
+    // 设置响应状态码
+    .status(HttpStatus.FOUND)
+    .write(inputstream);
 ```
 
 ## 将文件写入响应输出流
@@ -109,18 +140,17 @@ HttpResponseBuilder.from(response)
 ```java
 File file = new File("test.jpg");
 
-// 默认会使用缓冲区
 HttpResponseBuilder.from(response)
     .writeFile(file);
 
-// 不使用缓冲区
+// 使用缓冲区
 HttpResponseBuilder.from(response)
-    .buffer(false)
+    .buffer()
     .writeFile(file);
     
 // 使用指定的下载文件名
 HttpResponseBuilder.from(response)
-    .buffer(false)
+    .buffer()
     .writeFile(file, "avatar.jpg");
 ```
 
@@ -139,10 +169,10 @@ HttpResponseBuilder.from(response)
 > 写入Bean的时候建议不开启缓冲区，除非这个Bean是超大集合或者超长字符串。
 
 ```java
-HttpResponseBuilder.from(response).buffer(false).writeBean(Result.ok()); // {"code": 0, "message":"请求成功", "data":null}
-HttpResponseBuilder.from(response).buffer(false).writeBean(Result.ok("test")); // {"code": 0, "message":"请求成功", "data":"test"}
-HttpResponseBuilder.from(response).buffer(false).writeBean("test"); // {"code": 0, "message":"请求成功", "data":"test"}
-HttpResponseBuilder.from(response).buffer(false).writeBean(null); // {"code": 0, "message":"请求成功", "data":null}
+HttpResponseBuilder.from(response).writeBean(Result.ok()); // {"code": 0, "message":"请求成功", "data":null}
+HttpResponseBuilder.from(response).writeBean(Result.ok("test")); // {"code": 0, "message":"请求成功", "data":"test"}
+HttpResponseBuilder.from(response).writeBean("test"); // {"code": 0, "message":"请求成功", "data":"test"}
+HttpResponseBuilder.from(response).writeBean(null); // {"code": 0, "message":"请求成功", "data":null}
 ```
 
 ## 处理HTTP异常
@@ -158,9 +188,9 @@ HttpResponseBuilder.from(response).buffer(false).writeBean(null); // {"code": 0,
 4. 设置`Content-Type`为application/json
 5. 将`Result`序列化为JSON并写入响应
 
-> [!TIP]
-> 异常信息转换的JSON比较精简，个人建议不要开启缓冲区输出。
+> [!NOTE]
+> 这个方法我禁用了缓冲区，异常信息不会特别大，没必要用缓冲区。
 
 ```java
-HttpResponseBuilder.from(response).buffer(false).writeHttpException(new ServiceException("测试错误")); // {"code": -1000, "message":"测试错误", "data":null}
+HttpResponseBuilder.from(response).writeHttpException(new ServiceException("测试错误")); // {"code": -1000, "message":"测试错误", "data":null}
 ```
