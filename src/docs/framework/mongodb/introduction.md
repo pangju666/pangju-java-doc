@@ -13,7 +13,7 @@ MongoDB 模块是基于`spring-data-mongodb`开发的，定义了一系列MongoD
 - 基础实体类
 - 常用请求数据结构
 - `MongoDB`常量
-- `CRUD`封装
+- `MongoRepository`拓展
 - 查询工具类
 
 ## 安装
