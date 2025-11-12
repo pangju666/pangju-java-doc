@@ -53,16 +53,16 @@ URL imageUrl;
 ImageEditor.of(imageUrl);
 
 File imageFile;
-// 默认自动矫正方向
+// 默认不开启自动矫正方向
 ImageEditor.of(imageFile);
-// 关闭自动矫正方向
-ImageEditor.of(imageFile, false);
+// 开启自动矫正方向
+ImageEditor.of(imageFile, true);
 
 InputStream imageInputStream;
-// 默认自动矫正方向
+// 默认不开启自动矫正方向
 ImageEditor.of(imageInputStream);
-// 关闭自动矫正方向
-ImageEditor.of(imageInputStream, false);
+// 开启自动矫正方向
+ImageEditor.of(imageInputStream, true);
 
 ImageInputStream imageInputStream;
 ImageEditor.of(imageUrl);
