@@ -22,7 +22,7 @@ layout: doc
 | 方法名                 | 返回值         |              用途               |
 |---------------------|:------------|:-----------------------------:|
 | of                  | ImageEditor |           创建缩略图生成器            |
-| scaleFilterType     | ImageEditor |          设置重采样滤波器类型           |
+| resampleFilterType  | ImageEditor |          设置重采样滤波器类型           |
 | scaleHints          | ImageEditor |     设置图像缩放的提示类型，影响缩放算法的选择     |
 | outputFormat        | ImageEditor |           设置输出图像的格式           |
 | correctOrientation  | ImageEditor |       根据EXIF方向信息校正图像方向        |
@@ -38,13 +38,15 @@ layout: doc
 | scaleByWidth        | ImageEditor |     按指定宽度等比例缩放图像，保持原始宽高比      |
 | scaleByHeight       | ImageEditor |     按指定高度等比例缩放图像，保持原始宽高比      |
 | scale               | ImageEditor | 将图像缩放到指定的最大宽度和最大高度范围内，保持原始宽高比 |
+| addImageWatermark   | ImageEditor |            添加图片水印             |
+| addTextWatermark    | ImageEditor |            添加文字水印             |
 | restore             | ImageEditor |      恢复图像到初始状态，重置所有处理效果       |
 | toFile              | void        |         将处理后的图像保存到文件          |
 | toOutputStream      | void        |         将处理后的图像写入输出流          |
 | toImageOutputStream | void        |        将处理后的图像写入图像输出流         |
 | toBufferedImage     | void        |          获取处理后图像的副本           |
 
-## 实例化
+### 实例化
 支持从`URL`、文件、输入流、图像输入流、`BufferImage`几种方式读取。
 
 
@@ -71,7 +73,7 @@ BufferedImage image;
 ImageEditor.of(image);
 ```
 
-## 设置重采样滤波器类型
+### 设置重采样滤波器类型
 默认是`Lanczos 插值（高质量）滤波器`，建议不要乱改，有些滤波器会无法生成部分图像。
 
 支持以下滤波器：
@@ -94,10 +96,10 @@ ImageEditor.of(image);
 
 ```java
 File imageFile;
-ImageEditor.of(imageFile).scaleFilterType(ResampleOp.FILTER_LANCZOS);
+ImageEditor.of(imageFile).resampleFilterType(ResampleOp.FILTER_LANCZOS);
 ```
 
-## 设置图像缩放的提示类型
+### 设置图像缩放的提示类型
 根据不同的提示类型，会选择不同的重采样过滤器：
 - `Image.SCALE_FAST`或`Image.SCALE_REPLICATE`： 使用最近邻插值 (`FILTER_POINT`)
 - `Image.SCALE_AREA_AVERAGING`： 使用盒式过滤 (`FILTER_BOX`)
@@ -235,6 +237,62 @@ ImageEditor.of(imageFile).scale(0.5); // 将图像缩放到原本的0.5倍
 
 ![缩略图](/thumbnail.png)
 
+### 增加图片水印
+
+>[!TIP]
+> 大型图片建议先缩放再增加水印
+
+```java
+File imageFile;
+File watermarkFile;
+
+ImageWatermarkOption watermarkOption = new ImageWatermarkOption();
+// 设置水印的相对缩放比例（相对原图尺寸），默认为 0.15，必须大于0，建议不要超过1
+watermarkOption.setScale(0.15f); 
+// 设置水印的水印透明度，默认为 0.4，有效范围为 [0.0f, 1.0f]
+watermarkOption.setOpacity(0.4f); 
+// 设置水印宽度的有效范围（像素），默认为 40-200
+watermarkOption.setWidthRange(40, 200);  
+// 设置水印高度的有效范围（像素），默认为 40-200
+watermarkOption.setHeightRange(40, 200); 
+
+// 在图片右上角增加水印
+ImageEditor.of(imageFile).addImageWatermark(watermarkFile, watermarkOption, WatermarkDirection.TOP_RIGHT); 
+
+// 在图片 100,100 位置处增加水印
+ImageEditor.of(imageFile).addImageWatermark(watermarkFile, watermarkOption, 100, 100); 
+
+// 也支持传入 BufferedImage
+ImageEditor.of(imageFile).addImageWatermark(ImageIO.read(watermarkFile), watermarkOption, WatermarkDirection.TOP_RIGHT); 
+```
+
+### 增加文字水印
+
+>[!TIP]
+> 大型图片建议先缩放再增加水印
+
+```java
+File imageFile;
+
+TextWatermarkOption watermarkOption = new TextWatermarkOption();
+// 设置字体填充颜色，默认为白色
+watermarkOption.setFillColor(0.15f); 
+// 设置字体描边颜色，默认为浅灰
+watermarkOption.setStrokeColor(0.4f); 
+// 设置字体，默认为 Dialog 12pt 常规
+watermarkOption.setFont(40, 200);  
+// 设置描边线宽，默认为3
+watermarkOption.setStrokeWidth(40, 200); 
+// 设置启用描边功能
+watermarkOption.setStroke(true); 
+
+// 在图片右上角增加水印
+ImageEditor.of(imageFile).addImageWatermark("测试水印", watermarkOption, WatermarkDirection.TOP_RIGHT); 
+
+// 在图片 100,100 位置处增加水印
+ImageEditor.of(imageFile).addImageWatermark("测试水印", watermarkOption, 100, 100); 
+```
+
 ### 重置
 恢复图像到初始状态，重置所有处理效果。
 
@@ -272,8 +330,7 @@ ImageOutputStream outputStream;
 ImageEditor.of(imageFile).scale(500, 400).toImageOutputStream(outputStream);
 ```
 
-### 获取输出图像副本
-底层调用`ImageUtil.createCopy(BufferedImage)`深拷贝一个完全相同的副本，操作它不会影响编辑器中的输出图像。
+### 获取输出图像
 
 ```java
 File imageFile;

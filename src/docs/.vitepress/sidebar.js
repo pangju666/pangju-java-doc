@@ -193,5 +193,10 @@ export default [
                 ]
             },
         ]
+    },
+    {
+        text: "自动装配",
+        collapsed: true,
+        items: [],
     }
 ]
