@@ -201,7 +201,7 @@ ImageEditor.of(imageFile).brightness(10.0f); // 亮度增加10
 ```
 
 ### 调整不透明度
-调整图像不透明高度，范围为 (0, 1)，超出范围不生效。
+调整图像不透明高度，范围为 [0, 1]，超出范围不生效。
 
 ```java
 File imageFile;
@@ -294,6 +294,8 @@ watermarkOption.setFont(40, 200);
 watermarkOption.setStrokeWidth(40, 200); 
 // 设置启用描边功能
 watermarkOption.setStroke(true); 
+// 设置水印的水印透明度，默认为 0.4，有效范围为 [0.0f, 1.0f]
+watermarkOption.setOpacity(0.4f); 
 
 // 在图片右上角增加水印
 ImageEditor.of(imageFile).addImageWatermark("测试水印", watermarkOption, WatermarkDirection.TOP_RIGHT); 
