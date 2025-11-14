@@ -14,6 +14,7 @@ layout: doc
 | MODEL_MIME_TYPE_PREFIX       | model/       |    模型类型MIME前缀（如："mode/obj"）     |
 | TEXT_MIME_TYPE_PREFIX        | text/        |   文本类型MIME前缀（如："text/plain"）    |
 | APPLICATION_MIME_TYPE_PREFIX | application/ | 应用类型MIME前缀（如："application/pdf"） |
+| DEFAULT_TIKA                 | Tika（动态获取）   |            默认Tika实例             |
 
 ```java
 // 获取默认Tika单例实例

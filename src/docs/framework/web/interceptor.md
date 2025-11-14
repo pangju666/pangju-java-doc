@@ -13,7 +13,11 @@ layout: doc
 - excludePathPatterns：排除路径
 
 ```java
-class TestHttpInterceptor extends BaseHttpInterceptor {
+public class TestHttpInterceptor extends BaseHttpInterceptor {
+    public TestHttpInterceptor(Set<String> excludePathPatterns, int order) {
+		super(Collections.emptySet(), order);
+	}
+
     public TestHttpInterceptor(Set<String> patterns, Set<String> excludePathPatterns, int order) {
 		super(patterns, excludePathPatterns, order);
 	}
