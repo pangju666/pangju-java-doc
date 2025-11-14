@@ -12,7 +12,7 @@ layout: doc
 
 > [!TIP]
 > 注意事项：
-> - 默认使用`Lanczos插值`（高质量）滤波器
+> - 默认使用`Lanczos`插值（高质量）滤波器
 > - 默认输出格式根据输入图像是否有透明通道自动选择（`PNG`或`JPEG`）
 > - 不支持透明的格式（如`JPEG`）会自动转换为RGB模式
 > - 可以使用`restore()`方法恢复到原始图像状态
@@ -30,6 +30,7 @@ layout: doc
 | blur                | ImageEditor |           对图像应用模糊效果           |
 | flip                | ImageEditor |             翻转图像              |
 | sharpen             | ImageEditor |           对图像应用锐化效果           |
+| opacity             | ImageEditor |           调整图像不透明度            |
 | grayscale           | ImageEditor |           将图像转换为灰度图           |
 | contrast            | ImageEditor |            调整图像对比度            |
 | brightness          | ImageEditor |            调整图像亮度             |
@@ -197,6 +198,14 @@ ImageEditor.of(imageFile).contrast(10.0f); // 对比度增加10
 ```java
 File imageFile;
 ImageEditor.of(imageFile).brightness(10.0f); // 亮度增加10
+```
+
+### 调整不透明度
+调整图像不透明高度，范围为 (0, 1)，超出范围不生效。
+
+```java
+File imageFile;
+ImageEditor.of(imageFile).opacity(0.75f); // 将不透明度修改为75%
 ```
 
 ### 滤镜
