@@ -33,6 +33,9 @@ layout: doc
 | opacity             | ImageEditor |           调整图像不透明度            |
 | grayscale           | ImageEditor |           将图像转换为灰度图           |
 | contrast            | ImageEditor |            调整图像对比度            |
+| cropByCenter        | ImageEditor |           居中裁剪为指定尺寸           |
+| cropByOffset        | ImageEditor |           按边距偏移进行裁剪           |
+| cropByRect          | ImageEditor |           按矩形区域进行裁剪           |
 | brightness          | ImageEditor |            调整图像亮度             |
 | filter              | ImageEditor |          对图像应用自定义过滤器          |
 | resize              | ImageEditor |    强制将图像缩放到指定的尺寸，不保持原始宽高比     |
@@ -302,6 +305,30 @@ ImageEditor.of(imageFile).addImageWatermark("测试水印", watermarkOption, Wat
 
 // 在图片 100,100 位置处增加水印
 ImageEditor.of(imageFile).addImageWatermark("测试水印", watermarkOption, 100, 100); 
+```
+
+### 裁剪
+我提供了三种不同的裁剪方式。
+
+> [!TIP]
+> 如果裁剪区域大于等于图片本身的宽高则不生效。
+
+#### 居中裁剪为指定尺寸
+```java
+File imageFile;
+ImageEditor.cropByCenter(500, 500); // 以图像中心为原点裁剪500x500的区域
+```
+
+#### 按边距偏移进行裁剪
+```java
+File imageFile;
+ImageEditor.cropByOffset(100, 100, 100, 100); // 裁剪以图像上下左右四个方向各偏移100像素的区域
+```
+
+#### 按矩形区域进行裁剪
+```java
+File imageFile;
+ImageEditor.cropByRect(100, 100, 500, 500); // 以图像100,100的位置为原点裁剪500x500的区域
 ```
 
 ### 重置
