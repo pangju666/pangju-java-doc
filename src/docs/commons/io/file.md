@@ -189,18 +189,18 @@ FileUtils.getSlidingBufferSize(file);
 ```java
 File inputFile = new File("input.txt");
 File outputFile = new File("output.txt");
-byte[] password = "1234567890123456".getBytes();
+byte[] key = "1234567890123456".getBytes();
 byte[] IV_16 = "1234567890123456".getBytes();
 
-// 加密文件，密码只能为16字节，iv同密码
-FileUtils.encryptFile(inputFile, outputFile, password);
-// 加密文件，密码必须为16/24/32字节，iv只能为16字节
-FileUtils.encryptFile(inputFile, outputFile, password, IV_16);
+// 加密文件，密钥只能为16字节，iv同密钥
+FileUtils.encryptFile(inputFile, outputFile, key);
+// 加密文件，密钥必须为16/24/32字节，iv只能为16字节
+FileUtils.encryptFile(inputFile, outputFile, key, IV_16);
 
-// 解密文件，密码只能为16字节，iv同密码
-FileUtils.decryptFile(outputFile, inputFile, password);
-// 加密文件，密码必须为16/24/32字节，iv只能为16字节
-FileUtils.decryptFile(outputFile, inputFile, password, IV_16);
+// 解密文件，密钥只能为16字节，iv同密钥
+FileUtils.decryptFile(outputFile, inputFile, key);
+// 加密文件，密钥必须为16/24/32字节，iv只能为16字节
+FileUtils.decryptFile(outputFile, inputFile, key, IV_16);
 ```
 
 #### AES/CTR模式加密
@@ -208,18 +208,18 @@ FileUtils.decryptFile(outputFile, inputFile, password, IV_16);
 ```java
 File inputFile = new File("input.txt");
 File outputFile = new File("output.txt");
-byte[] password = "1234567890123456".getBytes();
+byte[] key = "1234567890123456".getBytes();
 byte[] IV_16 = "1234567890123456".getBytes();
 
-// CTR模式加密文件，密码只能为16字节，iv同密码
-FileUtils.encryptFileByCtr(inputFile, outputFile, password);
-// CTR模式加密文件，密码必须为16/24/32字节，iv只能为16字节
-FileUtils.encryptFileByCtr(inputFile, outputFile, password, IV_16);
+// CTR模式加密文件，密钥只能为16字节，iv同密钥
+FileUtils.encryptFileByCtr(inputFile, outputFile, key);
+// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节
+FileUtils.encryptFileByCtr(inputFile, outputFile, key, IV_16);
 
-// CTR模式解密文件，密码只能为16字节，iv同密码
-FileUtils.decryptFileByCtr(outputFile, inputFile, password);
-// CTR模式加密文件，密码必须为16/24/32字节，iv只能为16字节
-FileUtils.decryptFileByCtr(outputFile, inputFile, password, IV_16);
+// CTR模式解密文件，密钥只能为16字节，iv同密钥
+FileUtils.decryptFileByCtr(outputFile, inputFile, key);
+// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节
+FileUtils.decryptFileByCtr(outputFile, inputFile, key, IV_16);
 ```
 
 ### 文件删除

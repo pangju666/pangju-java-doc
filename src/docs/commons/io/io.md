@@ -79,33 +79,33 @@ UnsynchronizedByteArrayOutputStream outputStream = IOUtils.toUnsynchronizedByteA
 #### AES/CBC/PKCS5Padding模式加密
 
 ```java
-byte[] password = "1234567890123456".getBytes();
+byte[] key = "1234567890123456".getBytes();
 byte[] IV_16 = "1234567890123456".getBytes();
 
-// 加密流，密码只能为16字节，iv同密码
-IOUtils.encryptFile(inputStream, outputStream, password);
-// 加密流，密码必须为16/24/32字节，iv只能为16字节
-IOUtils.encryptFile(inputStream, outputStream, password, IV_16);
+// 加密流，密钥只能为16字节，iv同密钥
+IOUtils.encryptFile(inputStream, outputStream, key);
+// 加密流，密钥必须为16/24/32字节，iv只能为16字节
+IOUtils.encryptFile(inputStream, outputStream, key, IV_16);
 
-// 解密流，密码只能为16字节，iv同密码
-IOUtils.decryptFile(inputStream, outputStream, password);
-// 加密流，密码必须为16/24/32字节，iv只能为16字节
-IOUtils.decryptFile(inputStream, outputStream, password, IV_16);
+// 解密流，密钥只能为16字节，iv同密钥
+IOUtils.decryptFile(inputStream, outputStream, key);
+// 加密流，密钥必须为16/24/32字节，iv只能为16字节
+IOUtils.decryptFile(inputStream, outputStream, key, IV_16);
 ```
 
 #### AES/CTR模式加密
 
 ```java
-byte[] password = "1234567890123456".getBytes();
+byte[] key = "1234567890123456".getBytes();
 byte[] IV_16 = "1234567890123456".getBytes();
 
-// CTR模式加密流，密码只能为16字节，iv同密码
-IOUtils.encryptFileByCtr(inputStream, outputStream, password);
-// CTR模式加密流，密码必须为16/24/32字节，iv只能为16字节
-IOUtils.encryptFileByCtr(inputStream, outputStream, password, IV_16);
+// CTR模式加密流，密钥只能为16字节，iv同密钥
+IOUtils.encryptFileByCtr(inputStream, outputStream, key);
+// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节
+IOUtils.encryptFileByCtr(inputStream, outputStream, key, IV_16);
 
-// CTR模式解密流，密码只能为16字节，iv同密码
-IOUtils.decryptFileByCtr(inputStream, outputStream, password);
-// CTR模式加密流，密码必须为16/24/32字节，iv只能为16字节
-IOUtils.decryptFileByCtr(inputStream, outputStream, password, IV_16);
+// CTR模式解密流，密钥只能为16字节，iv同密钥
+IOUtils.decryptFileByCtr(inputStream, outputStream, key);
+// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节
+IOUtils.decryptFileByCtr(inputStream, outputStream, key, IV_16);
 ```
