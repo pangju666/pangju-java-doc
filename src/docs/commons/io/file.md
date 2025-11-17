@@ -190,17 +190,17 @@ FileUtils.getSlidingBufferSize(file);
 File inputFile = new File("input.txt");
 File outputFile = new File("output.txt");
 byte[] key = "1234567890123456".getBytes();
-byte[] IV_16 = "1234567890123456".getBytes();
+byte[] iv = RandomUtils.secureStrong().randomBytes(16);
 
-// 加密文件，密钥只能为16字节，iv同密钥
-FileUtils.encryptFile(inputFile, outputFile, key);
-// 加密文件，密钥必须为16/24/32字节，iv只能为16字节
-FileUtils.encryptFile(inputFile, outputFile, key, IV_16);
+// 加密文件，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+FileUtils.encryptFile(inputFile, outputFile, key, iv);
+// 加密文件，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+FileUtils.encryptFile(inputFile, outputFile, key, iv, 8192);
 
-// 解密文件，密钥只能为16字节，iv同密钥
-FileUtils.decryptFile(outputFile, inputFile, key);
-// 加密文件，密钥必须为16/24/32字节，iv只能为16字节
-FileUtils.decryptFile(outputFile, inputFile, key, IV_16);
+// 解密文件，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+FileUtils.decryptFile(outputFile, inputFile, key, iv);
+// 加密文件，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+FileUtils.decryptFile(outputFile, inputFile, key, iv, 8192);
 ```
 
 #### AES/CTR模式加密
@@ -209,17 +209,17 @@ FileUtils.decryptFile(outputFile, inputFile, key, IV_16);
 File inputFile = new File("input.txt");
 File outputFile = new File("output.txt");
 byte[] key = "1234567890123456".getBytes();
-byte[] IV_16 = "1234567890123456".getBytes();
+byte[] iv = RandomUtils.secureStrong().randomBytes(16);
 
-// CTR模式加密文件，密钥只能为16字节，iv同密钥
-FileUtils.encryptFileByCtr(inputFile, outputFile, key);
-// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节
-FileUtils.encryptFileByCtr(inputFile, outputFile, key, IV_16);
+// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+FileUtils.encryptFileByCtr(inputFile, outputFile, key, iv);
+// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+FileUtils.encryptFileByCtr(inputFile, outputFile, key, iv, 8192);
 
-// CTR模式解密文件，密钥只能为16字节，iv同密钥
-FileUtils.decryptFileByCtr(outputFile, inputFile, key);
-// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节
-FileUtils.decryptFileByCtr(outputFile, inputFile, key, IV_16);
+// CTR模式解密文件，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+FileUtils.decryptFileByCtr(outputFile, inputFile, key, iv);
+// CTR模式加密文件，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+FileUtils.decryptFileByCtr(outputFile, inputFile, key, iv, 8192);
 ```
 
 ### 文件删除

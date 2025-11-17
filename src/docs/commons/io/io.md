@@ -80,32 +80,32 @@ UnsynchronizedByteArrayOutputStream outputStream = IOUtils.toUnsynchronizedByteA
 
 ```java
 byte[] key = "1234567890123456".getBytes();
-byte[] IV_16 = "1234567890123456".getBytes();
+byte[] iv = RandomUtils.secureStrong().randomBytes(16);
 
-// 加密流，密钥只能为16字节，iv同密钥
-IOUtils.encryptFile(inputStream, outputStream, key);
-// 加密流，密钥必须为16/24/32字节，iv只能为16字节
-IOUtils.encryptFile(inputStream, outputStream, key, IV_16);
+// 加密流，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+IOUtils.encryptFile(inputStream, outputStream, key, iv);
+// 加密流，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+IOUtils.encryptFile(inputStream, outputStream, key, iv, 8192);
 
-// 解密流，密钥只能为16字节，iv同密钥
-IOUtils.decryptFile(inputStream, outputStream, key);
-// 加密流，密钥必须为16/24/32字节，iv只能为16字节
-IOUtils.decryptFile(inputStream, outputStream, key, IV_16);
+// 解密流，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+IOUtils.decryptFile(inputStream, outputStream, key, iv);
+// 加密流，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+IOUtils.decryptFile(inputStream, outputStream, key, iv, 8192);
 ```
 
 #### AES/CTR模式加密
 
 ```java
 byte[] key = "1234567890123456".getBytes();
-byte[] IV_16 = "1234567890123456".getBytes();
+byte[] iv = RandomUtils.secureStrong().randomBytes(16);
 
-// CTR模式加密流，密钥只能为16字节，iv同密钥
-IOUtils.encryptFileByCtr(inputStream, outputStream, key);
-// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节
-IOUtils.encryptFileByCtr(inputStream, outputStream, key, IV_16);
+// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+IOUtils.encryptFileByCtr(inputStream, outputStream, key, iv);
+// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+IOUtils.encryptFileByCtr(inputStream, outputStream, key, iv, 8192);
 
-// CTR模式解密流，密钥只能为16字节，iv同密钥
-IOUtils.decryptFileByCtr(inputStream, outputStream, key);
-// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节
-IOUtils.decryptFileByCtr(inputStream, outputStream, key, IV_16);
+// CTR模式解密流，密钥必须为16/24/32字节，iv只能为16字节，默认缓冲区为8192
+IOUtils.decryptFileByCtr(inputStream, outputStream, key, iv);
+// CTR模式加密流，密钥必须为16/24/32字节，iv只能为16字节，指定缓冲区为8192
+IOUtils.decryptFileByCtr(inputStream, outputStream, key, iv, 8192);
 ```
