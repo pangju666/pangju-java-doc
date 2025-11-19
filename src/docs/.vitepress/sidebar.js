@@ -4,7 +4,7 @@ export default [
         link: '/getting-started'
     },
     {
-        text: '依赖管理',
+        text: '依赖管理（dependencies）',
         collapsed: true,
         items: [
             {text: '简介', link: '/dependencies/getting-started'},
@@ -13,7 +13,112 @@ export default [
         ]
     },
     {
-        text: '工具库',
+        text: "自动装配（starter）",
+        collapsed: true,
+        items: [
+            {text: '简介', link: '/starter/getting-started'},
+            {
+                text: 'Spring',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/spring/introduction'},
+                ]
+            },
+            {
+                text: '并发',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/concurrent/introduction'},
+                ]
+            },
+            {
+                text: '加密',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/crypto/introduction'},
+                ]
+            },
+            {
+                text: '校验',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/validation/introduction'},
+                ]
+            },
+            {
+                text: '图像',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/image/introduction'},
+                ]
+            },
+            {
+                text: 'Mybatis Plus',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/mybatisplus/introduction'},
+                ]
+            },
+            {
+                text: 'MongoDB',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/mongodb/introduction'},
+                ]
+            },
+            {
+                text: 'Redis',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/redis/introduction'},
+                ]
+            },
+            {
+                text: 'Web',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/web/introduction'},
+                ]
+            },
+            {
+                text: 'Web 加密',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/web-crypto/introduction'},
+                ]
+            },
+            {
+                text: 'Web 校验',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/web-validation/introduction'},
+                ]
+            },
+            {
+                text: 'Web 日志',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/web-log/introduction'},
+                ]
+            },
+            {
+                text: '测试',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/test/introduction'},
+                ]
+            },
+            {
+                text: 'Spock测试集成',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/spock/introduction'},
+                ]
+            },
+        ],
+    },
+    {
+        text: '工具库（commons）',
         collapsed: true,
         items: [
             {text: '简介', link: '/commons/getting-started'},
@@ -118,7 +223,7 @@ export default [
         ]
     },
     {
-        text: "框架",
+        text: "框架（framework）",
         collapsed: true,
         items: [
             {text: '简介', link: '/framework/getting-started'},
@@ -193,10 +298,5 @@ export default [
                 ]
             },
         ]
-    },
-    {
-        text: "自动装配",
-        collapsed: true,
-        items: [],
     }
 ]

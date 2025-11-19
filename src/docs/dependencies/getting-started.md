@@ -7,7 +7,7 @@ const springBootVersion = import.meta.env.VITE_SPRING_BOOT_VERSION;
 const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 </script>
 
-# 说明
+# 简介
 基于spring-boot-starter-parent，包含了常用的各种库的依赖管理和插件管理
 
 ## Spring Boot 版本

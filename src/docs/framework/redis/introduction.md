@@ -4,9 +4,14 @@ layout: doc
 
 <script setup>
 const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
+const redisVersion = import.meta.env.VITE_SPRING_FRAMEWORK_DATA_REDIS_VERSION;
 </script>
 
 # Redis模块
+
+## Spring Data Redis 版本
+
+{{ redisVersion }}
 
 ## 概述
 Redis 模块是基于`spring-data-redis`开发的，定义了一系列Redis开发辅助工具，例如：

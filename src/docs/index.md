@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /getting-started
+      link: /starter/getting-started#引入
 
 features:
   - title: 依赖管理

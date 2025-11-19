@@ -4,25 +4,28 @@ layout: doc
 
 <script setup>
 const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
+const springFrameworkVersion = import.meta.env.VITE_SPRING_FRAMEWORK_VERSION;
 </script>
 
-# 说明
+# 简介
 
-基于`Spring Framework`开发的业务框架，主要包含MongoDB、Redis、Mybatis Plus、Web几个方面
+基于`Spring Framework`开发的业务框架，主要包含`MongoDB`、`Redis`、`Mybatis Plus`、`Web`几个方面
 
 ## 使用要求
 \>= JDK 17
 
-## 组件列表
-模块的artifactId统一格式为 pangju-framework-模块名，例如：`pangju-framework-spring`
+## Spring Framework 版本
 
-| 模块                |                  介绍                  |
-|-------------------|:------------------------------------:|
-| data-mongodb      |   MongoDB模块，基于spring-data-mongodb    |
-| data-mybatis-plus | Mybatis Plus模块，基于mybatis-plus-spring |
-| data-redis        |     Redis模块，基于spring-data-redis      |
-| spring            |      Spring模块，基于spring-context       |
-| web               |        Web模块，基于spring-webmvc         |
+{{ springFrameworkVersion }}
+
+## 模块列表
+| 模块                                                  |                  介绍                  |
+|-----------------------------------------------------|:------------------------------------:|
+| [mongodb](/framework/mongodb/introduction)          |   MongoDB模块，基于spring-data-mongodb    |
+| [mybatis-plus](/framework/mybatisplus/introduction) | Mybatis Plus模块，基于mybatis-plus-spring |
+| [redis](/framework/redis/introduction)              |     Redis模块，基于spring-data-redis      |
+| [spring](/framework/spring/introduction)            |      Spring模块，基于spring-context       |
+| [web](/framework/web/introduction)                  |        Web模块，基于spring-webmvc         |
 
 ## 引入
 

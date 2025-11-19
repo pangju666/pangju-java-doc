@@ -3,19 +3,19 @@ export default [
         text: '指南',
         items: [
             {
-                text: '依赖管理',
+                text: '依赖管理（dependencies）',
                 link: '/dependencies/getting-started',
             },
             {
-                text: '工具库',
+                text: '工具库（commons）',
                 link: '/commons/getting-started',
             },
             {
-                text: '框架',
+                text: '框架（framework）',
                 link: '/framework/getting-started',
             },
             {
-                text: 'Spring Boot Starter',
+                text: '自动装配（starter）',
                 link: '/starter/getting-started',
             }
         ]
@@ -24,19 +24,19 @@ export default [
         text: 'Github',
         items: [
             {
-                text: 'Dependencies',
+                text: '依赖管理（dependencies）',
                 link: 'https://github.com/pangju666/java-pangju-dependencies',
             },
             {
-                text: 'Commons',
+                text: '工具库（commons）',
                 link: 'https://github.com/pangju666/java-pangju-commons',
             },
             {
-                text: 'Framework',
+                text: '框架（framework）',
                 link: 'https://github.com/pangju666/java-pangju-framework',
             },
             {
-                text: 'Framework Spring Boot Starter',
+                text: '自动装配（starter）',
                 link: 'https://github.com/pangju666/java-pangju-framework-spring-boot-starter',
             }
         ]

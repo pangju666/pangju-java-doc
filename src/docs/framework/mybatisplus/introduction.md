@@ -4,9 +4,14 @@ layout: doc
 
 <script setup>
 const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
+const mybatisPlusVersion = import.meta.env.VITE_MYBATIS_PLUS_VERSION;
 </script>
 
 # Mybatis Plus模块
+
+## Mybatis Plus 版本
+
+{{ mybatisPlusVersion }}
 
 ## 概述
 Mybatis Plus 模块是基于`Mybatis Plus`开发的，定义了一系列Mybatis Plus开发辅助工具，例如：
