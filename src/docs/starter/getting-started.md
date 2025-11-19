@@ -143,7 +143,7 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 ```
 
 ### Groovy 脚本编译插件
-我增加了编译测试的配置和默认跳过测试
+我增加了编译测试的配置和跳过编译测试
 
 如果不使用spock框架编写测试的话，一般用不到这个
 
@@ -180,7 +180,7 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 ```
 
 ### Smart Doc 插件
-我增加了配置文件路径和项目名称的默认配置，具体的插件说明请参考：[传送门](/dependencies/plugin-management#smart-doc-接口文档插件)
+我增加了配置文件路径，具体的插件说明请参考：[传送门](/dependencies/plugin-management#smart-doc-接口文档插件)
 
 #### 默认配置
 ```xml
@@ -189,7 +189,6 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
     <artifactId>smart-doc-maven-plugin</artifactId>
     <configuration>
         <configFile>${basedir}/src/main/resources/smart-doc.json</configFile>
-        <projectName>${project.name}</projectName>
     </configuration>
 </plugin>
 ```
@@ -199,12 +198,15 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 <plugin>
     <groupId>com.ly.smart-doc</groupId>
     <artifactId>smart-doc-maven-plugin</artifactId>
-    <!-- 如果用到 Mybatis Plus 分页就把 includes 部分解注释-->
-    <!--<includes>
-        &lt;!&ndash; 使用了mybatis-plus的Page分页需要include所使用的源码包 &ndash;&gt;
-        <include>com.baomidou:mybatis-plus-extension</include>
-        &lt;!&ndash; 使用了mybatis-plus的IPage分页需要include mybatis-plus-core&ndash;&gt;
-        <include>com.baomidou:mybatis-plus-core</include>
-    </includes>-->
+    <configuration>
+        <includes>
+            <!-- 使用了mybatis-plus的Page分页需要include所使用的源码包 -->
+            <!--<include>com.baomidou:mybatis-plus-extension</include>-->
+            <!-- 使用了mybatis-plus的IPage分页需要include mybatis-plus-core-->
+            <!--<include>com.baomidou:mybatis-plus-core</include>-->
+            <!-- 使用了jpa的分页需要include所使用的源码包 -->
+            <!--<include>org.springframework.data:spring-data-commons</include>-->
+        </includes>
+    </configuration>
 </plugin>
 ```

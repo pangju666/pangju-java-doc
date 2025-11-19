@@ -68,11 +68,6 @@ layout: doc
     <groupId>com.ly.smart-doc</groupId>
     <artifactId>smart-doc-maven-plugin</artifactId>
     <version>${smart-doc-maven.plugin.version}</version>
-    <executions>
-        <execution>
-            <phase>package</phase>
-        </execution>
-    </executions>
 </plugin>
 ```
 
@@ -85,11 +80,12 @@ layout: doc
         <configFile>${basedir}/src/main/resources/smart-doc.json</configFile>
         <includes>
             <!-- 使用了mybatis-plus的Page分页需要include所使用的源码包 -->
-            <include>com.baomidou:mybatis-plus-extension</include>
+            <!--<include>com.baomidou:mybatis-plus-extension</include>-->
             <!-- 使用了mybatis-plus的IPage分页需要include mybatis-plus-core-->
-            <include>com.baomidou:mybatis-plus-core</include>
+            <!--<include>com.baomidou:mybatis-plus-core</include>-->
+            <!-- 使用了jpa的分页需要include所使用的源码包 -->
+            <!--<include>org.springframework.data:spring-data-commons</include>-->
         </includes>
-        <projectName>${project.name}</projectName>
     </configuration>
 </plugin>
 ```
@@ -97,13 +93,10 @@ layout: doc
 配置文件（`src/main/resources/smart-doc.json`）示例
 ```json
 {
-  "outPath": "target/smart-doc",
+  "outPath": "target/smart-doc", 
   "packageFilters": "xxxx.web.controller.*",
   "projectName": "xxxx",
-  "appToken": "823b0f9dfabc4ab9bd2731dddd32354e",
-  "openUrl": "http://127.0.0.1/swagger/api",
   "replace": true,
-  "tornaDebug": true,
   "framework": "spring",    
   "showValidation": true,  
   "debugEnvName": "本地环境", 
