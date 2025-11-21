@@ -11,38 +11,60 @@ layout: doc
 
 提供更加便捷的字段访问、方法调用、类信息提取、泛型类型解析等反射辅助操作。
 
-设计灵感来自开源框架`RuoYi`，并遵循线程安全、简洁可复用的原则。
-
-| 方法名                      | 返回值       |        用途        |
-|--------------------------|:----------|:----------------:|
-| getFieldValue            | 泛型        |    获取对象指定字段的值    |
-| setFieldValue            | void      |    设置对象指定字段的值    |
-| getSimpleClassName       | String    |     获取类的简化类名     |
-| getClassGenericType      | Class\<T> |    获取泛型类的类型参数    |
-| canMakeAccessible        | boolean   |    强制设置字段可访问     |
+| 方法名                 | 返回值       |     用途     |
+|---------------------|:----------|:----------:|
+| getField            | 泛型        | 获取对象指定字段的值 |
+| setField            | void      | 设置对象指定字段的值 |
+| getSimpleClassName  | String    |  获取类的简化类名  |
+| getClassGenericType | Class\<T> | 获取泛型类的类型参数 |
+| canMakeAccessible   | boolean   | 强制设置字段可访问  |
 
 ### 获取字段的值
-如果字段不可访问则会修改字段可访问性，读取完字段的值后再将可访问性修改回去。
+当字段可访问时，直接读取字段值；当字段不可直接访问时，尝试调用字段的`getter`方法。
 
 ```java
+public class User {
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+
 User user;
 
-String name = ReflectionUtils.getFieldValue(user, "name"); // name字段的值
+String name = (String) ReflectionUtils.getField(user, "name");
 
-Field field = User.class.getDeclaredField("name");
-String name = ReflectionUtils.getFieldValue(user, field); // name字段的值
+// 也可以传入字段类型进行精准匹配
+String name = ReflectionUtils.getField(user, "name", String.class);
 ```
 
 ### 设置字段的值
-如果字段不可访问则会修改字段可访问性，修改完字段的值后再将可访问性修改回去。
+当字段可访问时，直接写入字段值；当字段不可直接访问时，尝试调用字段的`setter`方法进行赋值。
 
 ```java
+public class User {
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+}
+
 User user;
 
-ReflectionUtils.setFieldValue(user, "name", "test");
+ReflectionUtils.setField(user, "name", "test");
 
-Field field = User.class.getDeclaredField("name");
-ReflectionUtils.setFieldValue(user, field, "test");
+// 也可以传入字段类型进行精准匹配
+ReflectionUtils.setField(user, "name", "test", String.class);
 ```
 
 ### 获取类的简单名称
