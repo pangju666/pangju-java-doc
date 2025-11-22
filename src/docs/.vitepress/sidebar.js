@@ -23,7 +23,7 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/spring/introduction'},
                     {text: '静态上下文', link: '/starter/spring/context'},
-                    {text: '去重任务', link: '/starter/spring/task'},
+                    {text: '任务执行', link: '/starter/spring/task'},
                 ]
             },
             {
@@ -41,6 +41,7 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/validation/introduction'},
+                    {text: '自动装配', link: '/starter/validation/auto-configuration'},
                 ]
             },
             {

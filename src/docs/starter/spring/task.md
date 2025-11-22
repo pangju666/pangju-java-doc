@@ -2,28 +2,18 @@
 layout: doc
 ---
 
-# 去重任务执行器
+# 任务执行
 
-## 概述
-去重任务执行器（按键去重）。
+## 单次任务执行器
+io.github.pangju666.framework.boot.task.OnceTaskExecutor
 
-基于键进行并发去重，确保同一键的任务在同一时间仅执行一次；后续并发请求复用首个任务的结果.
+### 概述
+基于键进行并发任务去重，确保同一键的任务在同一时间仅执行一次；后续并发请求复用首个任务的结果.
 
-## 实现
 - 同步场景：使用 FutureTask 与 ConcurrentMap 去重
 - 异步场景：使用 CompletableFuture 与 ConcurrentMap 去重，并通过 AsyncTaskExecutor 提交任务
 
-## 并发与清理
-按键注册进行去重；任务结束（成功或异常）后移除对应键，避免内存泄漏与错误复用。
-
-## 方法
-
-| 方法名         | 返回值                   |    用途    |
-|-------------|:----------------------|:--------:|
-| executeOnce | T                     | 同步执行一次任务 |
-| submitOnce  | CompletableFuture\<T> | 异步提交一次任务 |
-
-## 配置：
+### 配置
 ```yaml
 pangju:
     task:
@@ -32,6 +22,13 @@ pangju:
             sync-initial-capacity: 16 #同步任务映射初始容量，默认值：16
             async-initial-capacity: 16 #异步任务映射初始容量，默认值：16
 ```
+
+### 方法
+
+| 方法名         | 返回值                   |    用途    |
+|-------------|:----------------------|:--------:|
+| executeOnce | T                     | 同步执行一次任务 |
+| submitOnce  | CompletableFuture\<T> | 异步提交一次任务 |
 
 ### 使用示例
 ```java
@@ -99,12 +96,12 @@ public class ConcurrentService {
 }
 ```
 
-## 自定义实现
+### 自定义实现
 我本来是想再实现一个分布式版本，但是怎么写都感觉差点意思，就暂时放弃了。
 
 当然，你也可以自定义实现一个分布式版本或者按自己的需求修改我的版本。
 
-### 实现参考
+#### 实现参考
 ```java
 public class CustomOnceTaskExecutor implements OnceTaskExecutor {
 	@Override
