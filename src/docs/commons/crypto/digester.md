@@ -5,8 +5,16 @@ layout: doc
 # 签名/校验
 我只实现了基于RSA的签名/校验，`jasypt`本身就实现了多种签名算法
 
+> [!IMPORTANT]
+>
+> 实例化后需要手动设置密钥。
+> 
+> 需要在调用签名/校验方法前完成设置，否则将无法设置。
+> 
+> 密钥获取和解析请参阅[文档](/commons/crypto/key)
+
 ## 算法
-`io.github.pangju666.commons.crypto.enums.RsaSignatureAlgorithm`
+`io.github.pangju666.commons.crypto.enums.RSASignatureAlgorithm`
 
 | 枚举值                 | 算法名称              |
 |---------------------|:------------------|
@@ -29,23 +37,26 @@ layout: doc
 
 ### 实例化
 ```java
-ByteDigester encryptor1 = new RSAByteDigester();
+RSAByteDigester digester1 = new RSAByteDigester();
 // 设置加密方案
-ByteDigester encryptor2 = new RSAByteDigester("SHA256withRSA");
-// 设置密钥长度
-ByteDigester encryptor3 = new RSAByteDigester(2048);
-// 设置密钥长度和加密方案
-ByteDigester encryptor4 = new RSAByteDigester(2048, "SHA256withRSA");
-// 设置密钥
-ByteDigester encryptor5 = new RSAByteDigester(RSAKey.random(2048));
-// 设置密钥和加密方案
-ByteDigester encryptor6 = new RSAByteDigester(RSAKey.random(2048), "SHA256withRSA");
+RSAByteDigester digester2 = new RSAByteDigester(RSASignatureAlgorithm.SHA256_WITH_RSA);
+
+RSAKeyPair keyPair = RSAKeyPair.random();
+// 设置密钥对既可以签名也可以校验
+digester1.setKeyPair(keyPair);
+// 只设置私钥则只能签名
+digester1.setPrivateKey(keyPair.getPrivateKey());
+// 只设置公钥则只能校验
+digester1.setPublicKey(keyPair.getPublicKey());
 ```
 
 ### 使用
 ```java
 byte[] message = "测试数据".getBytes()
-ByteDigester digester = new RSAByteDigester();
+
+ByteDigester signDigester = new RSAByteDigester();
+digester.setKeyPair(RSAKeyPair.random());
+
 // 签名
 byte[] signature = digester.digest(message);
 // 校验
@@ -57,34 +68,30 @@ boolean isValid = digester.matches(message, signature);
 
 ### 实例化
 ```java
-StringDigester encryptor1 = new RSAStringDigester();
+RSAStringDigester digester1 = new RSAStringDigester();
 // 设置加密方案
-StringDigester encryptor2 = new RSAStringDigester(RsaSignatureAlgorithm.SHA256_WITH_RSA);
-// 设置密钥长度
-StringDigester encryptor3 = new RSAStringDigester(2048);
-// 设置密钥长度和加密方案
-StringDigester encryptor4 = new RSAStringDigester(2048, RsaSignatureAlgorithm.SHA256_WITH_RSA);
-// 设置密钥
-StringDigester encryptor5 = new RSAStringDigester(RSAKey.random(2048));
-// 设置密钥和加密方案
-StringDigester encryptor6 = new RSAStringDigester(RSAKey.random(2048), RsaSignatureAlgorithm.SHA256_WITH_RSA);
-// 设置二进制数字签名处理器
-StringDigester encryptor7 = new RSAStringDigester(new RSAByteDigester());
+RSAStringDigester digester2 = new RSAStringDigester(RSASignatureAlgorithm.SHA256_WITH_RSA);
+// 设置二进制签名处理器
+RSAStringDigester digester3 = new RSAStringDigester(new RSAByteDigester());
+
+RSAKeyPair keyPair = RSAKeyPair.random();
+// 设置密钥对，即可以签名也可以校验
+digester1.setKeyPair(keyPair);
+// 只设置私钥则只能签名
+digester1.setPrivateKey(keyPair.getPrivateKey());
+// 只设置公钥则只能校验
+digester1.setPublicKey(keyPair.getPublicKey());
 ```
 
 ### 使用
-只能校验被`Base64`编码或`Hex`编码过的签名
-
 ```java
 String message = "Hello, RSA!";
+
 StringDigester digester = new RSAStringDigester();
+digester.setKeyPair(RSAKeyPair.random());
+
 // 签名并将结果使用Base64编码
 String signature = digester.digest(message);
 // 使用Base64解码并校验
 boolean isValid = digester.matches(message, signature);
-
-// 签名并将结果使用Hex编码
-String signature2 = digester.digestToHexString(message);
-// 使用Hex解码并校验
-String isValid2 = digester.matches(message, signature2);
 ```

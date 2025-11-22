@@ -27,6 +27,14 @@ export default [
                 ]
             },
             {
+                text: '校验',
+                collapsed: true,
+                items: [
+                    {text: '概述', link: '/starter/validation/introduction'},
+                    {text: '自动装配', link: '/starter/validation/auto-configuration'},
+                ]
+            },
+            {
                 text: '加密',
                 collapsed: true,
                 items: [
@@ -37,11 +45,15 @@ export default [
                 ]
             },
             {
-                text: '校验',
+                text: 'JSON',
                 collapsed: true,
                 items: [
-                    {text: '概述', link: '/starter/validation/introduction'},
-                    {text: '自动装配', link: '/starter/validation/auto-configuration'},
+                    {text: '概述', link: '/starter/json/introduction'},
+                    {text: '自动装配', link: '/starter/json/auto-configuration'},
+                    {text: '序列化', link: '/starter/json/serialize'},
+                    {text: '反序列化', link: '/starter/json/deserialize'},
+                    {text: '脱敏', link: '/starter/json/desensitized'},
+                    {text: '加/解密', link: '/starter/json/crypto'},
                 ]
             },
             {
@@ -49,13 +61,6 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/image/introduction'},
-                ]
-            },
-            {
-                text: 'JSON',
-                collapsed: true,
-                items: [
-                    {text: '概述', link: '/starter/json/introduction'},
                 ]
             },
             {
@@ -134,11 +139,22 @@ export default [
                 items: [
                     {text: '概述', link: '/commons/lang/introduction'},
                     {text: '常量', link: '/commons/lang/constants'},
-                    {text: '字符串', link: '/commons/lang/string'},
+                    {
+                        text: '字符串',
+                        collapsed: true,
+                        items: [
+                            {text: '概述', link: '/commons/lang/string/introduction'},
+                            {text: '脱敏', link: '/commons/lang/string/desensitize'},
+                            {text: '拼音', link: '/commons/lang/string/pinyin'},
+                            {text: '格式化', link: '/commons/lang/string/format'},
+                            {text: '工具类', link: '/commons/lang/string/utils'},
+                        ]
+                    },
                     {text: '数据', link: '/commons/lang/data'},
                     {text: 'JSON', link: '/commons/lang/json'},
                     {text: '正则表达式', link: '/commons/lang/regex'},
                     {text: 'ID', link: '/commons/lang/id'},
+                    {text: '身份证', link: '/commons/lang/idcard'},
                     {text: '树', link: '/commons/lang/tree'},
                     {text: '日期', link: '/commons/lang/date'},
                     {text: '数组', link: '/commons/lang/array'},

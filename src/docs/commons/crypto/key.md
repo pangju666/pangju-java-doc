@@ -3,41 +3,41 @@ layout: doc
 ---
 
 # RSA密钥
-`io.github.pangju666.commons.crypto.key.RSAKey`
+`io.github.pangju666.commons.crypto.key.RSAKeyPairPair`
 
-一个用于封装RSA公私钥和一些常用功能的数据结构类
+一个用于封装RSA公私钥的数据结构类
 
-| 方法名              | 返回值           |          用途          |
-|------------------|:--------------|:--------------------:|
-| getPublicKey     | RSAPublicKey  |         获取公钥         |
-| getPrivateKey    | RSAPrivateKey |         获取私钥         |
-| random           | RSAKey        |      生成随机RSA密钥对      |
-| fromKeyPair      | RSAKey        | 从现有KeyPair构建RSAKey实例 |
-| fromBytes        | RSAKey        |    从字节数组构建RSAKey     |
-| fromBase64String | RSAKey        | 从Base64编码字符串构建RSAKey |
+| 方法名              | 返回值           |            用途            |
+|------------------|:--------------|:------------------------:|
+| getPublicKey     | RSAPublicKey  |           获取公钥           |
+| getPrivateKey    | RSAPrivateKey |           获取私钥           |
+| random           | RSAKeyPair    |      生成随机RSAKeyPair      |
+| fromKeyPair      | RSAKeyPair    |  从现有KeyPair构建RSAKeyPair  |
+| fromBytes        | RSAKeyPair    |    从字节数组构建RSAKeyPair     |
+| fromBase64String | RSAKeyPair    | 从Base64编码字符串构建RSAKeyPair |
 
 ## 获取密钥
 ```java
-RSAKey rsaKey = RSAKey.random();
-RSAPublicKey publicKey = rsaKey.getPublicKey(); //获取公钥
-RSAPrivateKey privateKey = rsaKey.getPrivateKey(); // 获取私钥
+RSAKeyPair RSAKeyPair = RSAKeyPair.random();
+RSAPublicKey publicKey = RSAKeyPair.getPublicKey(); //获取公钥
+RSAPrivateKey privateKey = RSAKeyPair.getPrivateKey(); // 获取私钥
 ```
 
 ## 生成随机密钥对
 ```java
-RSAKey rsaKey1 = RSAKey.random(); // 生成默认长度(2048位)的随机RSA密钥对
-RSAKey rsaKey2 = RSAKey.random(2048); // 生成指定长度的随机RSA密钥对，支持1024/2048/4096位三种标准密钥长度
+RSAKeyPair RSAKeyPair1 = RSAKeyPair.random(); // 生成默认长度(2048位)的随机RSA密钥对
+RSAKeyPair RSAKeyPair2 = RSAKeyPair.random(2048); // 生成指定长度的随机RSA密钥对，支持1024/2048/4096位三种标准密钥长度
 ```
 
 ## 从KeyPair构建
 ```java
 // 算法必须是RSA
 KeyPair keyPair = KeyPairUtils.generateKeyPair(CryptoConstants.RSA_ALGORITHM, 2048);
-RSAKey rsaKey = RSAKey.fromKeyPair(keyPair);
+RSAKeyPair RSAKeyPair = RSAKeyPair.fromKeyPair(keyPair);
 
 // 可以自定义随机数生成器
 KeyPair keyPair = KeyPairUtils.generateKeyPair(CryptoConstants.RSA_ALGORITHM, 2048, SecureRandom.getInstanceStrong());
-RSAKey rsaKey = RSAKey.fromKeyPair(keyPair);
+RSAKeyPair RSAKeyPair = RSAKeyPair.fromKeyPair(keyPair);
 ```
 
 ## 从字节数组构建
@@ -74,14 +74,14 @@ byte[] x509EncodedKey = Base64.decodeBase64(x509Key
 			.replace("-----END PUBLIC KEY-----", StringUtils.EMPTY)
 			.replaceAll("\\s", StringUtils.EMPTY));			
 			
-RSAKey rsaKey = RSAKey.fromBytes(x509EncodedKey, pkcs8EncodedKey);
+RSAKeyPair RSAKeyPair = RSAKeyPair.fromBytes(x509EncodedKey, pkcs8EncodedKey);
 
 // 也可以只传入公私钥中的任意一个
-RSAKey rsaKey2 = RSAKey.fromBytes(null, pkcs8EncodedKey);
-RSAKey rsaKey3 = RSAKey.fromBytes(x509EncodedKey, null);
+RSAKeyPair RSAKeyPair2 = RSAKeyPair.fromBytes(null, pkcs8EncodedKey);
+RSAKeyPair RSAKeyPair3 = RSAKeyPair.fromBytes(x509EncodedKey, null);
 
 // 如果传入无效密钥
-RSAKey rsaKey4 = RSAKey.fromBytes("invalid", pkcs8EncodedKey); // 抛出InvalidKeySpecException
+RSAKeyPair RSAKeyPair4 = RSAKeyPair.fromBytes("invalid", pkcs8EncodedKey); // 抛出InvalidKeySpecException
 ```
 
 ## 从Base64编码字符串构建
@@ -106,12 +106,12 @@ String base64Private = "-----BEGIN PRIVATE KEY-----\n" +
 			"Nkz2eyNnEDyITcVDtLxBNzKb23G6MQIgJj43Dh+mwqeonBgtCVswXwwbEy0mxnoP\n" +
 			"3+2hW7LVM3E=\n" +
 			"-----END PRIVATE KEY-----";
-RSAKey rsaKey = RSAKey.fromBase64String(base64Public, base64Private);
+RSAKeyPair RSAKeyPair = RSAKeyPair.fromBase64String(base64Public, base64Private);
 
 // 也可以只传入公私钥中的任意一个
-RSAKey rsaKey2 = RSAKey.fromBase64String(null, base64Private);
-RSAKey rsaKey3 = RSAKey.fromBase64String(base64Public, null);
+RSAKeyPair RSAKeyPair2 = RSAKeyPair.fromBase64String(null, base64Private);
+RSAKeyPair RSAKeyPair3 = RSAKeyPair.fromBase64String(base64Public, null);
 
 // 如果传入无效密钥
-RSAKey rsaKey4 = RSAKey.fromBase64String("invalid", base64Private); // 抛出InvalidKeySpecException
+RSAKeyPair RSAKeyPair4 = RSAKeyPair.fromBase64String("invalid", base64Private); // 抛出InvalidKeySpecException
 ```
