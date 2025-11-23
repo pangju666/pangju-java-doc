@@ -47,15 +47,9 @@ BigDecimal decryptNumber = CryptoUtils.decryptBigInteger(cryptoFactory, encryptN
 ## 获取密钥
 
 ```java
-// 如果密钥为 null、空白则抛出 InvalidKeySpecException
+// 如果密钥为 null、空白则抛出 IllegalArgumentException
 String key = CryptoUtils.getKey("123456", true); // 直接返回明文
 
-// 如果密钥为 null、空白或无法从 Spring 配置中获取则抛出 InvalidKeySpecException
+// 如果密钥为 null、空白或无法从 Spring 配置中获取则抛出 IllegalArgumentException
 String key = CryptoUtils.getKey("${crypto.key}", true); // 根据属性路径 crypto.key，从Spring配置中获取
-
-// 如果密钥为 null、空白则返回null
-String key = CryptoUtils.getKey("123456", false); // 直接返回明文
-
-// 如果密钥为 null、空白或无法从 Spring 配置中获取则返回 null
-String key = CryptoUtils.getKey("${crypto.key}", false); // 根据属性路径 crypto.key，从Spring配置中获取
 ```

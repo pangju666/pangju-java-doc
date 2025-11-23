@@ -14,9 +14,10 @@ io.github.pangju666.framework.boot.crypto.enums.CryptoAlgorithm
 | BASIC  | PBEWithMD5AndDES                      | BasicCryptoFactory  | 普通强度 DES 对称加密算法                                               |
 | STRONG | PBEWithMD5AndTripleDES                | StrongCryptoFactory | 高强度 DES 对称加密算法，提供更强的安全策略或多算法组合能力，适合对安全性要求更高的场景。               |
 
-### 获取加密工厂
+
+### 获取加密工厂类型
 ```java
-CryptoFactory cryptoFactory = CryptoAlgorithm.RSA.getFactory(); // 返回RSACryptoFactory实例对象
+Class<? extends CryptoFactory> cryptoFactory = CryptoAlgorithm.RSA.getFactoryClass(); // 返回Class<RSACryptoFactory>
 ```
 
 ## 文本编码类型枚举

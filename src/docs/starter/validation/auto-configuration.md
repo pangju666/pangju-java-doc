@@ -10,7 +10,7 @@ layout: doc
 目的：当验证过程中发现第一个错误时，验证过程将立即停止并返回错误，不再继续验证其他属性。
 
 ```java
-@ConditionalOnMissingBean(ValidationConfigurationCustomizer.class)
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @Bean
 public ValidationConfigurationCustomizer hibernateValidationConfigurationCustomizer() {
 	return configuration -> {
@@ -22,11 +22,13 @@ public ValidationConfigurationCustomizer hibernateValidationConfigurationCustomi
 ```
 
 ## 自定义
-如果你不喜欢我定义的默认行为，也可以覆盖掉我的默认定义实现自己的需求
+`Spring Boot`支持同时定义多个`ValidationConfigurationCustomizer`类型的`Bean`，你可以定义自己的`Bean`覆盖掉我的配置或者增加自己的配置。
 
 ```java
 @SpringBootConfiguration
 public class BeanConfig {
+    // 需要比我的排序号低才能覆盖我的默认配置
+    @Order(Ordered.HIGHEST_PRECEDENCE + 1)
 	@Bean
 	public ValidationConfigurationCustomizer customValidationConfigurationCustomizer() {
 		return configuration -> {

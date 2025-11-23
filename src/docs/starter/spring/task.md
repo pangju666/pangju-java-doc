@@ -97,13 +97,13 @@ public class ConcurrentService {
 ```
 
 ### 自定义实现
-我本来是想再实现一个分布式版本，但是怎么写都感觉差点意思，就暂时放弃了。
+我本来是想再实现一个分布式版本，但是怎么写都感觉不太好用，就暂时放弃了。
 
 当然，你也可以自定义实现一个分布式版本或者按自己的需求修改我的版本。
 
 #### 实现参考
 ```java
-public class CustomOnceTaskExecutor implements OnceTaskExecutor {
+public class CustomOnceTaskExecutor extends OnceTaskExecutor {
 	@Override
 	public Object executeOnce(String key, Callable<Object> task) throws Exception, InterruptedException {
 		//... 自定义实现
@@ -124,7 +124,7 @@ public class CustomOnceTaskExecutor implements OnceTaskExecutor {
 @SpringBootConfiguration
 public class BeanConfig {
 	@Bean
-	public CustomOnceTaskExecutor customOnceTaskExecutor() {
+	public OnceTaskExecutor customOnceTaskExecutor() {
 		return new CustomOnceTaskExecutor();
 	}
 }
