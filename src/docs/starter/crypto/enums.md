@@ -4,7 +4,7 @@ layout: doc
 
 # 枚举
 
-## 加密算法枚举
+## 加密算法
 io.github.pangju666.framework.boot.crypto.enums.CryptoAlgorithm
 
 | 枚举值    | 算法                                    | 加密工厂类型              | 说明                                                            |
@@ -20,7 +20,7 @@ io.github.pangju666.framework.boot.crypto.enums.CryptoAlgorithm
 Class<? extends CryptoFactory> cryptoFactory = CryptoAlgorithm.RSA.getFactoryClass(); // 返回Class<RSACryptoFactory>
 ```
 
-## 文本编码类型枚举
+## 编码类型
 io.github.pangju666.framework.boot.crypto.enums.Encoding
 
 | 枚举值    | 说明       |
