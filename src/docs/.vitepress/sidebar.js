@@ -23,7 +23,7 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/spring/introduction'},
                     {text: '静态上下文', link: '/starter/spring/context'},
-                    {text: '任务执行', link: '/starter/spring/task'},
+                    {text: '并发', link: '/starter/spring/task'},
                 ]
             },
             {
@@ -61,6 +61,10 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/image/introduction'},
+                    {text: '常量', link: '/starter/image/constants'},
+                    {text: '异常', link: '/starter/image/exception'},
+                    {text: '处理', link: '/starter/image/template'},
+                    {text: '并发', link: '/starter/image/task'},
                 ]
             },
             {

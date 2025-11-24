@@ -2,32 +2,58 @@
 layout: doc
 ---
 
-<script setup>
-const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
-const mongoVersion = import.meta.env.VITE_SPRING_FRAMEWORK_DATA_MONGODB_VERSION;
-</script>
-
-# MongoDB 模块
-
-## Spring Data MongoDB 版本
-
-{{ mongoVersion }}
+# JSON 模块
 
 ## 概述
-MongoDB 模块是基于`spring-data-mongodb`开发的，定义了一系列MongoDB辅助工具，例如：
-- 基础实体类
-- 常用请求数据结构
-- `MongoDB`常量
-- `MongoRepository`拓展
-- 查询工具类
+这个模块我集成了`spring-boot-starter`、`tika-parser-image-module`和[`Pangju Commons Image`](/commons/image/introduction)。
 
-## 安装
-```xml-vue
+## 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>io.github.pangju666.commons</groupId>
+    <artifactId>commons-image</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>io.github.pangju666.commons</groupId>
+    <artifactId>commons-imageio</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.apache.tika</groupId>
+    <artifactId>tika-parser-image-module</artifactId>
+</dependency>
+```
+
+## 引入
+```xml
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666.framework</groupId>
-        <artifactId>framework-data-mongodb</artifactId>
-        <version>{{ frameworkVersion }}</version>
+        <groupId>io.github.pangju666.framework.boot</groupId>
+		<artifactId>framework-spring-boot-starter-image</artifactId>
+        <!-- 如果选择使用 GraphicsMagick的话，可以考虑去除这个依赖
+        （如果你还想使用ImageIO读取/写入图片的话，建议保留） -->
+        <exclusions>
+            <exclusion>
+                <groupId>io.github.pangju666.commons</groupId>
+                <artifactId>commons-imageio</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <!-- 如果想使用 GraphicsMagick 处理图像，需要引入这两个库 -->
+    <dependency>
+        <groupId>org.im4java</groupId>
+        <artifactId>im4java</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.sharneng</groupId>
+        <artifactId>gm4java</artifactId>
     </dependency>
 </dependency>
 ```

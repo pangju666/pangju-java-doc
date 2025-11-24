@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# 任务执行
+# 并发
 
 ## 一次性任务执行器
 接口：io.github.pangju666.framework.boot.task.OnceTaskExecutor
