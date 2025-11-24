@@ -277,7 +277,8 @@ public class TestCryptoDTO {
 	// Map 的 key 必须是 String 类型
 	@DecryptFormat(key = "123456")
 	private Map<String, String> map;
-	// 不支持解密嵌套类型
+	// 对于嵌套类型，我也做了支持
+	@DecryptFormat(key = "123456")
 	private List<Map<String, List<BigDecimal>>> nestedList;
 	// 不支持解密集合实现类型
 	private ArrayList<String> arrayList;

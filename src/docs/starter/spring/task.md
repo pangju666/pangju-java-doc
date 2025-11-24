@@ -54,7 +54,7 @@ public interface OnceTaskExecutor {
      * @throws Exception 任务执行失败或被中断时抛出；具体异常由实现决定
      * @since 1.0.0
      */
-    Object executeOnce(String key, Callable<Object> task) throws Exception;
+    Object execute(String key, Callable<Object> task) throws Exception;
 
     /**
      * 同步执行一次性任务并设置超时（按 {@code key} 去重）。
@@ -71,7 +71,7 @@ public interface OnceTaskExecutor {
      * @throws Exception 执行失败或超时抛出；具体异常由实现决定
      * @since 1.0.0
      */
-    Object executeOnce(String key, Callable<Object> task, long timeout, TimeUnit unit) throws Exception;
+    Object execute(String key, Callable<Object> task, long timeout, TimeUnit unit) throws Exception;
 
     /**
      * 异步提交一次性任务（按 {@code key} 去重）。
@@ -86,7 +86,7 @@ public interface OnceTaskExecutor {
      * @return 可观察任务结果的 {@link CompletableFuture}
      * @since 1.0.0
      */
-    CompletableFuture<Object> submitOnce(AsyncTaskExecutor executor, String key, Callable<Object> task);
+    CompletableFuture<Object> submitToAsyncExecutor(AsyncTaskExecutor executor, String key, Callable<Object> task);
 }
 ```
 
@@ -103,7 +103,7 @@ public class ConcurrentService {
 	public void test() {
 	    // 会一直等待结果直到任务完成
 		try {
-			File result = (File) onceTaskExecutor.executeOnce("test-task", () -> {
+			File result = (File) onceTaskExecutor.execute("test-task", () -> {
 				File file;
 				//...任务执行逻辑
 				return file; // 不需要获取执行结果的话，可以随便返回一个值
@@ -118,7 +118,7 @@ public class ConcurrentService {
 		
 		// 设置任务超时时间，如果规定时间内未完成则抛出 TimeoutException
 		try {
-			File result = (File) onceTaskExecutor.executeOnce("test-task", () -> {
+			File result = (File) onceTaskExecutor.execute("test-task", () -> {
 				File file;
 				//...任务执行逻辑
 				return file; // 不需要获取执行结果的话，可以随便返回一个值
@@ -134,7 +134,7 @@ public class ConcurrentService {
 		}
 		
 		// 提交任务到异步线程池
-		CompletableFuture<Object> completableFuture = onceTaskExecutor.submitOnce(asyncTaskExecutor, "test-async-task", () -> {
+		CompletableFuture<Object> completableFuture = onceTaskExecutor.submitToAsyncExecutor(asyncTaskExecutor, "test-async-task", () -> {
 			File file;
 			//...任务执行逻辑
 			return file;
@@ -165,17 +165,17 @@ public class ConcurrentService {
 ```java
 public class CustomOnceTaskExecutor implements OnceTaskExecutor {
 	@Override
-	public Object executeOnce(String key, Callable<Object> task) throws Exception {
+	public Object execute(String key, Callable<Object> task) throws Exception {
 		//... 自定义实现
 	}
 	
 	@Override
-	 public Object executeOnce(String key, Callable<Object> task, long timeout, TimeUnit unit) throws Exception {
+	 public Object execute(String key, Callable<Object> task, long timeout, TimeUnit unit) throws Exception {
 		//... 自定义实现
 	}
 	
 	@Override
-	public CompletableFuture<Object> submitOnce(AsyncTaskExecutor executor, String key, Callable<Object> task) {
+	public CompletableFuture<Object> submitToAsyncExecutor(AsyncTaskExecutor executor, String key, Callable<Object> task) {
 		//... 自定义实现
 	}
 }
