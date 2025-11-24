@@ -30,6 +30,13 @@ layout: doc
 > 
 > [RSA密钥文档](/commons/crypto/key#从base64编码字符串构建)
 
+### 配置
+```yaml
+pangju:
+    crypto:
+      max-cache-crypto-key-size: 16 #加密工厂缓存的最大密钥数量，默认值：16
+```
+
 ## 接口定义
 ```java
 public interface CryptoFactory {
@@ -187,8 +194,8 @@ public class BeanConfig {
 @SpringBootConfiguration
 public class BeanConfig {
 	@Bean
-	public RSACryptoFactory customRSACryptoFactory() {
-		return new RSACryptoFactory(new RSAPKCS1PaddingTransformation());
+	public RSACryptoFactory customRSACryptoFactory(CryptoProperties properties) {
+		return new RSACryptoFactory(properties.getMaxCacheCryptoKeySize(), new RSAPKCS1PaddingTransformation());
 	}
 }
 ```

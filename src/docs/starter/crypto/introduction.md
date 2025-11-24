@@ -5,7 +5,7 @@ layout: doc
 # 加密 模块
 
 ## 概述
-这个模块我集成了`spring-boot-starter`和[`Pangju Commons Crypto`](/commons/crypto/introduction)。
+这个模块我集成了`spring-boot-starter`、`Caffeine`和[`Pangju Commons Crypto`](/commons/crypto/introduction)。
 
 ## 依赖
 
@@ -18,6 +18,10 @@ layout: doc
 <dependency>
     <groupId>io.github.pangju666.commons</groupId>
     <artifactId>commons-crypto</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.github.ben-manes.caffeine</groupId>
+    <artifactId>caffeine</artifactId>
 </dependency>
 ```
 

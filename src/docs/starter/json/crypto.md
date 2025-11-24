@@ -6,14 +6,14 @@ layout: doc
 
 ## 加密序列化
 
-### 注解
-io.github.pangju666.framework.boot.jackson.annotation.EncryptFormat
-
 > [!IMPORTANT]
 > 只能作用于以下类型的字段（`null`、空字符串、空白字符串不会加密）：
 > - 标量：`String`、`byte[]`、`java.math.BigInteger`、`java.math.BigDecimal`
-> - 集合：`java.util.List\<T>`、`java.util.Set\<T>`、`java.util.Collection\<T>` 及其他 `Iterable\<T>`，其中 `T` 为上述受支持类型
-> - 映射：`java.util.Map\<?, T>`，其中 `T` 为上述受支持类型
+> - 集合：`java.util.List<T>`、`java.util.Set<T>`、`java.util.Collection<T>` 及其他 `Iterable<T>`，其中 `T` 为上述受支持类型
+> - 映射：`java.util.Map<?, T>`，其中 `T` 为上述受支持类型
+
+### 注解
+io.github.pangju666.framework.boot.jackson.annotation.EncryptFormat
 
 #### 属性
 - key: 明文密钥或占位符，支持两种形式：
@@ -21,13 +21,12 @@ io.github.pangju666.framework.boot.jackson.annotation.EncryptFormat
   2. 占位符：使用`${property.name}`格式，框架将从`Spring`配置读取实际密钥值，例如`@EncryptFormat(key = "${app.encryption.key}")`
 - algorithm: [加密算法](/starter/crypto/enums#加密算法)，默认使用`AES256`算法。
 - encoding: 字符串加密输出的[编码方式](/starter/crypto/enums#编码类型)，默认使用`BASE64`（仅在加密字符串时生效，对二进制与数值类型不适用）。
-- factory: 自定义加密工厂。
-
-  优先级：当提供工厂类型时，优先使用该类型；未提供时按算法枚举关联的工厂。
-
-  获取策略：优先从`Spring`容器获取`Bean`；当容器不可用或获取失败时回退到直接构造。
-
-  默认与行为：未指定则使用算法默认工厂；如提供多个类型，仅取第一个。
+- factory: 自定义加密工厂（必须存在可访问的无参构造方法）。
+  - 优先级：当提供工厂类型时，优先使用该类型；未提供时按算法枚举关联的工厂。
+  - 获取策略：优先从`Spring`容器获取`Bean`；当容器不可用或获取失败时回退到直接构造。
+  - 构造要求与原因：为保证在容器不可用或无`Bean`定义时能够通过[`CryptoFactoryRegistry`](/starter/json/crypto#加密工厂注册与缓存工具)的反射回退路径创建实例（调用无参构造），
+  自定义工厂必须提供可访问的无参构造方法（必须为`public`）。 若缺失或不可访问，将导致回退构造失败并抛出异常。
+  - 默认与行为：未指定则使用算法默认工厂；如提供多个类型，仅取第一个。
 
 ### 使用示例
 
@@ -222,17 +221,17 @@ public TestVO test() {
 
 ## 解密反序列化
 
-### 注解
-io.github.pangju666.framework.boot.jackson.annotation.DecryptFormat
-
 > [!IMPORTANT]
 > 只能作用于以下类型的字段（`null`、空字符串、空白字符串不会解密）：
 > - 标量：`String`、`byte[]`、`java.math.BigInteger`、`java.math.BigDecimal`
-> - 集合：`java.util.List\<T>`、`java.util.Set\<T>`、`java.util.Collection\<T>`，其中 `T` 为上述受支持类型
-> - 映射：`java.util.Map\<String, T>`，其中 `T` 为上述受支持类型
+> - 集合：`java.util.List<T>`、`java.util.Set<T>`、`java.util.Collection<T>`，其中 `T` 为上述受支持类型
+> - 映射：`java.util.Map<String, T>`，其中 `T` 为上述受支持类型
 
 > [!WARNING]
 > 字段类型必须与支持类型一致，不能是支持类型的子类或实现。
+
+### 注解
+io.github.pangju666.framework.boot.jackson.annotation.DecryptFormat
 
 #### 属性
 - key: 明文密钥或占位符，支持两种形式：
@@ -240,13 +239,12 @@ io.github.pangju666.framework.boot.jackson.annotation.DecryptFormat
     2. 占位符：使用`${property.name}`格式，框架将从`Spring`配置读取实际密钥值，例如`@EncryptFormat(key = "${app.encryption.key}")`
 - algorithm: [解密算法](/starter/crypto/enums#加密算法)，默认使用`AES256`算法。
 - encoding: 字符串解密的[解码方式](/starter/crypto/enums#编码类型)，默认使用`BASE64`（仅在解密字符串时生效，对二进制与数值类型不适用）。
-- factory: 自定义加密工厂。
-
-  优先级：当提供工厂类型时，优先使用该类型；未提供时按算法枚举关联的工厂。
-
-  获取策略：优先从`Spring`容器获取`Bean`；当容器不可用或获取失败时回退到直接构造。
-
-  默认与行为：未指定则使用算法默认工厂；如提供多个类型，仅取第一个。
+- factory: 自定义加密工厂（必须存在可访问的无参构造方法）。
+    - 优先级：当提供工厂类型时，优先使用该类型；未提供时按算法枚举关联的工厂。
+    - 获取策略：优先从`Spring`容器获取`Bean`；当容器不可用或获取失败时回退到直接构造。
+    - 构造要求与原因：为保证在容器不可用或无`Bean`定义时能够通过[`CryptoFactoryRegistry`](/starter/json/crypto#加密工厂注册与缓存工具)的反射回退路径创建实例（调用无参构造），
+      自定义工厂必须提供可访问的无参构造方法（必须为`public`）。 若缺失或不可访问，将导致回退构造失败并抛出异常。
+    - 默认与行为：未指定则使用算法默认工厂；如提供多个类型，仅取第一个。
 
 ### 使用示例
 
@@ -403,4 +401,28 @@ public void test(@RequestBody TestCryptoDTO testCryptoDTO) {
 	]
 }
 */
+```
+
+## 加密工厂注册与缓存工具
+io.github.pangju666.framework.boot.jackson.utils.CryptoFactoryRegistry
+
+用于在初始化[加密序列化器](/starter/json/crypto#加密序列化)和[解密反序列化器](/starter/json/crypto#解密反序列化)时获取对应的加密工厂实例。
+
+> [!NOTE]
+> 主要用途就是如果无法从`Spring`获取到对应的加密算法工厂`Bean`，也能显式构造一个实例作为兜底。
+> 
+> 如果你想实现自己的`Jackson`加解密操作，那这个类你会用的上的。
+
+### 获取加密工厂
+```java
+// 先尝试从Spring获取，如果失败则尝试使用无参构造方法构建实例
+CryptoFactory cryptoFactory = CryptoFactoryRegistry.getOrCreate(AES256CryptoFactory.class);
+```
+
+### 注册加密工厂
+```java
+CryptoFactoryRegistry.register(new CustomCryptoFactory());
+
+// 获取注册过的实例
+CryptoFactory cryptoFactory = CryptoFactoryRegistry.getOrCreate(CustomCryptoFactory.class);
 ```
