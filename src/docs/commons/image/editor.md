@@ -9,10 +9,13 @@ layout: doc
 
 > [!NOTE]
 > 基于`twelvemonkeys`实现，速度和质量都挺不错的，纯Java实现里我觉得这个是最好用的。
+> 
+> 推荐调用顺序：裁剪 -\> 缩放 -\> 旋转 -\> 翻转 -\> 灰度化 -\> 调整亮度 -\> 调整对比度 -\> 锐化或模糊（这两个效果互斥，一般不会同时用） -\> 滤镜 -\> 添加水印
 
 > [!TIP]
 > 注意事项：
 > - 默认使用`Lanczos`插值（高质量）滤波器
+> - 从文件构造时会自动将输出格式设置为输入文件格式
 > - 默认输出格式根据输入图像是否有透明通道自动选择（`PNG`或`JPEG`）
 > - 不支持透明的格式（如`JPEG`）会自动转换为RGB模式
 > - 可以使用`restore()`方法恢复到原始图像状态
@@ -30,14 +33,13 @@ layout: doc
 | blur                | ImageEditor |           对图像应用模糊效果           |
 | flip                | ImageEditor |             翻转图像              |
 | sharpen             | ImageEditor |           对图像应用锐化效果           |
-| opacity             | ImageEditor |           调整图像不透明度            |
 | grayscale           | ImageEditor |           将图像转换为灰度图           |
 | contrast            | ImageEditor |            调整图像对比度            |
 | cropByCenter        | ImageEditor |           居中裁剪为指定尺寸           |
 | cropByOffset        | ImageEditor |           按边距偏移进行裁剪           |
 | cropByRect          | ImageEditor |           按矩形区域进行裁剪           |
 | brightness          | ImageEditor |            调整图像亮度             |
-| filter              | ImageEditor |          对图像应用自定义过滤器          |
+| filter              | ImageEditor |          对图像应用自定义滤镜           |
 | resize              | ImageEditor |    强制将图像缩放到指定的尺寸，不保持原始宽高比     |
 | scaleByWidth        | ImageEditor |     按指定宽度等比例缩放图像，保持原始宽高比      |
 | scaleByHeight       | ImageEditor |     按指定高度等比例缩放图像，保持原始宽高比      |
@@ -203,14 +205,6 @@ File imageFile;
 ImageEditor.of(imageFile).brightness(10.0f); // 亮度增加10
 ```
 
-### 调整不透明度
-调整图像不透明高度，范围为 [0, 1]，超出范围不生效。
-
-```java
-File imageFile;
-ImageEditor.of(imageFile).opacity(0.75f); // 将不透明度修改为75%
-```
-
 ### 滤镜
 对图像应用自定义过滤器。
 
@@ -342,6 +336,9 @@ ImageEditor.of(imageFile).scale(500, 400).restore(); // 重置图像所有处理
 ```
 
 ### 写入到文件
+> [!NOTE]
+> 输出格式需要通过outputFormat()方法设置，不会根据文件后缀自动获取
+ 
 ```java
 File imageFile;
 File outputFile;
