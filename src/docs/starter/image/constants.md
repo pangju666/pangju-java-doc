@@ -3,11 +3,11 @@ layout: doc
 ---
 
 # 常量
-`io.github.pangju666.framework.spring.lang.SpringConstants`
+`io.github.pangju666.framework.boot.image.lang.ImageConstants`
 
-| 常量名                         | 值      |      说明      |
-|-----------------------------|:-------|:------------:|
-| SETTER_PREFIX               | set    |   set方法前缀    |
-| GETTER_PREFIX               | get    |   get方法前缀    |
-| CGLIB_CLASS_SEPARATOR       | $$     |  cglib代理类前缀  |
-| CGLIB_RENAMED_METHOD_PREFIX | CGLIB$ | cglib代理类方法前缀 |
+继承自[`io.github.pangju666.commons.image.lang.ImageConstants`](/commons/image/constants)，拓展了`GraphicsMagick`可读取格式集合
+
+| 常量名                                            | 值            |              说明              |
+|------------------------------------------------|:-------------|:----------------------------:|
+| GRAPHICS_MAGICK_SUPPORT_WRITE_IMAGE_FORMAT_SET | Set\<String> | GraphicsMagick 可写出的图像格式扩展名集合 |
+| GRAPHICS_MAGICK_SUPPORT_READ_IMAGE_FORMAT_SET  | Set\<String> | GraphicsMagick 可读取的图像格式扩展名集合 |

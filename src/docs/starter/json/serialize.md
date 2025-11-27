@@ -5,7 +5,7 @@ layout: doc
 # 序列化器
 
 ## LocalDate
-io.github.pangju666.framework.boot.jackson.serializer.LocalDateJsonSerializer
+`io.github.pangju666.framework.boot.jackson.serializer.LocalDateJsonSerializer`
 
 将`LocalDate`序列化为时间戳
 
@@ -33,7 +33,7 @@ public TestVO test() {
 ```
 
 ## LocalDateTime
-io.github.pangju666.framework.boot.jackson.serializer.LocalDateTimeJsonSerializer
+`io.github.pangju666.framework.boot.jackson.serializer.LocalDateTimeJsonSerializer`
 
 将`LocalDateTime`序列化为时间戳
 

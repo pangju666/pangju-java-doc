@@ -106,38 +106,49 @@ FilenameUtils.isFilePath("C:/docs/report.pdf"); // true
 
 在继承`org.apache.commons.io.FileUtils`的基础上，我添加一些自己总结的通用方法
 
-| 方法名                                   | 返回值                  |              用途              |
-|---------------------------------------|:---------------------|:----------------------------:|
-| getBufferSize                         | int                  |       根据文件大小计算最佳缓冲区大小        |
-| getSlidingBufferSize                  | int                  |      根据文件大小计算滑动窗口缓冲区大小       |
-| openUnsynchronizedBufferedInputStream | InputStream          |          打开非同步缓冲输入流          |
-| openBufferedFileChannelInputStream    | InputStream          |         打开缓冲文件通道输入流          |
-| openMemoryMappedFileInputStream       | InputStream          |         打开内存映射文件输入流          |
-| encryptFile                           | void                 | 使用AES/CBC/PKCS5Padding模式加密文件 |
-| decryptFile                           | void                 | 使用AES/CBC/PKCS5Padding模式解密文件 |
-| encryptFileByCtr                      | void                 |       使用AES/CTR模式加密文件        |
-| decryptFileByCtr                      | void                 |        AES/CTR模式文件解密         |
-| forceDeleteIfExist                    | void                 |       强制删除文件或目录（如果存在）        |
-| deleteIfExist                         | void                 |         条件删除文件（如果存在）         |
-| exist                                 | boolean              |         检查文件或目录是否存在          |
-| notExist                              | boolean              |         检查文件或目录是否不存在         |
-| existFile                             | boolean              |          检查常规文件是否存在          |
-| notExistFile                          | boolean              |         检查常规文件是否不存在          |
-| parseMetaData                         | Map\<String, String> |          解析文件内容元数据           |
-| getMimeType                           | String               |         获取文件真实MIME类型         |
-| isImageType                           | boolean              |          检测是否为图片文件           |
-| isTextType                            | boolean              |          检测是否为文本文件           |
-| isModelType                           | boolean              |          检测是否为模型文件           |
-| isVideoType                           | boolean              |          检测是否为视频文件           |
-| isAudioType                           | boolean              |          检测是否为音频文件           |
-| isMimeType                            | boolean              |         判断文件是否为指定类型          |
-| isAnyMimeType                         | boolean              |         判断文件是否为任一类型          |
-| rename                                | File                 |          安全重命名文件或目录          |
-| replaceBaseName                       | File                 |        替换文件基名（保留扩展名）         |
-| replaceExtension                      | File                 |           替换文件扩展名            |
-| check                                 | boolean              |        基础文件校验（存在性检查）         |
-| checkFile                             | boolean              |         常规文件校验（类型检查）         |
-| checkFileIfExist                      | boolean              |       条件文件校验（存在时才验证类型）       |
+| 方法名                                   | 返回值                  |                            用途                             |
+|---------------------------------------|:---------------------|:---------------------------------------------------------:|
+| computeDigest                         | String               | 基于文件大小与三段采样（头/中/尾各 64 字节）组合后使用`xxHash64`计算，输出 16 位十六进制字符串 |
+| getBufferSize                         | int                  |                      根据文件大小计算最佳缓冲区大小                      |
+| getSlidingBufferSize                  | int                  |                     根据文件大小计算滑动窗口缓冲区大小                     |
+| openUnsynchronizedBufferedInputStream | InputStream          |                        打开非同步缓冲输入流                         |
+| openBufferedFileChannelInputStream    | InputStream          |                        打开缓冲文件通道输入流                        |
+| openMemoryMappedFileInputStream       | InputStream          |                        打开内存映射文件输入流                        |
+| encryptFile                           | void                 |               使用AES/CBC/PKCS5Padding模式加密文件                |
+| decryptFile                           | void                 |               使用AES/CBC/PKCS5Padding模式解密文件                |
+| encryptFileByCtr                      | void                 |                      使用AES/CTR模式加密文件                      |
+| decryptFileByCtr                      | void                 |                       AES/CTR模式文件解密                       |
+| forceDeleteIfExist                    | void                 |                      强制删除文件或目录（如果存在）                      |
+| deleteIfExist                         | void                 |                       条件删除文件（如果存在）                        |
+| exist                                 | boolean              |                        检查文件或目录是否存在                        |
+| notExist                              | boolean              |                       检查文件或目录是否不存在                        |
+| existFile                             | boolean              |                        检查常规文件是否存在                         |
+| notExistFile                          | boolean              |                        检查常规文件是否不存在                        |
+| parseMetaData                         | Map\<String, String> |                         解析文件内容元数据                         |
+| getMimeType                           | String               |                       获取文件真实MIME类型                        |
+| isImageType                           | boolean              |                         检测是否为图片文件                         |
+| isTextType                            | boolean              |                         检测是否为文本文件                         |
+| isModelType                           | boolean              |                         检测是否为模型文件                         |
+| isVideoType                           | boolean              |                         检测是否为视频文件                         |
+| isAudioType                           | boolean              |                         检测是否为音频文件                         |
+| isMimeType                            | boolean              |                        判断文件是否为指定类型                        |
+| isAnyMimeType                         | boolean              |                        判断文件是否为任一类型                        |
+| rename                                | File                 |                        安全重命名文件或目录                         |
+| replaceBaseName                       | File                 |                       替换文件基名（保留扩展名）                       |
+| replaceExtension                      | File                 |                          替换文件扩展名                          |
+| check                                 | boolean              |                       基础文件校验（存在性检查）                       |
+| checkFile                             | boolean              |                       常规文件校验（类型检查）                        |
+| checkFileIfExist                      | boolean              |                     条件文件校验（存在时才验证类型）                      |
+
+### 计算文件摘要
+基于文件大小与三段采样（头/中/尾各 64 字节）组合后使用`xxHash64`计算，输出 16 位十六进制字符串
+
+> [!NOTE]
+> 这个算法速度比较快，重复率也很低，所以我选了这个来实现计算摘要。
+
+```java
+FileUtils.computeDigest(file);
+```
 
 ### 计算缓冲区
 

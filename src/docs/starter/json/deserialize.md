@@ -5,7 +5,7 @@ layout: doc
 # 反序列化器
 
 ## LocalDate
-io.github.pangju666.framework.boot.jackson.deserializer.LocalDateJsonDeserializer
+`io.github.pangju666.framework.boot.jackson.deserializer.LocalDateJsonDeserializer`
 
 将时间戳反序列化为`LocalDate`
 
@@ -30,7 +30,7 @@ public void test(TestDTO testDTO) {
 ```
 
 ## LocalDateTime
-io.github.pangju666.framework.boot.jackson.deserializer.LocalDateTimeJsonDeserializer
+`io.github.pangju666.framework.boot.jackson.deserializer.LocalDateTimeJsonDeserializer`
 
 将时间戳反序列化为`LocalDateTime`
 
@@ -55,7 +55,7 @@ public void test(TestDTO testDTO) {
 ```
 
 ## Class
-io.github.pangju666.framework.boot.jackson.deserializer.ClassJsonDeserializer
+`io.github.pangju666.framework.boot.jackson.deserializer.ClassJsonDeserializer`
 
 将字符串反序列化为`Class`
 
@@ -83,7 +83,7 @@ public void test(TestDTO testDTO) {
 ```
 
 ## Enum
-io.github.pangju666.framework.boot.jackson.deserializer.EnumJsonDeserializer
+`io.github.pangju666.framework.boot.jackson.deserializer.EnumJsonDeserializer`
 
 将字符串反序列化为枚举变量
 

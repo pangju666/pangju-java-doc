@@ -5,7 +5,7 @@ layout: doc
 # 脱敏
 
 ## 注解
-io.github.pangju666.framework.boot.jackson.annotation.DesensitizeFormat
+`io.github.pangju666.framework.boot.jackson.annotation.DesensitizeFormat`
 
 > [!IMPORTANT]
 > 只能作用于`CharSequence`或其子类型的字段。

@@ -8,22 +8,22 @@ layout: doc
 | 常量名                           | 值                                                    |         说明         |
 |-------------------------------|:-----------------------------------------------------|:------------------:|
 | NON_TRANSPARENT_IMAGE_FORMATS | Set.of("jpeg", "jpg", "jpeg-lossless", "bmp", "gif") |   不支持透明通道的图像格式集合   |
-| SUPPORT_READ_IMAGE_TYPES      | Set\<String>（动态获取）                                   | 系统支持的可读取图像MIME类型集合 |
-| SUPPORT_WRITE_IMAGE_TYPES     | Set\<String> （动态获取）                                  | 系统支持的可写入图像MIME类型集合 |
-| SUPPORT_WRITE_IMAGE_FORMATS   | Set\<String> （动态获取）                                  |   系统支持的可写入图像格式集合   |
-| SUPPORT_READ_IMAGE_FORMATS    | Set\<String> （动态获取）                                  |   系统支持的可写入图像格式集合   |
+| SUPPORTED_READ_IMAGE_TYPES    | Set\<String>（动态获取）                                   | 系统支持的可读取图像MIME类型集合 |
+| SUPPORTED_WRITE_IMAGE_TYPES   | Set\<String> （动态获取）                                  | 系统支持的可写入图像MIME类型集合 |
+| SUPPORTED_WRITE_IMAGE_FORMATS | Set\<String> （动态获取）                                  |   系统支持的可写入图像格式集合   |
+| SUPPORTED_READ_IMAGE_FORMATS  | Set\<String> （动态获取）                                  |   系统支持的可写入图像格式集合   |
 | NORMAL_EXIF_ORIENTATION       | int                                                  |    EXIF正常方向标识值     |
 
 ```java
 // 获取系统支持的可读取图像MIME类型集合
-Set<String> readImageTypes = IOConstants.getSupportReadImageTypes();
+Set<String> readImageTypes = IOConstants.getSupportedReadImageTypes();
 
 // 获取系统支持的可写入图像MIME类型集合
-Set<String> writeImageTypes = IOConstants.getSupportWriteImageTypes();
+Set<String> writeImageTypes = IOConstants.getSupportedWriteImageTypes();
 
 // 获取系统支持的可写入图像格式集合
-Set<String> writeImageTypes = IOConstants.getSupportWriteImageFormats();
+Set<String> writeImageTypes = IOConstants.getSupportedWriteImageFormats();
 
 // 获取系统支持的可读取图像格式集合
-Set<String> writeImageTypes = IOConstants.getSupportReadImageFormats();
+Set<String> writeImageTypes = IOConstants.getSupportedReadImageFormats();
 ```

@@ -13,7 +13,7 @@ layout: doc
 > - 映射：`java.util.Map<?, T>`，其中 `T` 为上述受支持类型
 
 ### 注解
-io.github.pangju666.framework.boot.jackson.annotation.EncryptFormat
+`io.github.pangju666.framework.boot.jackson.annotation.EncryptFormat`
 
 #### 属性
 - key: 明文密钥或占位符，支持两种形式：
@@ -231,7 +231,7 @@ public TestVO test() {
 > 字段类型必须与支持类型一致，不能是支持类型的子类或实现。
 
 ### 注解
-io.github.pangju666.framework.boot.jackson.annotation.DecryptFormat
+`io.github.pangju666.framework.boot.jackson.annotation.DecryptFormat`
 
 #### 属性
 - key: 明文密钥或占位符，支持两种形式：

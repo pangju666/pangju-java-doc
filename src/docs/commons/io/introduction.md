@@ -9,7 +9,7 @@ const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 # IO模块
 
 ## 概述
-crypto 模块是基于`commons-io`、`commons-crypto`和`tika`开发的，提供了一系列功能，例如：
+crypto 模块是基于`commons-io`、`commons-crypto`、`tika`和`zero-allocation-hashing`开发的，提供了一系列功能，例如：
 - 文件类型枚举
 - IO相关常量
 - 文件名工具类

@@ -23,7 +23,7 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/spring/introduction'},
                     {text: '静态上下文', link: '/starter/spring/context'},
-                    {text: '并发', link: '/starter/spring/task'},
+                    {text: '任务执行器', link: '/starter/spring/task'},
                 ]
             },
             {
@@ -31,7 +31,7 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/validation/introduction'},
-                    {text: '自动装配', link: '/starter/validation/auto-configuration'},
+                    {text: '自动装配', link: '/starter/validation/configuration'},
                 ]
             },
             {
@@ -49,7 +49,7 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/json/introduction'},
-                    {text: '自动装配', link: '/starter/json/auto-configuration'},
+                    {text: '自动装配', link: '/starter/json/configuration'},
                     {text: '序列化', link: '/starter/json/serialize'},
                     {text: '反序列化', link: '/starter/json/deserialize'},
                     {text: '脱敏', link: '/starter/json/desensitized'},
@@ -62,9 +62,10 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/image/introduction'},
                     {text: '常量', link: '/starter/image/constants'},
+                    {text: '枚举', link: '/starter/image/enums'},
                     {text: '异常', link: '/starter/image/exception'},
-                    {text: '处理', link: '/starter/image/template'},
-                    {text: '并发', link: '/starter/image/task'},
+                    {text: '数据结构', link: '/starter/image/model'},
+                    {text: '操作', link: '/starter/image/template'},
                 ]
             },
             {
@@ -215,7 +216,9 @@ export default [
                 items: [
                     {text: '概述', link: '/commons/image/introduction'},
                     {text: '常量', link: '/commons/image/constants'},
-                    {text: '图像信息', link: '/commons/image/image'},
+                    {text: '枚举', link: '/commons/image/enums'},
+                    {text: '数据结构', link: '/commons/image/model'},
+                    {text: '工具类', link: '/commons/image/utils'},
                     {text: '图像处理', link: '/commons/image/editor'},
                 ]
             },

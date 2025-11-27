@@ -2,61 +2,8 @@
 layout: doc
 ---
 
-# 图像信息
+# 工具类
 
-## 图像尺寸
-`io.github.pangju666.commons.image.model.ImageSize`
-
-### 根据宽度计算缩放后的尺寸
-
-该方法不会修改当前对象，而是返回一个新的尺寸实例。
-
-```java
-ImageSize size = new ImageSize(1920, 1080);
-ImageSize scaleSize = size.scaleByWidth(500); // 500 281
-```
-
-### 根据高度计算缩放后的尺寸
-
-该方法不会修改当前对象，而是返回一个新的尺寸实例。
-
-```java
-ImageSize size = new ImageSize(1920, 1080);
-ImageSize scaleSize = size.scaleByHeight(500); // 888 500
-```
-
-### 等比计算缩放后的尺寸
-
-该方法不会修改当前对象，而是返回一个新的尺寸实例。
-
-```java
-// 宽度大于高度则按宽度计算
-ImageSize size = new ImageSize(1920, 1080);
-ImageSize scaleSize = size.scale(500, 500); // 500 281
-
-// 高度大于宽度则按宽度计算
-ImageSize size2 = new ImageSize(3000, 5000);
-ImageSize scaleSize2 = size2.scale(400, 500); // 300 500
-
-// 如果目标高度大于原始高度，则根据宽度计算
-ImageSize size3 = new ImageSize(400, 500);
-ImageSize scaleSize3 = size3.scale(300, 550); // 440 550
-
-// 如果目标宽度大于原始高度，则根据高度计算
-ImageSize size4 = new ImageSize(600, 500);
-ImageSize scaleSize4 = size4.scale(700, 300); // 360 300
-```
-
-### 比例计算缩放后的尺寸
-
-该方法不会修改当前对象，而是返回一个新的尺寸实例。
-
-```java
-ImageSize size = new ImageSize(600, 500);
-ImageSize scaleSize = size.scale(0.5); // 300 250
-```
-
-## 图像信息
 `io.github.pangju666.commons.image.uitls.ImageUtils`
 
 | 方法名                | 返回值       |         用途          |
@@ -68,19 +15,19 @@ ImageSize scaleSize = size.scale(0.5); // 300 250
 | getSize            | ImageSize |       获取图像尺寸        |
 | getExifOrientation | Integer   |     获取EXIF方向信息      |
 
-### 检测类型是否支持读取
+## 检测类型是否支持读取
 ```java
 // 检测jpeg类型是否支持读取
 ImageUtils.isSupportReadType("image/jpeg");
 ```
 
-### 检测类型是否支持写入
+## 检测类型是否支持写入
 ```java
 // 检测jpeg类型是否支持写入
 ImageUtils.isSupportWriteType("image/jpeg");
 ```
 
-### 检测是否为相同类型图像
+## 检测是否为相同类型图像
 基于`ImageIO`实现
 
 ```java
@@ -97,9 +44,9 @@ ImageUtils.isSameType(FileUtils.openInputStream(file), "image/jpeg"); // true
 ImageUtils.isSameType(ImageIO.createImageInputStream(file), "image/jpeg"); // true
 ```
 
-### 检测图像类型
+## 检测图像类型
 
-#### 根据图像检测
+### 根据图像检测
 基于`ImageIO`实现
 
 只能检测出`ImageIO`支持的类型，如果单纯获取图像类型，建议使用`FileUtils.getMimeType`
@@ -116,7 +63,7 @@ ImageUtils.getMimeType(FileUtils.openInputStream(file)); //"image/jpeg"
 ImageUtils.getMimeType(ImageIO.createImageInputStream(file)); // "image/jpeg"
 ```
 
-#### 根据元数据检测
+### 根据元数据检测
 基于`metadata-extractor`实现，如果解析失败则返回`null`
 
 metadata-extractor支持的格式有限，而且不是所有图像都有**元数据**
@@ -127,8 +74,11 @@ Metadata metadata = ImageMetadataReader.readMetadata(file);
 ImageUtils.getMimeType(metadata); // "image/jpeg"
 ```
 
-### 获取图像尺寸
+## 获取图像尺寸
 基于`ImageIO`和`metadata-extractor`实现，如果解析失败则返回`null`
+
+> [!IMPORTANT]
+> 对于确定方向正确的图像，建议使用getSize(xxx, false)，避免解析元数据耗费额外的时间。
 
 处理流程：
 1. 尝试使用`metadata-extractor`获取元数据中的图像宽高信息 
@@ -160,7 +110,7 @@ Metadata metadata = ImageMetadataReader.readMetadata(file);
 ImageUtils.getMimeType(metadata);
 ```
 
-### 获取图像Exif方向
+## 获取图像Exif方向
 基于`metadata-extractor`实现，如果解析失败则返回`null`
 
 ```java
