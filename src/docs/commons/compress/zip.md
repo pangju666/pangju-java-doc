@@ -3,18 +3,18 @@ layout: doc
 ---
 
 # Zip
-
-## 工具类
-
 `io.github.pangju666.commons.compress.utils.ZipUtils`
 
 | 方法名        | 返回值     |        用途         |
 |------------|:--------|:-----------------:|
-| isZip      | boolean | 检查指定文件是否为有效的ZIP格式 |
-| unCompress | void    |     解压缩ZIP文件      |
-| compress   | void    |      压缩文件/目录      |
+| isZip      | boolean | 检查指定文件是否为有效的zip文件 |
+| uncompress | void    |     解压缩zip文件      |
+| compress   | void    |   压缩文件/目录为zip文件   |
 
-### 判断是否为zip文件
+> [!TIP]
+> 如果需要加密或解密zip文件，请使用[`zip4j`](/dependencies/dependency-management#zip4j)。
+
+## 判断是否为zip文件
 根据文件内容来判断文件类型，底层基于`tika`实现
 
 ```java
@@ -28,9 +28,9 @@ InputStream inputStream = FileUtils.openInputStream(file);
 ZipUtils.isZip(inputStream);
 ```
 
-### 压缩
+## 压缩
 
-#### 压缩单个文件或目录
+### 压缩单个文件或目录
 ```java
 File inputFile = new File("C:\logs");
 
@@ -44,7 +44,7 @@ ZipArchiveOutputStream zipArchiveOutputStream = new ZipArchiveOutputStream(outpu
 ZipUtils.compress(inputFile, zipArchiveOutputStream);
 ```
 
-#### 压缩多个文件或目录
+### 压缩多个文件或目录
 ```java
 List<File> inputFiles = Arrays.asList(new File("C:\logs"), new File("C:\logs2"));
 
@@ -58,22 +58,22 @@ ZipArchiveOutputStream zipArchiveOutputStream = new ZipArchiveOutputStream(outpu
 ZipUtils.compress(inputFiles, zipArchiveOutputStream);
 ```
 
-### 解压
+## 解压
 ```java
 File outputDir = new File("C:\logs");
 
 File inputFile = new File("C:\output.zip");
-ZipUtils.unCompress(inputFile, outputDir);
+ZipUtils.uncompress(inputFile, outputDir);
 
 byte[] inputBytes = FileUtils.readFileToByteArray(inputFile);
-ZipUtils.unCompress(inputBytes, outputDir);
+ZipUtils.uncompress(inputBytes, outputDir);
 
 InputStream inputStream = FileUtils.openInputStream(inputFile);
-ZipUtils.unCompress(inputStream, outputDir);
+ZipUtils.uncompress(inputStream, outputDir);
 
 ZipFile zipFile = ZipFile.builder().setFile(inputFile).get()
-ZipUtils.unCompress(zipFile, outputDir);
+ZipUtils.uncompress(zipFile, outputDir);
 
 ZipArchiveInputStream zipArchiveInputStream = new ZipArchiveInputStream(inputFile)
-ZipUtils.unCompress(zipArchiveInputStream, outputDir);
+ZipUtils.uncompress(zipArchiveInputStream, outputDir);
 ```

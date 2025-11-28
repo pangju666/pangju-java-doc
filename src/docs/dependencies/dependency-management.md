@@ -166,6 +166,16 @@ HanLP 不仅仅是一个分词器，而是一个集分词、词性标注、命�
 
 评价：里面的加密接口封装的很好，内置的**AES**加密器实现的也很有参考价值，一般有加密需求的都可以用这个
 
+### [zero-allocation-hashing](https://github.com/OpenHFT/Zero-Allocation-Hashing)
+zero-allocation-hashing 是一个 高性能、无垃圾回收（GC-free）、零内存分配 的 Java 哈希函数库，专为 低延迟、高吞吐场景（如金融交易系统、高频日志、网络协议处理）设计。
+```xml
+<dependency>
+    <groupId>net.openhft</groupId>
+    <artifactId>zero-allocation-hashing</artifactId>
+</dependency>
+```
+评价：快速计算摘要的话就选这个
+
 ## IO
 
 ### [commons-io](https://commons.apache.org/proper/commons-io/description.html)
@@ -203,6 +213,16 @@ HanLP 不仅仅是一个分词器，而是一个集分词、词性标注、命�
 </dependency>
 ```
 评价：主流支持zip和7z，rar不支持
+
+### [zip4j](https://github.com/srikanth-lingala/zip4j)
+**Zip4j** 是一个功能强大、轻量级、纯 Java 实现的 ZIP 文件处理库，专注于提供对 标准 ZIP 格式、分卷压缩、Unicode 支持以及最重要的 —— 加密（AES 和传统） 的完整支持。它是目前 Java 生态中 最流行、最可靠的 ZIP 加解密解决方案之一。
+```xml
+<dependency>
+    <groupId>net.lingala.zip4j</groupId>
+    <artifactId>zip4j</artifactId>
+</dependency>
+```
+评价：如果需要加密解密zip的话用这个
 
 ## 文件
 

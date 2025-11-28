@@ -73,6 +73,8 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/mybatisplus/introduction'},
+                    {text: '实体类', link: '/starter/mybatisplus/entity'},
+                    {text: '自动装配', link: '/starter/mybatisplus/configuration'},
                 ]
             },
             {
@@ -208,6 +210,10 @@ export default [
                     {text: '常量', link: '/commons/compress/constants'},
                     {text: 'zip', link: '/commons/compress/zip'},
                     {text: '7z', link: '/commons/compress/7z'},
+                    {text: 'tar', link: '/commons/compress/tar'},
+                    {text: 'gzip', link: '/commons/compress/gzip'},
+                    {text: 'xz', link: '/commons/compress/xz'},
+                    {text: '工具类', link: '/commons/compress/utils'},
                 ]
             },
             {
