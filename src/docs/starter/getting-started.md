@@ -29,23 +29,24 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 
 我仿照`Spring Boot Starter`的命名方式对各个模块进行了命名，以此来方便上手。
 
-| 模块                                              |                        介绍                        |
-|-------------------------------------------------|:------------------------------------------------:|
-| framework-spring-boot-starter-parent            |       父级模块，对标`spring-boot-starter-parent`        |
-| framework-spring-boot-starter                   |           `Spring`模块，包含静态上下文和一次性任务执行器            |
-| framework-spring-boot-starter-crypto            |              加密模块，包含几种加密算法工厂和加密工具类               |
-| framework-spring-boot-starter-json              |              JSON模块，包含了几种序列化/反序列化器               |
-| framework-spring-boot-starter-image             | 图像模块，实现了`BufferedImage`和`GraphicsMagick`两种图像处理实现 |
-| framework-spring-boot-starter-validation        |                       校验模块                       |
-| framework-spring-boot-starter-data-mybatis-plus |       `Mybatis Plus`模块，包含了插件自动装配和逻辑删除填充实现        |
-| framework-spring-boot-starter-data-mongodb      |                    MongoDB模块                     |
-| framework-spring-boot-starter-data-redis        |                     Redis 模块                     |
-| framework-spring-boot-starter-test              |                       测试模块                       |
-| framework-spring-boot-starter-spock-test        |                   Spock框架测试模块                    |
-| framework-spring-boot-starter-web               |                      Web 模块                      |
-| framework-spring-boot-starter-web-crypto        |                     Web 加密模块                     |
-| framework-spring-boot-starter-web-validation    |                     Web 校验模块                     |
-| framework-spring-boot-starter-web-log           |                     Web 日志模块                     |
+| 模块                                              |                 介绍                  |
+|-------------------------------------------------|:-----------------------------------:|
+| framework-spring-boot-starter-parent            | 父级模块，对标`spring-boot-starter-parent` |
+| framework-spring-boot-starter                   |             `Spring`模块              |
+| framework-spring-boot-starter-crypto            |                加密模块                 |
+| framework-spring-boot-starter-json              |               JSON模块                |
+| framework-spring-boot-starter-json-crypto       |              JSON加密模块               |
+| framework-spring-boot-starter-image             |                图像模块                 |
+| framework-spring-boot-starter-validation        |                校验模块                 |
+| framework-spring-boot-starter-data-mybatis-plus |          `Mybatis Plus`模块           |
+| framework-spring-boot-starter-data-mongodb      |              MongoDB模块              |
+| framework-spring-boot-starter-data-redis        |              Redis 模块               |
+| framework-spring-boot-starter-test              |                测试模块                 |
+| framework-spring-boot-starter-spock-test        |             Spock框架测试模块             |
+| framework-spring-boot-starter-web               |               Web 模块                |
+| framework-spring-boot-starter-web-crypto        |              Web 加密模块               |
+| framework-spring-boot-starter-web-validation    |              Web 校验模块               |
+| framework-spring-boot-starter-web-log           |              Web 日志模块               |
 
 ## 引入
 基于[Pangju Dependencies](/dependencies/getting-started)，可以像`Spring Boot Starter Parent`一样引入：
@@ -145,7 +146,7 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 ### Groovy 脚本编译插件
 我增加了编译测试的配置和跳过编译测试
 
-如果不使用spock框架编写测试的话，一般用不到这个
+如果不使用`Spock`框架编写测试的话，一般用不到这个
 
 #### 默认配置
 ```xml

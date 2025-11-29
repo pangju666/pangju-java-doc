@@ -2,10 +2,10 @@
 layout: doc
 ---
 
-# Web
+# 异常处理
 
 ## 概述
-这个模块我集成了`spring-boot-starter-web`、[`Pangju Starter JSON`](/starter/json/introduction)和[`Pangju Framework Web`](/framework/web/introduction)。
+这个模块我集成了`spring-boot-starter-web`和[`Pangju Framework Web`](/framework/web/introduction)。
 
 ## 依赖
 
@@ -13,10 +13,6 @@ layout: doc
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
-</dependency>
-<dependency>
-    <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-spring-boot-starter-json</artifactId>
 </dependency>
 
 <dependency>

@@ -23,7 +23,11 @@ layout: doc
 | StringScanRedisTemplate | {name}StringScanRedisTemplate | 支持游标扫描的字符串序列化 RedisTemplate |
 
 ## 配置
-数据源的配置，我继承了`spring`的配置，并在其基础上增加了`key-serializer`、`value-serializer`、`hash-key-serializer`、`hash-value-serializer`
+数据源的配置，我继承了`spring`的配置，并在其基础上增加了`key-serializer`、`value-serializer`、`hash-key-serializer`和`hash-value-serializer`。
+
+[`ScanRedisTemplate`](/framework/redis/template)的值和哈希值序列化器取决于数据源配置中的`value-serializer`和`hash-value-serializer`。
+
+`RedisTemplate`的键、值、哈希键和哈希值序列化器取决于数据源配置中的`key-serializer`、`value-serializer`、`hash-key-serializer`和`hash-value-serializer`。
 
 ```yaml
 spring:
