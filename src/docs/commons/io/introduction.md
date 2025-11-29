@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# IO模块
+# IO
 
 ## 概述
 crypto 模块是基于`commons-io`、`commons-crypto`、`tika`和`zero-allocation-hashing`开发的，提供了一系列功能，例如：

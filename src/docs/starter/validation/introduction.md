@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# 校验 模块
+# 校验
 
 ## 概述
 这个模块我集成了`spring-boot-starter-validation`和[`Pangju Commons Validation`](/commons/validation/introduction)。

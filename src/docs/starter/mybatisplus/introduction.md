@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# JSON 模块
+# Mybatis Plus
 
 ## 概述
 这个模块我集成了`spring-boot-starter`、`mybatis-plus-spring-boot3-starter`、`mybatis-plus-jsqlparser`和[`Pangju Framework Data Mybatis Plus`](/framework/mybatisplus/introduction)。

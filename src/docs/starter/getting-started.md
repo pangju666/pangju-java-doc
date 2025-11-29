@@ -29,23 +29,23 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 
 我仿照`Spring Boot Starter`的命名方式对各个模块进行了命名，以此来方便上手。
 
-| 模块                                              |                                                                   介绍                                                                    |
-|-------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------------------:|
-| framework-spring-boot-starter-parent            |                                                   父级模块，对标`spring-boot-starter-parent`                                                   |
-| framework-spring-boot-starter                   |                       Spring 模块，基于`spring-boot-starter`和[Pangju Framework Spring](/framework/spring/introduction)                       |
-| framework-spring-boot-starter-concurrent        |                                             并发模块，基于`spring-boot-starter`和`guava`或`Redisson`                                             |
-| framework-spring-boot-starter-crypto            |                           加密模块，基于`spring-boot-starter`和[Pangju Commons Crypto](/commons/crypto/introduction)                            |
-| framework-spring-boot-starter-image             |                       图像模块，基于`spring-boot-starter-validation`和[Pangju Commons Image](/commons/image/introduction)                       |
-| framework-spring-boot-starter-validation        |                  校验模块，基于`spring-boot-starter-validation`和[Pangju Commons Validation](/commons/validation/introduction)                  |
-| framework-spring-boot-starter-data-mybatis-plus |        Mybatis Plus模块，基于`mybatis-plus-spring-boot3-starter`和[Pangju Framework Mybatis Plus](/framework/mybatisplus/introduction)        |
-| framework-spring-boot-starter-data-mongodb      |               MongoDB模块，基于`spring-boot-starter-data-mongodb`和[Pangju Framework MongoDB](/framework/mongodb/introduction)                |
-| framework-spring-boot-starter-data-redis        |                   Redis 模块，基于`spring-boot-starter-data-redis`和[Pangju Framework Redis](/framework/redis/introduction)                   |
-| framework-spring-boot-starter-test              |                                                    测试模块，基于`spring-boot-starter-test`                                                    |
-| framework-spring-boot-starter-spock-test        |                                         Spock框架测试模块，基于`spring-boot-starter-test`和`spock-spring`                                         |
-| framework-spring-boot-starter-web               |                         Web 模块，基于`spring-boot-starter-web`和[Pangju Framework Web](/framework/web/introduction)                          |
-| framework-spring-boot-starter-web-crypto        |  Web 加密模块，基于[Pangju Framework Web Starter](/starter/web/introduction)和[Pangju Framework Crypto Starter](/starter/crypto/introduction)   |
-| framework-spring-boot-starter-web-validation    | Web 校验模块，基于[Pangju Framework Web Starter](/starter/web/introduction)、`spring-boot-starter-aop`、`resilience4j-ratelimiter`和`expiringmap` |
-| framework-spring-boot-starter-web-log           |                            Web 日志模块，基于[Pangju Framework Web Starter](/starter/web/introduction)和`disruptor`                             |
+| 模块                                              |                        介绍                        |
+|-------------------------------------------------|:------------------------------------------------:|
+| framework-spring-boot-starter-parent            |       父级模块，对标`spring-boot-starter-parent`        |
+| framework-spring-boot-starter                   |           `Spring`模块，包含静态上下文和一次性任务执行器            |
+| framework-spring-boot-starter-crypto            |              加密模块，包含几种加密算法工厂和加密工具类               |
+| framework-spring-boot-starter-json              |              JSON模块，包含了几种序列化/反序列化器               |
+| framework-spring-boot-starter-image             | 图像模块，实现了`BufferedImage`和`GraphicsMagick`两种图像处理实现 |
+| framework-spring-boot-starter-validation        |                       校验模块                       |
+| framework-spring-boot-starter-data-mybatis-plus |       `Mybatis Plus`模块，包含了插件自动装配和逻辑删除填充实现        |
+| framework-spring-boot-starter-data-mongodb      |                    MongoDB模块                     |
+| framework-spring-boot-starter-data-redis        |                     Redis 模块                     |
+| framework-spring-boot-starter-test              |                       测试模块                       |
+| framework-spring-boot-starter-spock-test        |                   Spock框架测试模块                    |
+| framework-spring-boot-starter-web               |                      Web 模块                      |
+| framework-spring-boot-starter-web-crypto        |                     Web 加密模块                     |
+| framework-spring-boot-starter-web-validation    |                     Web 校验模块                     |
+| framework-spring-boot-starter-web-log           |                     Web 日志模块                     |
 
 ## 引入
 基于[Pangju Dependencies](/dependencies/getting-started)，可以像`Spring Boot Starter Parent`一样引入：

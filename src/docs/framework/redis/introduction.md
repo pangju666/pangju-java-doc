@@ -7,7 +7,7 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 const redisVersion = import.meta.env.VITE_SPRING_FRAMEWORK_DATA_REDIS_VERSION;
 </script>
 
-# Redis模块
+# Redis
 
 ## Spring Data Redis 版本
 

@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# JSON 模块
+# 图像
 
 ## 概述
 这个模块我集成了`spring-boot-starter`、`tika-parser-image-module`和[`Pangju Commons Image`](/commons/image/introduction)。

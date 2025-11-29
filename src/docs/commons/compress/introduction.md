@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# 压缩模块
+# 压缩
 
 ## 概述
 compress 模块是基于`commons-compress`开发的，提供了一系列功能，例如：

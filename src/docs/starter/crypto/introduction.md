@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# 加密 模块
+# 加密
 
 ## 概述
 这个模块我集成了`spring-boot-starter`、`Caffeine`和[`Pangju Commons Crypto`](/commons/crypto/introduction)。

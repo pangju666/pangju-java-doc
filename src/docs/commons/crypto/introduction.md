@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# 加密模块
+# 加密
 
 ## 概述
 crypto 模块是基于`jasypt`开发的，提供了一系列功能，例如：

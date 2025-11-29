@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# PDF文档模块
+# PDF
 
 ## 概述
 image 模块主要基于`pdfbox`开发，提供了一系列图像处理功能，例如：

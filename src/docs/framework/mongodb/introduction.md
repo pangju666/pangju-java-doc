@@ -7,7 +7,7 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 const mongoVersion = import.meta.env.VITE_SPRING_FRAMEWORK_DATA_MONGODB_VERSION;
 </script>
 
-# MongoDB 模块
+# MongoDB
 
 ## Spring Data MongoDB 版本
 

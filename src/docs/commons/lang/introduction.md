@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# 基础模块
+# 基础
 
 ## 概述
 lang 模块是整个工具库的基础模块，提供了一系列的基础工具，例如：

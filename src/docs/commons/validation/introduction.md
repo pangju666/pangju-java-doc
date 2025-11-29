@@ -6,7 +6,7 @@ layout: doc
 const commonsVersion = import.meta.env.VITE_COMMONS_VERSION;
 </script>
 
-# 校验模块
+# 校验
 
 ## 概述
 validation 模块是基于`jakarta validation`开发的，提供了一系列的jakarta校验注解，例如：

@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# JSON 模块
+# JSON
 
 ## 概述
 这个模块我集成了`spring-boot-starter-json`、[`Pangju Starter Crypto`](/starter/crypto/introduction)和[`Pangju Commons Lang`](/commons/lang/introduction)。

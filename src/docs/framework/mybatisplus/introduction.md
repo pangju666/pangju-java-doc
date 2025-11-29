@@ -7,7 +7,7 @@ const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 const mybatisPlusVersion = import.meta.env.VITE_MYBATIS_PLUS_VERSION;
 </script>
 
-# Mybatis Plus模块
+# Mybatis Plus
 
 ## Mybatis Plus 版本
 
