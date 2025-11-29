@@ -83,6 +83,8 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/mongodb/introduction'},
+                    {text: '自动装配', link: '/starter/mongodb/configuration'},
+                    {text: '动态数据源', link: '/starter/mongodb/dynamic'},
                 ]
             },
             {
@@ -90,6 +92,8 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/redis/introduction'},
+                    {text: '自动装配', link: '/starter/redis/configuration'},
+                    {text: '动态数据源', link: '/starter/redis/dynamic'},
                 ]
             },
             {
