@@ -2,32 +2,39 @@
 layout: doc
 ---
 
-<script setup>
-const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
-const mongoVersion = import.meta.env.VITE_SPRING_FRAMEWORK_DATA_MONGODB_VERSION;
-</script>
-
-# MongoDB 模块
-
-## Spring Data MongoDB 版本
-
-{{ mongoVersion }}
+# JSON 模块
 
 ## 概述
-MongoDB 模块是基于`spring-data-mongodb`开发的，定义了一系列MongoDB辅助工具，例如：
-- 基础实体类
-- 常用请求数据结构
-- `MongoDB`常量
-- `MongoRepository`拓展
-- 查询工具类
+这个模块我集成了`spring-boot-starter`、`mybatis-plus-spring-boot3-starter`、`mybatis-plus-jsqlparser`和[`Pangju Framework Data Mybatis Plus`](/framework/mybatisplus/introduction)。
 
-## 安装
-```xml-vue
+## 依赖
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>io.github.pangju666.framework</groupId>
+    <artifactId>framework-data-mybatis-plus</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-jsqlparser</artifactId>
+</dependency>
+```
+
+## 引入
+```xml
 <dependency>
     <dependency>
-        <groupId>io.github.pangju666.framework</groupId>
-        <artifactId>framework-data-mongodb</artifactId>
-        <version>{{ frameworkVersion }}</version>
+        <groupId>io.github.pangju666.framework.boot</groupId>
+		<artifactId>framework-spring-boot-starter-data-mybatis-plus</artifactId>
     </dependency>
 </dependency>
 ```

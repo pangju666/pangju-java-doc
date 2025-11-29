@@ -254,6 +254,54 @@ public class ImageService {
 - 输入或输出类型不受支持时抛出[不支持的图片类型异常](/starter/image/exception#不支持的图片类型异常)。
 - `GraphicsMagick`命令失败或进程通信错误时抛出[图像操作异常](/starter/image/exception#图像操作异常)
 
+### 自定义操作命令
+也可以直接自己执行`GraphicsMagick`命令，来实现别的操作
+
+```java
+@Service
+public class ImageService {
+	private final PooledGMService gmService;
+	private final GMImageTemplate imageTemplate;
+
+	public ImageService(PooledGMService gmService, GMImageTemplate imageTemplate) {
+		this.gmService = gmService;
+		this.imageTemplate = imageTemplate;
+	}
+	
+	public void test() throws IOException {
+	    GMOperation operation = new GMOperation();
+	    // ...定义操作
+		imageTemplate.execute(operation);
+
+        // 使用命令拼接操作
+		List<String> commands = List.of("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
+		imageTemplate.execute(commands);
+
+        // 执行命令并拼接参数
+		imageTemplate.execute("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
+		
+		// 直接使用 PooledGMService 执行命令
+		GMConnection connection = null;
+		try {
+			connection = pooledGMService.getConnection();
+			return connection.execute("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
+		} catch (GMServiceException e) {
+			// ...处理GM进程通信错误
+		} catch (GMException | IOException e) {
+			// ...处理GM命令执行错误
+		} finally {
+			if (Objects.nonNull(connection)) {
+				try {
+					connection.close();
+				} catch (GMServiceException e) {
+					// ...处理GM进程关闭失败错误
+				}
+			}
+		}
+	}
+}
+```
+
 ## 自定义实现
 你也可以实现自己的版本来覆盖我的默认实现，比如基于`FFMPEG`或`OpenCV`
 

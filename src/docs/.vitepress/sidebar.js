@@ -73,8 +73,9 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/mybatisplus/introduction'},
-                    {text: '实体类', link: '/starter/mybatisplus/entity'},
                     {text: '自动装配', link: '/starter/mybatisplus/configuration'},
+                    {text: '注解', link: '/starter/mybatisplus/annotation'},
+                    {text: '实体类', link: '/starter/mybatisplus/entity'}
                 ]
             },
             {
