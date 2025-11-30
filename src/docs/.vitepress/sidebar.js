@@ -110,33 +110,40 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/web/introduction'},
-                    {text: '请求参数', link: '/starter/web/request'},
-                    {text: '响应包装', link: '/starter/web/response'},
-                    {text: '异常列表', link: '/starter/web/exception/list'},
-                    {text: '异常处理', link: '/starter/web/exception/handle'},
-                    {text: '客户端', link: '/starter/web/client'},
-                    {text: '跨域', link: '/starter/web/cors'},
-                ]
-            },
-            {
-                text: 'Web 加密',
-                collapsed: true,
-                items: [
-                    {text: '概述', link: '/starter/web-crypto/introduction'},
-                ]
-            },
-            {
-                text: 'Web 校验',
-                collapsed: true,
-                items: [
-                    {text: '概述', link: '/starter/web-validation/introduction'},
-                ]
-            },
-            {
-                text: 'Web 日志',
-                collapsed: true,
-                items: [
-                    {text: '概述', link: '/starter/web-log/introduction'},
+                    {text: '自动装配', link: '/starter/web/configuration'},
+                    {text: '请求参数转换', link: '/starter/web/request'},
+                    {text: '响应体包装', link: '/starter/web/response'},
+                    {text: '异常处理', link: '/starter/web/exception'},
+                    {
+                        text: '加密',
+                        collapsed: true,
+                        items: [
+                            {text: '概述', link: '/starter/web/crypto/introduction'},
+                            {text: '加密', link: '/starter/web/crypto/encrypt'},
+                            {text: '解密', link: '/starter/web/crypto/decrypt'},
+                            {text: '工具类', link: '/starter/web/crypto/utils'},
+                        ]
+                    },
+                    {
+                        text: '校验',
+                        collapsed: true,
+                        items: [
+                            {text: '概述', link: '/starter/web/validation/introduction'},
+                            {text: '加密', link: '/starter/web/validation/encrypt'},
+                            {text: '解密', link: '/starter/web/validation/decrypt'},
+                            {text: '工具类', link: '/starter/web/validation/utils'},
+                        ]
+                    },
+                    {
+                        text: '日志',
+                        collapsed: true,
+                        items: [
+                            {text: '概述', link: '/starter/json/log/introduction'},
+                            {text: '加密', link: '/starter/json/log/encrypt'},
+                            {text: '解密', link: '/starter/json/log/decrypt'},
+                            {text: '工具类', link: '/starter/json/log/utils'},
+                        ]
+                    },
                 ]
             },
             {
