@@ -30,7 +30,7 @@ byte[] encryptBytes = CryptoUtils.encrypt(cryptoFactory, rawData, "123456");
 byte[] decryptBytes = CryptoUtils.decrypt(cryptoFactory, encryptBytes, "123456");
 
 String rawText;
-// 加密文本并使用 Base64 编码
+// 加密文本并使用 Base64 URL安全编码
 String encryptText = CryptoUtils.encryptString(cryptoFactory, rawText, "123456", Encoding.BASE64);
 // 先使用 Base64 解码，再解密文本
 String decryptText = CryptoUtils.decryptString(cryptoFactory, encryptText, "123456", Encoding.BASE64);

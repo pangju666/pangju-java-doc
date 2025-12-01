@@ -120,8 +120,7 @@ export default [
                         items: [
                             {text: '概述', link: '/starter/web/crypto/introduction'},
                             {text: '加密', link: '/starter/web/crypto/encrypt'},
-                            {text: '解密', link: '/starter/web/crypto/decrypt'},
-                            {text: '工具类', link: '/starter/web/crypto/utils'},
+                            {text: '解密', link: '/starter/web/crypto/decrypt'}
                         ]
                     },
                     {

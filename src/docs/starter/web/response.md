@@ -2,12 +2,14 @@
 layout: doc
 ---
 
-# 响应包装
+# 响应体
 
-## 概述
+## 响应体包装
+
+### 概述
 我对`JSON`和字符串类型的响应体做了[`Result`](/framework/web/data)包装处理。
 
-## 配置
+### 配置
 ```yaml
 pangju:
   web:
@@ -15,7 +17,7 @@ pangju:
       enable-wrapper: true # 启用响应体包装，默认启用
 ```
 
-## 使用示例
+### 使用示例
 ```java
 public class UserVO {
 	private String username;

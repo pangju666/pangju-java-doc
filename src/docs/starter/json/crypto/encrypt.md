@@ -18,7 +18,7 @@ layout: doc
   1. 明文密钥：直接传入密钥字符串，例如`@EncryptFormat(key = "my-secret-key")`
   2. 占位符：使用`${property.name}`格式，框架将从`Spring`配置读取实际密钥值，例如`@EncryptFormat(key = "${app.encryption.key}")`
 - algorithm: [加密算法](/starter/crypto/enums#加密算法)，默认使用`AES256`算法。
-- encoding: 字符串加密输出的[编码方式](/starter/crypto/enums#编码类型)，默认使用`BASE64`（仅在加密字符串时生效，对二进制与数值类型不适用）。
+- encoding: 字符串加密输出的[编码方式](/starter/crypto/enums#编码类型)，默认使用`BASE64`。
 - factory: 自定义加密工厂（必须存在可访问的无参构造方法）。
   - 优先级：当提供工厂类型时，优先使用该类型；未提供时按算法枚举关联的工厂。
   - 获取策略：优先从`Spring`容器获取`Bean`；当容器不可用或获取失败时回退到直接构造。
