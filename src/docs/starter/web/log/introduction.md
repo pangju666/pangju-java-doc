@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# Web
+# Web 日志
 
 ## 概述
 这个模块我集成了[`Pangju Starter Web`](/starter/web/introduction)、`commons-collections4`和`disruptor`。

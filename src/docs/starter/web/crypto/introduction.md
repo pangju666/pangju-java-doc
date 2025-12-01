@@ -2,7 +2,7 @@
 layout: doc
 ---
 
-# Web
+# Web 加密
 
 ## 概述
 这个模块我集成了[`Pangju Starter Web`](/starter/web/introduction)和[`Pangju Starter Json Crypto`](/starter/json/crypto/introduction)。

@@ -136,10 +136,9 @@ export default [
                         text: '日志',
                         collapsed: true,
                         items: [
-                            {text: '概述', link: '/starter/json/log/introduction'},
-                            {text: '加密', link: '/starter/json/log/encrypt'},
-                            {text: '解密', link: '/starter/json/log/decrypt'},
-                            {text: '工具类', link: '/starter/json/log/utils'},
+                            {text: '概述', link: '/starter/web/log/introduction'},
+                            {text: '自动装配', link: '/starter/web/log/configuration'},
+                            {text: '数据结构', link: '/starter/web/log/data'},
                         ]
                     },
                 ]
