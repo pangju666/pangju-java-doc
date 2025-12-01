@@ -102,3 +102,11 @@ layout: doc
     </plugins>
 </build>
 ```
+
+### 使用示例
+```java
+// Application 为启动类
+@ContextConfiguration(classes = Application.class, loader = SpringBootContextLoader.class)
+class xxxSpec extends Specification {
+}
+```
