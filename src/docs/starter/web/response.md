@@ -81,8 +81,8 @@ public class TestController {
 		return ResponseEntity.ok(new UserVO("test_user")).build();
 	}
 	
-	// 标注了 ResponseBodyWrapperIgnore 注解的方法不会包装
-	@ResponseBodyWrapperIgnore
+	// 标注了 UnwrappedResponse 注解的方法不会包装
+	@UnwrappedResponse
 	@GetMapping("/test")
 	public UserVO test8() {
 		return new UserVO("test_user");

@@ -83,14 +83,15 @@ public class BeanConfig {
 		Assert.hasText(properties.getEndpoints().getTypes(), "异常类型汇总接口路径不可为空");
 		Assert.hasText(properties.getEndpoints().getList(), "异常列表查询接口路径不可为空");
 
-		List<String> packages = new ArrayList<>(3);
-		// 接口幂等性异常包路径
-		packages.add("io.github.pangju666.framework.boot.web.idempotent.exception");
-		// 接口限流异常包路径
-		packages.add("io.github.pangju666.framework.boot.web.limit.exception");
-		// 用户业务Http异常扫描包路径
+		List<String> packages;
 		if (!CollectionUtils.isEmpty(properties.getScanPackages())) {
+			packages = new ArrayList<>(properties.getScanPackages().size());
+			// web异常包路径
+			packages.add("io.github.pangju666.framework.boot.web.exception");
+			// 用户业务Http异常扫描包路径
 			packages.addAll(properties.getScanPackages());
+		} else {
+			packages = List.of("io.github.pangju666.framework.boot.web.exception");
 		}
 		
 		HttpExceptionInfoFilter httpExceptionInfoFilter = new HttpExceptionInfoFilter(

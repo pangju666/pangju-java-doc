@@ -6,7 +6,7 @@ layout: doc
 
 ## 解密请求体
 
-支持对`String`和`JSON`类型的请求体进行解密，解密/解码失败则抛出`RequestDataDecryptFailureException`。
+支持对`String`和`JSON`类型的请求体进行解密，解密/解码失败则抛出[`RequestDataDecryptFailureException`](/starter/web/crypto/decrypt#异常)。
 
 ### 注解
 `io.github.pangju666.framework.boot.web.annotation.DecryptRequestBody`
@@ -71,7 +71,7 @@ public class DemoController {
 ```
 
 ## 解密请求参数
-支持对`String`类型请求参数进行解密，解密/解码失败则抛出`RequestDataDecryptFailureException`。
+支持对`String`类型请求参数进行解密，解密/解码失败则抛出[`RequestDataDecryptFailureException`](/starter/web/crypto/decrypt#异常)。
 
 ### 注解
 `io.github.pangju666.framework.boot.web.annotation.EncryptRequestParam`
@@ -125,7 +125,11 @@ public class DemoController {
 }
 ```
 
-## 异常
+## 解密异常
 `io.github.pangju666.framework.boot.web.exception.RequestDataDecryptFailureException`
 
 用于标识请求参数或请求体在解密过程中发生的校验类错误。
+
+响应状态码：400
+
+业务状态码：-4510

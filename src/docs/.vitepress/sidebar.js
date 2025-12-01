@@ -128,9 +128,8 @@ export default [
                         collapsed: true,
                         items: [
                             {text: '概述', link: '/starter/web/validation/introduction'},
-                            {text: '加密', link: '/starter/web/validation/encrypt'},
-                            {text: '解密', link: '/starter/web/validation/decrypt'},
-                            {text: '工具类', link: '/starter/web/validation/utils'},
+                            {text: '接口签名', link: '/starter/web/validation/signature'},
+                            {text: '接口限流', link: '/starter/web/validation/limit'},
                         ]
                     },
                     {
@@ -151,14 +150,7 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/test/introduction'},
                 ]
-            },
-            {
-                text: 'Spock测试集成',
-                collapsed: true,
-                items: [
-                    {text: '概述', link: '/starter/spock/introduction'},
-                ]
-            },
+            }
         ],
     },
     {
