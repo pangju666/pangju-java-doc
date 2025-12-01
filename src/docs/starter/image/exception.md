@@ -16,23 +16,6 @@ layout: doc
 throw new UnSupportedTypeException("不支持读取 image/jpeg 类型图片");
 ```
 
-## 图像任务执行异常
-`io.github.pangju666.framework.boot.image.exception.ImageTaskExecutionException`
-
-### 概述
-用于封装在[图像处理任务执行](/starter/image/task)过程中发生的运行时异常，典型场景包括异步执行失败、未知异常包装与跨层传递统一的异常类型。
-
-### 使用示例
-```java
-try {
-    // 图像处理任务执行
-} catch (InterruptedException e) {
-	// 恢复中断状态
-	Thread.currentThread().interrupt();
-	throw new ImageTaskExecutionException("因为当前线程被中断，导致图像处理任务执行失败", e);
-}
-```
-
 ## 图像解析异常
 `io.github.pangju666.framework.boot.image.exception.ImageParsingException`
 

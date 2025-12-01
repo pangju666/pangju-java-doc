@@ -15,10 +15,10 @@ layout: doc
 ### 概述
 - 封装图像的基础元数据与文件引用，包括尺寸、方向、格式、MIME 类型、大小与摘要等。
 - 用于图像上传、处理与展示等场景的通用数据载体。
-- 一般从[`ImageTemplate`](/starter/image/template.html##接口)获取。
+- 一般从[`ImageTemplate`](/starter/image/template#接口)获取。
 
 ### 字段
-- imageSize：图像宽高信息，见[`ImageSize`](/commons/image/image#图像尺寸)。
+- imageSize：图像宽高信息，见[`ImageSize`](/commons/image/model#图像尺寸)。
 - orientation：图像方向标记（`EXIF Orientation`），默认值见[`ImageConstants.NORMAL_EXIF_ORIENTATION`](/commons/image/constants)。
 - format：图像文件格式（如`JPEG`、`PNG`，设置时会自动转为大写）。
 - fileSize：文件大小（单位：字节）。
@@ -129,7 +129,7 @@ ImageOperation genericImageOperation = ImageOperationBuilders.generic()
 #### 说明
 - 使用说明：通过构建器链式设置参数；不满足校验规则的参数将被忽略。
 - 互斥规则：水印方向与坐标互斥；设置其中之一会清空另一种配置。
-- 定位规则：可使用`watermarkDirection(`[WatermarkDirection](/commons/image/enums#水印方向)`)`或`watermarkPosition(x,y)`坐标需为正数。
+- 定位规则：可使用[`WatermarkDirection`](/commons/image/enums#水印方向)或`watermarkPosition(x,y)`坐标需为正数。
 - 裁剪规则：支持[中心裁剪、偏移裁剪与矩形裁剪](/starter/image/enums#裁剪类型)；如果裁剪参数为空、非正数或越界，则不设置裁剪。
 - 缩放规则：`forceScale(width,height)`强制缩放到指定尺寸；按比例/按宽/按高缩放为等比，并会关闭强制缩放且清空其它尺寸/比例。
 - 透明度范围：取值区间`[0,1]`；水印透明度遵循该范围。
@@ -197,7 +197,7 @@ ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered(genericI
 `io.github.pangju666.framework.boot.image.model.GMImageOperation`
 
 #### 概述
-面向[`GMImageTemplate`](/starter/image/template.html#gm实现)的图像操作配置。
+面向[`GMImageTemplate`](/starter/image/template#gm实现)的图像操作配置。
 
 #### 拓展操作
 文字水印、缩放重采样策略、模糊、锐化、输出质量、输出`DPI`与元数据清除。
@@ -205,7 +205,7 @@ ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered(genericI
 #### 说明
 - 使用说明：通过构建器链式设置参数；不满足校验规则的参数将被忽略。
 - 互斥规则：水印方向与坐标互斥；设置其中之一会清空另一种配置。
-- 定位规则：可使用`watermarkDirection(`[WatermarkDirection](/commons/image/enums#水印方向)`)`或`watermarkPosition(x,y)`坐标需为正数。
+- 定位规则：可使用[`WatermarkDirection`](/commons/image/enums#水印方向)或`watermarkPosition(x,y)`坐标需为正数。
 - 裁剪规则：支持中心裁剪、偏移裁剪与矩形裁剪；如果裁剪参数为空、非正数或越界，则不设置裁剪。
 - 缩放规则：`forceScale(width,height)` 强制缩放到指定尺寸；按比例/按宽/按高缩放为等比，并会关闭强制缩放且清空其它尺寸/比例。
 - 透明度范围：取值区间`[0,1]`；水印透明度遵循该范围。

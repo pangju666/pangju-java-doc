@@ -363,8 +363,8 @@ ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "h
 
 `io.github.pangju666.framework.web.client.BufferingClientHttpResponseWrapper`
 
-我提供了一个JSON响应错误处理器，当请求失败的时候，会自动处理并抛出一个[HTTP远程服务异常](/framework/web/exception/#http远程服务异常)，
-如果响应状态码是`504`，则会抛出[HTTP远程服务异常](/framework/web/exception/#http远程服务超时异常)。
+我提供了一个JSON响应错误处理器，当请求失败的时候，会自动处理并抛出一个[HTTP远程服务异常](/framework/web/exception#http远程服务异常)，
+如果响应状态码是`504`，则会抛出[HTTP远程服务异常](/framework/web/exception#http远程服务超时异常)。
 
 > [!NOTE]
 > 只有以下情况的响应才能被正确处理：
@@ -374,7 +374,7 @@ ResponseEntity<Void> response1 = RestRequestBuilder.fromUriString(restClient, "h
 ::: tip 注意事项
 1. 错误处理器不是一个通用的错误处理器，里面的配置需要针对不同的接口去调整，所以最好不要在不同请求中共享（我个人是建议每种请求定义一个错误处理器）。
 2. 如果想要复用错误处理器实例的话（包括在不同线程中共享），那么需要在定义的时候就完成初始化，然后调用`init`方法，锁定对属性的修改。
-3. `RestClient`必须注册[响应体缓冲拦截器](/framework/web/client#响应体缓冲拦截器)，不然的话响应状态码为`200`的业务性错误是直接忽略掉的。
+3. `RestClient`必须注册[响应体缓冲拦截器](/framework/web/client#响应内容缓存拦截器)，不然的话响应状态码为`200`的业务性错误是直接忽略掉的。
 :::
 
 #### 使用
@@ -434,7 +434,7 @@ RestRequestBuilder.fromUriString(restClient, "https://api.example.com")
 - codeField: 业务码字段名（默认是"code"）
 - messageField: 错误消息字段名（默认是"message"）。
 
-主要是用来定义错误信息的，用途可以参考[远程服务异常](/framework/web/exception/#远程服务异常)。
+主要是用来定义错误信息的，用途可以参考[远程服务异常](/framework/web/exception#远程服务异常)。
 
 > [!IMPORTANT]
 > 如果不显式调用`init`的话，在错误处理器开始处理响应时也会隐式的去调用`init`。

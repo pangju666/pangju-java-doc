@@ -15,18 +15,18 @@ OFFICE、Jakarta参数校验用途的工具类
 \>= JDK 11
 
 ## 模块列表
-| 模块                                            |                            介绍                             |
-|-----------------------------------------------|:---------------------------------------------------------:|
-| [compress](/commons/compress/introduction)    |               文件压缩工具类库（基于commons-compress）                |
-| [crypto](/commons/crypto/introduction)        |                     加解密工具类库（基于jasypt）                     |
-| [geo](/commons/geo/introduction)              |                          GEO工具类库                          |
-| [image](/commons/image/introduction)          | 图片工具类库（基于metadata-extractor、twelvemonkeys和javax Image IO） |
-| [imageio](/commons/image/introduction)        |                ImageIO解析库，集成了各个库的ImageIO包                 |
-| [io](/commons/io/introduction)                |         IO工具类库（基于tika、commons-io和commons-crypto）          |
-| [lang](/commons/lang/introduction)            |    基础工具类库，部分代码来源于Hutool、Spring Framework、Mybatis plus     |
-| [pdf](/commons/pdf/introduction)              |                     PDF工具库（基于pdfbox）                      |
-| [poi](/commons/poi/introduction)              |                  POI工具库（基于poi 和 poi-tl）                   |
-| [validation](/commons/validtion/introduction) |                参数校验库（基于jakarta-validation）                |
+| 模块                                             |                            介绍                             |
+|------------------------------------------------|:---------------------------------------------------------:|
+| [compress](/commons/compress/introduction)     |               文件压缩工具类库（基于commons-compress）                |
+| [crypto](/commons/crypto/introduction)         |                     加解密工具类库（基于jasypt）                     |
+| [geo](/commons/geo/introduction)               |                          GEO工具类库                          |
+| [image](/commons/image/introduction)           | 图片工具类库（基于metadata-extractor、twelvemonkeys和javax Image IO） |
+| [imageio](/commons/image/introduction)         |                ImageIO解析库，集成了各个库的ImageIO包                 |
+| [io](/commons/io/introduction)                 |         IO工具类库（基于tika、commons-io和commons-crypto）          |
+| [lang](/commons/lang/introduction)             |    基础工具类库，部分代码来源于Hutool、Spring Framework、Mybatis plus     |
+| [pdf](/commons/pdf/introduction)               |                     PDF工具库（基于pdfbox）                      |
+| [poi](/commons/poi/introduction)               |                  POI工具库（基于poi 和 poi-tl）                   |
+| [validation](/commons/validation/introduction) |                参数校验库（基于jakarta-validation）                |
 
 ## 引入
 

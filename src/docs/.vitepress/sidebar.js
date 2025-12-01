@@ -148,6 +148,7 @@ export default [
                 collapsed: true,
                 items: [
                     {text: '概述', link: '/starter/test/introduction'},
+                    {text: 'Spock教程', link: '/starter/test/lesson'},
                 ]
             }
         ],
