@@ -209,9 +209,7 @@ def cleanupSpec() {}   // run after the last feature method
 
 #### blocks
 
-每个feature method又被划分为不同的block，不同的block处于测试执行的不同阶段，在测试运行时，各个block按照不同的顺序和规则被执行，如下图
-
-![](images/WEBRESOURCE11699037370099截图.png)
+每个feature method又被划分为不同的block，不同的block处于测试执行的不同阶段，在测试运行时，各个block按照不同的顺序和规则被执行
 
 介绍下每个block。
 
