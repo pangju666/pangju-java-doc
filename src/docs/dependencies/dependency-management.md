@@ -128,18 +128,6 @@ HanLP 不仅仅是一个分词器，而是一个集分词、词性标注、命�
 ```
 评价：写库的话非常用得上，功能很实用
 
-## 校验
-
-### [commons-validator](https://commons.apache.org/proper/commons-validator/)
-**Apache Commons Validator** 是一个旨在简化 Java 应用程序中验证逻辑的库。它提供了一套通用的验证器，可以用来检查字符串、数字等数据的有效性，并支持自定义验证规则。该库特别适用于需要频繁进行数据验证的应用场景，如表单验证、输入数据校验等。
-```xml
-<dependency>
-    <groupId>commons-validator</groupId>
-    <artifactId>commons-validator</artifactId>
-</dependency>
-```
-评价：写库用来校验参数很实用
-
 ## 加密
 
 ### [commons-crypto](https://commons.apache.org/proper/commons-crypto/userguide.html)
@@ -223,6 +211,15 @@ zero-allocation-hashing 是一个 高性能、无垃圾回收（GC-free）、零
 </dependency>
 ```
 评价：如果需要加密解密zip的话用这个
+
+### [lz4-java](https://github.com/lz4/lz4-java )
+**lz4-java** 是一个高性能的 LZ4 压缩算法 的 Java 实现，由 Apache 开源（原为 lz4/lz4-java 项目），广泛用于需要 低延迟、高吞吐压缩/解压 的场景（如 Kafka、Netty、Redis、日志系统等）。
+```xml
+<dependency>
+    <groupId>at.yawk.lz4</groupId>
+    <artifactId>lz4-java</artifactId>
+</dependency>
+```
 
 ## 文件
 
@@ -347,15 +344,6 @@ MarkdownRenderPolicy 插件支持通过Markdown生成word文档。
 <dependency>
     <groupId>org.apache.pdfbox</groupId>
     <artifactId>fontbox</artifactId>
-</dependency>
-```
-
-### xmpbox
-**XMPBox** 是 Apache PDFBox 项目的一个子模块，专门用于处理 XMP（Extensible Metadata Platform）元数据。XMP 是一种由 Adobe Systems 开发的标准，用于嵌入和处理文件中的元数据。通过使用 XMPBox，您可以在 Java 应用程序中读取、写入和修改 PDF 文件中的 XMP 元数据。
-```xml
-<dependency>
-    <groupId>org.apache.pdfbox</groupId>
-    <artifactId>xmpbox</artifactId>
 </dependency>
 ```
 
