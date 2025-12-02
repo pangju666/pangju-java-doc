@@ -50,8 +50,6 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/json/introduction'},
                     {text: '自动装配', link: '/starter/json/configuration'},
-                    {text: '序列化', link: '/starter/json/serialize'},
-                    {text: '反序列化', link: '/starter/json/deserialize'},
                     {text: '脱敏', link: '/starter/json/desensitized'},
                     {
                         text: '加密',

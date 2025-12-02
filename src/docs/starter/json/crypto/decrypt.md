@@ -12,6 +12,8 @@ layout: doc
 
 > [!WARNING]
 > 字段类型必须与支持类型一致，不能是支持类型的子类或实现。
+> 
+> 客户端传递`BigDecimal`和`BigInteger`时最好使用字符串格式，防止丢失精度。
 
 ## 注解
 `io.github.pangju666.framework.boot.jackson.annotation.DecryptFormat`

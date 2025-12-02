@@ -28,5 +28,5 @@ IdCardUtils.parseSex(idCard2); // 女
 ## 解析出生日期
 ```java
 String idCard = "210102198801164317";
-IdCardUtils.parseSex(idCard); // 1988-01-16
+LocalDate birthDate = IdCardUtils.parseBirthDate(idCard); // 1988-01-16
 ```

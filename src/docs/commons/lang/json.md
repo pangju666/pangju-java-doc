@@ -6,134 +6,104 @@ layout: doc
 
 ## 说明
 
-基于`Gson`，我提供了一些内置序列化/反序列器和一个通用工具类
+基于`Gson`，我提供了一些内置序列化器、类型适配器和一个通用工具类。
 
-| 类名                            | 类型       |                 用途                 |
-|-------------------------------|:---------|:----------------------------------:|
-| BigDecimalDeserializer        | 反序列化接口实现 |     将JSON数字、字符串元素转换为BigDecimal     |
-| BigIntegerDeserializer        | 反序列化接口实现 |     将JSON数字、字符串元素转换为BigInteger     |
-| ClassJsonDeserializer         | 反序列化接口实现 |         将JSON字符串元素转换为Class         |
-| DateJsonDeserializer          | 反序列化接口实现 |     将JSON时间字符串/时间戳数字元素转换为Date      |
-| LocalDateJsonDeserializer     | 反序列化接口实现 |   将JSON时间字符串/时间戳数字元素转换为LocalDate   |
-| LocalDateTimeJsonDeserializer | 反序列化接口实现 | 将JSON时间字符串/时间戳数字元素转换为LocalDateTime |
-| ClassJsonSerializer           | 序列化接口实现  |    将Class对象元素转换为Class名字符串JSON元素    |
-| DateJsonSerializer            | 序列化接口实现  |      将Date对象元素转换为时间戳数字JSON元素       |
-| LocalDateJsonSerializer       | 序列化接口实现  |    将LocalDate对象元素转换为时间戳数字JSON元素    |
-| LocalDateTimeJsonSerializer   | 序列化接口实现  |  将LocalDateTime对象元素转换为时间戳数字JSON元素  |
-| JsonUtils                     | 工具类      |    解析\生成JSON字符串、JSON/Java对象互相转换    |
+| 类名                       | 类型    |              用途              |
+|--------------------------|:------|:----------------------------:|
+| BigDecimalTypeAdapter    | 类型适配器 |   在 JSON 与 BigDecimal 之间转换   |
+| BigIntegerTypeAdapter    | 类型适配器 |   在 JSON 与 BigInteger 之间转换   |
+| DateTypeAdapter          | 类型适配器 |      在 JSON 与 Date 之间转换      |
+| InstantTypeAdapter       | 类型适配器 |    在 JSON 与 Instant 之间转换     |
+| LocalDateTimeTypeAdapter | 类型适配器 | 在 JSON 与 LocalDateTime 之间转换  |
+| LocalDateTypeAdapter     | 类型适配器 |   在 JSON 与 LocalDate 之间转换    |
+| LocalTimeTypeAdapter     | 类型适配器 |   在 JSON 与 LocalTime 之间转换    |
+| JsonUtils                | 工具类   | 解析\生成JSON字符串、JSON/Java对象互相转换 |
 
-## 序列化
+## 类型适配器
 
 ### BigDecimal
-`io.github.pangju666.commons.lang.gson.deserializer.BigDecimalDeserializer`
+`io.github.pangju666.commons.lang.gson.type.BigDecimalTypeAdapter`
 
 ```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(BigDecimal.class, new BigDecimalDeserializer());
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(BigDecimal.class, new BigDecimalTypeAdapter());
 Gson gson = builder.create();
 
+gson.toJsonTree(new BigDecimal("100"), BigDecimal.class); // "100"
 gson.fromJson("100.22", BigDecimal.class); // 100.22
-gson.fromJson("100", BigDecimal.class); // 100.0
+gson.fromJson("\"100.22\", BigDecimal.class); // 100.22
 ```
 
 ### BigInteger
-`io.github.pangju666.commons.lang.gson.deserializer.BigIntegerDeserializer`
+`io.github.pangju666.commons.lang.gson.type.BigIntegerTypeAdapter`
 
 ```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(BigInteger.class, new BigIntegerDeserializer());
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(BigInteger.class, new BigIntegerTypeAdapter());
 Gson gson = builder.create();
 
+gson.toJsonTree(new BigInteger("100"), BigInteger.class); // "100"
 gson.fromJson("100", BigInteger.class); // 100
-```
-
-### Class
-`io.github.pangju666.commons.lang.gson.deserializer.ClassJsonDeserializer`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(Class.class, new ClassJsonDeserializer());
-Gson gson = builder.create();
-
-gson.fromJson("java.lang.String", Class.class); // Class<String>
+gson.fromJson("\"100\"", BigInteger.class); // 100
 ```
 
 ### Date
-`io.github.pangju666.commons.lang.gson.deserializer.DateJsonDeserializer`
+`io.github.pangju666.commons.lang.gson.type.DateTypeAdapter`
 
 ```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonDeserializer());
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(Date.class, new DateTypeAdapter());
 Gson gson = builder.create();
 
 gson.fromJson("1640995200000", Date.class); // 2022-01-01 08:00:00
-gson.fromJson("\"2022-01-01 00:00:00\"", Date.class); // 2022-01-01 00:00:00
+gson.fromJson("\"2022-01-01 00:00:00\"", Date.class); // 2022-01-01 08:00:00
 gson.fromJson("\"2022-01-01\"", Date.class); // 2022-01-01 00:00:00
 gson.fromJson("\"2022-01-01 00:00\"", Date.class); // 2022-01-01 00:00:00
-```
-
-### LocalDate
-`io.github.pangju666.commons.lang.gson.deserializer.LocalDateJsonDeserializer`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateJsonDeserializer());
-Gson gson = builder.create();
-
-gson.fromJson("1640995200000", LocalDate.class); // 2022-01-01 08:00:00
-gson.fromJson("\"2022-01-01 00:00:00\"", LocalDate.class); // 2022-01-01 00:00:00
-gson.fromJson("\"2022-01-01\"", LocalDate.class); // 2022-01-01 00:00:00
-gson.fromJson("\"2022-01-01 00:00\"", LocalDate.class); // 2022-01-01 00:00:00
-```
-
-### LocalDateTime
-`io.github.pangju666.commons.lang.gson.deserializer.LocalDateTimeJsonDeserializer`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeJsonDeserializer());
-Gson gson = builder.create();
-
-gson.fromJson("1640995200000", LocalDateTime.class); // 2022-01-01 08:00:00
-gson.fromJson("\"2022-01-01 00:00:00\"", LocalDateTime.class); // 2022-01-01 00:00:00
-gson.fromJson("\"2022-01-01\"", LocalDateTime.class); // 2022-01-01 00:00:00
-gson.fromJson("\"2022-01-01 00:00\"", LocalDateTime.class); // 2022-01-01 00:00:00
-```
-
-## 反序列化
-
-### Class
-`io.github.pangju666.commons.lang.gson.serializer.ClassJsonSerializer`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(Class.class, new ClassJsonSerializer());
-Gson gson = builder.create();
-
-gson.toJsonTree(String.class, Class.class); // java.lang.String
-```
-
-### Date
-`io.github.pangju666.commons.lang.gson.serializer.DateJsonSerializer`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(Date.class, new DateJsonSerializer());
-Gson gson = builder.create();
-
 gson.toJsonTree(new Date(), Date.class); // 1761310267319
 ```
 
-### LocalDate
-`io.github.pangju666.commons.lang.gson.serializer.LocalDateJsonSerializer`
+### Instant
+`io.github.pangju666.commons.lang.gson.type.InstantTypeAdapter`
 
 ```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateJsonSerializer());
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantTypeAdapter());
 Gson gson = builder.create();
 
-gson.toJsonTree(LocalDate.of(2022, 1, 1), LocalDate.class); // 1640966400000
+gson.fromJson("1640995200000", Instant.class); // 2022-01-01 08:00:00
+gson.toJsonTree(Instant.now(), Instant.class); // 1761310267319
+```
+
+### LocalDate
+`io.github.pangju666.commons.lang.gson.type.LocalDateTypeAdapter`
+
+```java
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter());
+Gson gson = builder.create();
+
+gson.toJsonTree(LocalDate.of(2022, 1, 1), LocalDate.class); // 2022-01-01
+gson.fromJson("1640995200000", LocalDate.class); // 2022-01-01
+gson.fromJson("\"2022-01-01\"", LocalDate.class); // 2022-01-01
 ```
 
 ### LocalDateTime
-`io.github.pangju666.commons.lang.gson.serializer.LocalDateTimeJsonSerializer`
+`io.github.pangju666.commons.lang.gson.type.LocalDateTimeTypeAdapter`
 
 ```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeJsonSerializer());
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter());
 Gson gson = builder.create();
 
-gson.toJsonTree(LocalDateTime.of(2022, 1, 1, 8, 0, 0), LocalDateTime.class); // 1640995200000
+gson.toJsonTree(LocalDateTime.of(2022, 1, 1, 8, 0, 0), LocalDateTime.class); // 2022-01-01 08:00:00
+gson.fromJson("1640995200000", LocalDateTime.class); // 2022-01-01 08:00:00
+gson.fromJson("\"2022-01-01T00:00:00\"", LocalDateTime.class); // 2022-01-01 00:00:00
+```
+
+### LocalTime
+`io.github.pangju666.commons.lang.gson.type.LocalTimeTypeAdapter`
+
+```java
+GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter());
+Gson gson = builder.create();
+
+gson.toJsonTree(LocalTime.of(8, 0, 0), LocalTime.class); // 08:00:00
+gson.fromJson("1640995200000", LocalTime.class); // 00:00:00
+gson.fromJson("\"10:15:30\"", LocalTime.class); // 10:15:30
 ```
 
 ## 工具类
@@ -150,8 +120,18 @@ gson.toJsonTree(LocalDateTime.of(2022, 1, 1, 8, 0, 0), LocalDateTime.class); // 
 | fromJsonArray     | List\<T>    |   反序列化JsonArray到List   |
 | toJsonArray       | JsonArray   |    序列化集合为JsonArray     |
 
+> [!NOTE]
+> 此工具类已默认配置上述类型适配器。
+
+## DEFAULT_GSON
+```java
+// 已默认配置上述序列化/反序列化器
+Gson gson = JsonUtils.DEFAULT_GSON();
+```
+
 ### createGsonBuilder
 ```java
+// 默认配置上述类型适配器
 GsonBuilder builder = JsonUtils.createGsonBuilder().setPrettyPrinting();
 Gson gson = builder.create();
 ```
