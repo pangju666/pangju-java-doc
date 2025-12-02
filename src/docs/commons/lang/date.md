@@ -17,25 +17,31 @@ layout: doc
 > [!NOTE]
 > 这个类的方法都是基于系统默认时区，如果需要指定时区请手动实现。
 
-| 方法名                    | 返回值           |         用途         |
-|------------------------|:--------------|:------------------:|
-| parseDate              | Date          |    将字符串解析为Date     |
-| nowDate                | Date          |    获取当前时间的Date     |
-| toDate                 | Date          |     转换为Date对象      |
-| getTime                | Long          |     获取Date的时间戳     |
-| betweenMillis          | Long          |    计算两个日期之间的毫秒差    |
-| betweenSeconds         | Long          |    计算两个日期之间的秒数差    |
-| betweenMinutes         | Long          |    计算两个日期之间的分钟差    |
-| betweenHours           | Long          |    计算两个日期之间的小时差    |
-| betweenDays            | Long          |    计算两个日期之间的天数差    |
-| truncateBetweenYears   | Integer       | 计算两个日期之间的年份差（截断计算） |
-| truncateBetweenMonths  | Integer       | 计算两个日期之间的月份差（截断计算） |
-| truncateBetweenDays    | Integer       | 计算两个日期之间的天数差（截断计算） |
-| truncateBetweenHours   | Integer       | 计算两个日期之间的小时差（截断计算） |
-| truncateBetweenMinutes | Integer       | 计算两个日期之间的分钟差（截断计算） |
-| truncateBetweenSeconds | Integer       | 计算两个日期之间的秒数差（截断计算） |
-| truncateBetween        | Integer       |    通用截断计算时间差方法     |
-| calculateAge           | Integer       |    计算年龄（基于年份差值）    |
+| 方法名                    | 返回值     |         用途         |
+|------------------------|:--------|:------------------:|
+| parseDate              | Date    |    将字符串解析为Date     |
+| nowDate                | Date    |    获取当前时间的Date     |
+| toDate                 | Date    |     转换为Date对象      |
+| toInstant              | Instant | 将 Date 转换为 Instant |
+| getTime                | Long    |     获取Date的时间戳     |
+| betweenMillis          | Long    |    计算两个日期之间的毫秒差    |
+| betweenSeconds         | Long    |    计算两个日期之间的秒数差    |
+| betweenMinutes         | Long    |    计算两个日期之间的分钟差    |
+| betweenHours           | Long    |    计算两个日期之间的小时差    |
+| betweenDays            | Long    |    计算两个日期之间的天数差    |
+| truncateBetweenYears   | Integer | 计算两个日期之间的年份差（截断计算） |
+| truncateBetweenMonths  | Integer | 计算两个日期之间的月份差（截断计算） |
+| truncateBetweenDays    | Integer | 计算两个日期之间的天数差（截断计算） |
+| truncateBetweenHours   | Integer | 计算两个日期之间的小时差（截断计算） |
+| truncateBetweenMinutes | Integer | 计算两个日期之间的分钟差（截断计算） |
+| truncateBetweenSeconds | Integer | 计算两个日期之间的秒数差（截断计算） |
+| truncateBetween        | Integer |    通用截断计算时间差方法     |
+| calculateAge           | Integer |    计算年龄（基于年份差值）    |
+
+## 获取中国时区
+```java
+ZoneId zoneId = DateUtils.CHINA_ZONE_ID;
+```
 
 ### 获取当前时间
 ```java
@@ -66,20 +72,42 @@ DateUtils.parseDateOrDefault("2022-01-21-12:10:10", new Date(), Constants.DATE_F
 ### 转换
 
 ```java
-Long timestamp = null;
 // 时间戳转换为Date
-Date.from(1640995200000L); // 2022-01-01 08:00:00
-// 解析失败返回null
-Date.from(timestamp); // null
-// 解析失败返回默认值
-Date.from(timestamp, new Date()); // new Date()
+DateUtils.toDate(1640995200000L); // 2022-01-01 08:00:00
+// 转换失败返回null
+Long timestamp = null;
+DateUtils.toDate(timestamp); // null
+// 转换失败返回默认值
+DateUtils.toDate(timestamp, new Date()); // new Date()
+
+// Instant转换为Date
+DateUtils.toDate(Instant.now()); // 2022-01-01 08:00:00
+// 转换失败返回null
+Instant instant = null;
+DateUtils.toDate(timestamp); // null
+// 转换失败返回默认值
+DateUtils.toDate(timestamp, Instant.now()); // new Date()
+```
+
+### 转换为Instant
+```java
+// 将Date转换为Instant
+DateUtils.toInstant(new Date());
+// 转换失败返回null
+Date date = null;
+DateUtils.toInstant(date); // null
+// 转换失败返回默认值
+DateUtils.toInstant(null, Instant.now());
 ```
 
 ### 获取时间戳
 ```java
-Date date = null;
+// 获取时间戳
 DateUtils.getTime(new Date()); // 1761408607462
+// 获取失败返回null
+Date date = null;
 DateUtils.getTime(date); // null
+// 获取失败返回默认值
 DateUtils.getTime(date, 1761408607462L); // 1761408607462
 ```
 
