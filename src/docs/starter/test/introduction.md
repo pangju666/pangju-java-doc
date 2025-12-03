@@ -7,7 +7,7 @@ layout: doc
 ## Junit
 
 ### 概述
-这个模块我集成了`spring-boot-starter-test`、`json-path-assert`和`javafaker`。
+这个模块我集成了`spring-boot-starter-test`、`json-path-assert`和`datafaker`。
 
 ### 依赖
 
@@ -26,8 +26,8 @@ layout: doc
     <artifactId>jsonassert</artifactId>
 </dependency>
 <dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
+    <groupId>net.datafaker</groupId>
+    <artifactId>datafaker</artifactId>
 </dependency>
 ```
 
@@ -36,7 +36,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-spring-boot-starter-test</artifactId>
+		<artifactId>framework-starter-test</artifactId>
     </dependency>
 </dependency>
 ```
@@ -45,14 +45,14 @@ layout: doc
 基于`groovy`的一个测试框架，我现在写测试用的都是这个。
 
 ### 概述
-这个模块我集成了`framework-spring-boot-starter-test`、`spock-spring`和`rest-assured`。
+这个模块我集成了`framework-starter-test`、`spock-spring`和`rest-assured`。
 
 ### 依赖
 
 ```xml
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-spring-boot-starter-test</artifactId>
+    <artifactId>framework-starter-test</artifactId>
     <scope>compile</scope>
 </dependency>
 
@@ -85,7 +85,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-spring-boot-starter-spock-test</artifactId>
+		<artifactId>framework-starter-test-spock</artifactId>
     </dependency>
 </dependency>
 

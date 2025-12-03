@@ -13,7 +13,6 @@ layout: doc
 |---------------------|:----------|:----------:|
 | getField            | 泛型        | 获取对象指定字段的值 |
 | setField            | void      | 设置对象指定字段的值 |
-| getSimpleClassName  | String    |  获取类的简化类名  |
 | getClassGenericType | Class\<T> | 获取泛型类的类型参数 |
 | canMakeAccessible   | boolean   | 强制设置字段可访问  |
 
@@ -63,16 +62,6 @@ ReflectionUtils.setField(user, "name", "test");
 
 // 也可以传入字段类型进行精准匹配
 ReflectionUtils.setField(user, "name", "test", String.class);
-```
-
-### 获取类的简单名称
-该方法就是去除类名称中的包路径部分。
-
-```java
-String test;
-
-ReflectionUtils.getSimpleClassName(test); // String
-ReflectionUtils.getSimpleClassName(test.getClass()); // String
 ```
 
 ### 获取父类中定义的泛型类型

@@ -26,7 +26,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-spring-boot-starter-validation</artifactId>
+		<artifactId>framework-starter-validation</artifactId>
     </dependency>
 </dependency>
 ```

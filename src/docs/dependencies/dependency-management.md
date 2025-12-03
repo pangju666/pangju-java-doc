@@ -764,12 +764,12 @@ Spring Boot项目导入：
 ```
 评价：我现在写单元测试挺喜欢用Spock + Groovy，语法更自由一些
 
-### [javafaker](http://github.com/DiUS/java-faker)
-`JavaFaker` 是一个用于生成逼真但虚构的测试数据的 Java 库，非常适合在开发、测试、演示或填充数据库时使用。
+### [datafaker](https://www.datafaker.net )
+`Datafaker` 是一个用于生成逼真但虚构的测试数据的 Java 库，非常适合在开发、测试、演示或填充数据库时使用。
 ```xml
 <dependency>
-    <groupId>com.github.javafaker</groupId>
-    <artifactId>javafaker</artifactId>
+    <groupId>net.datafaker</groupId>
+    <artifactId>datafaker</artifactId>
 </dependency>
 ```
 

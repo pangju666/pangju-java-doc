@@ -44,44 +44,6 @@ public class TestEntity extends BaseEntity {
 }
 ```
 
-## Class类型
-
-`io.github.pangju666.framework.data.mybatisplus.type.handler.ClassTypeHandler`
-
-映射成`Class`的需求可能比较少见吧，我之前做过一个远程配置中心，属性值的类型需要用`Class`类型存储就顺手做了这个。
-
-映射规则：varchar -> Class
-
-实现原理
-```java
-private static final Map<String, Class<?>> CLASS_NAME_MAP = new ConcurrentHashMap<>(10);
-
-if (StringUtils.isBlank(className)) {
-    return null;
-}
-if (CLASS_NAME_MAP.containsKey(className)) {
-	return CLASS_NAME_MAP.get(className);
-}
-
-try {
-	Class<?> clz = Class.forName(className);
-	CLASS_NAME_MAP.put(className, clz);
-	return clz;
-} catch (ClassNotFoundException e) {
-	CLASS_NAME_MAP.put(className, null);
-	throw new SQLException("无法将值" + className + "转换为Class对象");
-}
-```
-
-使用示例
-```java
-@TableName(value = "test", autoResultMap = true)
-public class TestEntity extends BaseEntity {
-   @TableField(typeHandler = ClassTypeHandler.class)
-   private Class<?> clz;
-}
-```
-
 ## 字符串列表
 `io.github.pangju666.framework.data.mybatisplus.type.handler.GenericsListTypeHandler<T>`
 

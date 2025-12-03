@@ -12,11 +12,11 @@ layout: doc
 ```xml
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-spring-boot-starter-json</artifactId>
+    <artifactId>framework-starter-json</artifactId>
 </dependency>
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-spring-boot-starter-crypto</artifactId>
+    <artifactId>framework-starter-crypto</artifactId>
 </dependency>
 ```
 
@@ -25,7 +25,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-spring-boot-starter-json-crypto</artifactId>
+		<artifactId>framework-starter-json-crypto</artifactId>
     </dependency>
 </dependency>
 ```

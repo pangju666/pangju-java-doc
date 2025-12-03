@@ -45,8 +45,6 @@ layout: doc
 | removeByColumnNotLikeLeft   | boolean      |      使用 NOT LIKE LEFT 模式（右侧模糊）根据列值删除记录      |
 | removeByColumnLikeRight     | boolean      |       使用 LIKE RIGHT 模式（左侧模糊）根据列值删除记录        |
 | removeByColumnNotLikeRight  | boolean      |     使用 NOT LIKE RIGHT 模式（左侧模糊）根据列值删除记录      |
-| getJsonValue                | String       | 将 Java 值序列化为用于 SQL 拼接的 JSON/文本字面量    （内部方法） |
-| columnToString              | String       |        将列的 Lambda 引用解析为数据库物理列名（内部方法）        |
 
 ### 使用
 

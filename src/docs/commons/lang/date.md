@@ -38,11 +38,6 @@ layout: doc
 | truncateBetween        | Integer |    通用截断计算时间差方法     |
 | calculateAge           | Integer |    计算年龄（基于年份差值）    |
 
-## 获取中国时区
-```java
-ZoneId zoneId = DateUtils.CHINA_ZONE_ID;
-```
-
 ### 获取当前时间
 ```java
 DateUtils.nowDate();

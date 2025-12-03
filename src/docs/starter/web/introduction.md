@@ -16,7 +16,7 @@ layout: doc
 </dependency>
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-spring-boot-starter-json</artifactId>
+    <artifactId>framework-starter-json</artifactId>
 </dependency>
 
 <dependency>
@@ -30,7 +30,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-spring-boot-starter-web</artifactId>
+		<artifactId>framework-starter-web</artifactId>
     </dependency>
 </dependency>
 ```

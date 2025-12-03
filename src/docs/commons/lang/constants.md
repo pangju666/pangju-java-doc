@@ -6,11 +6,12 @@ layout: doc
 `io.github.pangju666.commons.lang.pool.Constants`
 
 ## 日期格式
-| 常量名             | 值                   |      说明       |
-|-----------------|:--------------------|:-------------:|
-| DATETIME_FORMAT | yyyy-MM-dd HH:mm:ss | 年-月-日 小时:分钟:秒 |
-| DATE_FORMAT     | yyyy-MM-dd          |     年-月-日     |
-| TIME_FORMAT     | HH:mm:ss            |    小时:分钟:秒    |
+| 常量名             | 值                          |      说明       |
+|-----------------|:---------------------------|:-------------:|
+| DATETIME_FORMAT | yyyy-MM-dd HH:mm:ss        | 年-月-日 小时:分钟:秒 |
+| DATE_FORMAT     | yyyy-MM-dd                 |     年-月-日     |
+| TIME_FORMAT     | HH:mm:ss                   |    小时:分钟:秒    |
+| CHINA_ZONE_ID   | ZoneId.of("Asia/Shanghai") |     中国时区      |
 
 ## 字符串
 | 常量名                                  | 值       |         说明         |
