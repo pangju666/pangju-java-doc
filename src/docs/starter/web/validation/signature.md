@@ -45,12 +45,12 @@ appId&secretKey&http%3a%2f%2f127.0.0.1%2fapi%2ftest%3fusername%3dtest_user
 2. 判断应用ID是否存在于注解的应用ID列表中（注解未配置则不判断）
 3. 判断时间戳是否已超时（根据注解中定义的超时时间判断）
 4. 根据应用ID从密钥存储器中获取密钥
-5. 拼接字符串：应用ID + & + 密钥 + & + URL编码后请求URL（不包含请求参数） + & + 时间戳
+5. 拼接字符串：应用ID + & + 密钥 + & + 请求URL（不包含请求参数也无需URL编码） + & + 时间戳
 6. 根据算法计算拼接字符串的摘要
 7. 比较摘要与请求参数中的签名是否一致
 
 拼接示例：
-appId&secretKey&http%3a%2f%2f127.0.0.1%2fapi%2ftest&1764579384449
+appId&secretKey&http://127.0.0.1/api/test?username=test_user
 
 ## 注解
 `io.github.pangju666.framework.boot.web.annotation.Signature`

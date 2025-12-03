@@ -35,7 +35,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-spring-boot-starter-image</artifactId>
+		<artifactId>framework-starter-image</artifactId>
         <!-- 如果选择使用 GraphicsMagick的话，可以考虑去除这个依赖
         （如果你还想使用ImageIO读取/写入图片的话，建议保留） -->
         <exclusions>

@@ -8,6 +8,9 @@ layout: doc
 
 支持对`String`和`JSON`类型的请求体进行解密，解密/解码失败则抛出[`RequestDataDecryptFailureException`](/starter/web/crypto/decrypt#异常)。
 
+> [!IMPORTANT]
+> 传递JSON请求体密文时，需要将请求体的`Content-Type`设置为`application/json`，否则`Spring`会将其视作字符串类型请求体。
+
 ### 注解
 `io.github.pangju666.framework.boot.web.annotation.DecryptRequestBody`
 

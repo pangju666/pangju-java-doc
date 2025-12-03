@@ -4,7 +4,7 @@ export default [
         link: '/getting-started'
     },
     {
-        text: '依赖管理（dependencies）',
+        text: '依赖管理',
         collapsed: true,
         items: [
             {text: '简介', link: '/dependencies/getting-started'},
@@ -13,7 +13,7 @@ export default [
         ]
     },
     {
-        text: "自动装配（starter）",
+        text: "Starter",
         collapsed: true,
         items: [
             {text: '简介', link: '/starter/getting-started'},
@@ -50,8 +50,6 @@ export default [
                 items: [
                     {text: '概述', link: '/starter/json/introduction'},
                     {text: '自动装配', link: '/starter/json/configuration'},
-                    {text: '序列化', link: '/starter/json/serialize'},
-                    {text: '反序列化', link: '/starter/json/deserialize'},
                     {text: '脱敏', link: '/starter/json/desensitized'},
                     {
                         text: '加密',
@@ -154,7 +152,7 @@ export default [
         ],
     },
     {
-        text: '工具库（commons）',
+        text: '工具库',
         collapsed: true,
         items: [
             {text: '简介', link: '/commons/getting-started'},
@@ -277,7 +275,7 @@ export default [
         ]
     },
     {
-        text: "框架（framework）",
+        text: "框架",
         collapsed: true,
         items: [
             {text: '简介', link: '/framework/getting-started'},

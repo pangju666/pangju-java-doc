@@ -29,24 +29,24 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 
 我仿照`Spring Boot Starter`的命名方式对各个模块进行了命名，以此来方便上手。
 
-| 模块                                              |                 介绍                  |
-|-------------------------------------------------|:-----------------------------------:|
-| framework-spring-boot-starter-parent            | 父级模块，对标`spring-boot-starter-parent` |
-| framework-spring-boot-starter                   |             `Spring`模块              |
-| framework-spring-boot-starter-crypto            |                加密模块                 |
-| framework-spring-boot-starter-json              |               JSON模块                |
-| framework-spring-boot-starter-json-crypto       |              JSON加密模块               |
-| framework-spring-boot-starter-image             |                图像模块                 |
-| framework-spring-boot-starter-validation        |                校验模块                 |
-| framework-spring-boot-starter-data-mybatis-plus |          `Mybatis Plus`模块           |
-| framework-spring-boot-starter-data-mongodb      |              MongoDB模块              |
-| framework-spring-boot-starter-data-redis        |              Redis 模块               |
-| framework-spring-boot-starter-test              |                测试模块                 |
-| framework-spring-boot-starter-spock-test        |             Spock框架测试模块             |
-| framework-spring-boot-starter-web               |               Web 模块                |
-| framework-spring-boot-starter-web-crypto        |              Web 加密模块               |
-| framework-spring-boot-starter-web-validation    |              Web 校验模块               |
-| framework-spring-boot-starter-web-log           |              Web 日志模块               |
+| 模块                                  |                 介绍                  |
+|-------------------------------------|:-----------------------------------:|
+| framework-starter-parent            | 父级模块，对标`spring-boot-starter-parent` |
+| framework-starter                   |             `Spring`模块              |
+| framework-starter-crypto            |                加密模块                 |
+| framework-starter-json              |               JSON模块                |
+| framework-starter-json-crypto       |              JSON加密模块               |
+| framework-starter-image             |                图像模块                 |
+| framework-starter-validation        |                校验模块                 |
+| framework-starter-data-mybatis-plus |          `Mybatis Plus`模块           |
+| framework-starter-data-mongodb      |              MongoDB模块              |
+| framework-starter-data-redis        |              Redis 模块               |
+| framework-starter-test              |                测试模块                 |
+| framework-starter-test-spock        |             Spock框架测试模块             |
+| framework-starter-web               |               Web 模块                |
+| framework-starter-web-crypto        |              Web 加密模块               |
+| framework-starter-web-validation    |              Web 校验模块               |
+| framework-starter-web-log           |              Web 日志模块               |
 
 ## 引入
 基于[Pangju Dependencies](/dependencies/getting-started)，可以像`Spring Boot Starter Parent`一样引入：
@@ -54,13 +54,13 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 ```xml-vue
 <parent>
 	<groupId>io.github.pangju666.framework.boot</groupId>
-	<artifactId>framework-spring-boot-starter-parent</artifactId>
+	<artifactId>framework-starter-parent</artifactId>
 	<version>{{ frameworkBootVersion }}</version>
 </parent>
 ```
 
 ## 插件管理
-我在`framework-spring-boot-starter-parent`中做了一些默认的插件配置
+我在`framework-starter-parent`中做了一些默认的插件配置
 
 ### 编译插件
 我在`Spring Boot Starter Parent`的`maven-compiler-plugin`默认配置上增加一些注解处理器

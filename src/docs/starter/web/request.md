@@ -7,7 +7,7 @@ layout: doc
 ## 时间类型
 
 ### 概述
-我对`Date`、`LocalDate`、`LocalDateTime`三种请求参数做了时间戳格式适配，当请求参数值是时间戳时会自动转换为对应的类型。
+我对`Date`和`Instant`请求参数做了时间戳格式适配，当请求参数类型是`Date`或`Instant`时会从时间戳字符串解析。
 
 ### 配置
 ```yaml
@@ -28,19 +28,12 @@ public class UserController {
         // createTime会被自动从时间戳转换为Date对象
         return ResponseEntity.ok.ok(createTime).build();
     }
- 
-    // 支持LocalDate
+    
+    // 支持Instant
     @GetMapping("/search")
-    public ResponseEntity<?> search(@RequestParam LocalDate birthDate) {
-        // birthDate会被自动从时间戳转换为LocalDate对象
+    public ResponseEntity<?> search(@RequestParam Instant birthDate) {
+        // birthDate会被自动从时间戳转换为Instant对象
         return ResponseEntity.ok.ok(birthDate).build();
-    }
- 
-    // 支持LocalDateTime
-    @GetMapping("/list")
-    public ResponseEntity<?> list(@RequestParam LocalDateTime startTime) {
-        // startTime会被自动从时间戳转换为LocalDateTime对象
-        return ResponseEntity.ok.ok(startTime).build();
     }
 }
 ```
