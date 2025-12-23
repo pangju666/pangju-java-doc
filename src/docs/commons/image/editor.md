@@ -5,7 +5,7 @@ layout: doc
 # 图像处理
 `io.github.pangju666.commons.image.utils.ImageEditor`
 
-本类提供了流式API来处理图像，支持链式方法调用以配置各种参数。 可以轻松实现图像的缩放、旋转、滤镜效果等多种处理操作。
+本类提供了流式API来处理图像，支持链式方法调用以配置各种参数。可以轻松实现图像的缩放、旋转、滤镜效果等多种处理操作。
 
 > [!NOTE]
 > 基于`twelvemonkeys`实现，速度和质量都挺不错的，纯Java实现里我觉得这个是最好用的。
@@ -18,7 +18,7 @@ layout: doc
 > - 从文件构造时会自动将输出格式设置为输入文件格式
 > - 默认输出格式根据输入图像是否有透明通道自动选择（`PNG`或`JPEG`）
 > - 不支持透明的格式（如`JPEG`）会自动转换为RGB模式
-> - 可以使用`restore()`方法恢复到原始图像状态
+> - 可以使用`reset`方法恢复到原始图像状态
 > - 处理大量图像时，建议在使用完毕后显式关闭相关资源
 > - 图像处理操作会按照调用顺序依次应用
 
@@ -27,7 +27,6 @@ layout: doc
 | of                  | ImageEditor |           创建缩略图生成器            |
 | resampleFilterType  | ImageEditor |          设置重采样滤波器类型           |
 | outputFormat        | ImageEditor |           设置输出图像的格式           |
-| correctOrientation  | ImageEditor |       根据EXIF方向信息校正图像方向        |
 | rotate              | ImageEditor |             旋转图像              |
 | blur                | ImageEditor |           对图像应用模糊效果           |
 | flip                | ImageEditor |             翻转图像              |
@@ -45,37 +44,56 @@ layout: doc
 | scale               | ImageEditor | 将图像缩放到指定的最大宽度和最大高度范围内，保持原始宽高比 |
 | addImageWatermark   | ImageEditor |            添加图片水印             |
 | addTextWatermark    | ImageEditor |            添加文字水印             |
-| restore             | ImageEditor |      恢复图像到初始状态，重置所有处理效果       |
+| reset               | ImageEditor |      恢复图像到初始状态，重置所有处理效果       |
 | toFile              | void        |         将处理后的图像保存到文件          |
 | toOutputStream      | void        |         将处理后的图像写入输出流          |
 | toImageOutputStream | void        |        将处理后的图像写入图像输出流         |
 | toBufferedImage     | void        |          获取处理后图像的副本           |
 
 ## 实例化
-支持从`URL`、文件、输入流、图像输入流、`BufferImage`几种方式读取。
+支持从文件、输入流、图像输入流、`BufferImage`几种方式读取。
 
+根据EXIF标准，方向值范围为1-8：
+- 1: 正常方向 (不需要校正)。
+- 2: 水平翻转。
+- 3: 旋转180度。
+- 4: 垂直翻转。
+- 5: 顺时针旋转90度后水平翻转。
+- 6: 顺时针旋转90度。
+- 7: 逆时针旋转90度后水平翻转。
+- 8: 逆时针旋转90度。
+
+> [!NOTE]
+> 对于方向值5-8，会同时调整输出图像的宽高比例。
 
 ```java
-URL imageUrl;
-ImageEditor.of(imageUrl);
-
 File imageFile;
-// 默认不开启自动矫正方向
+// 默认不校正视觉方向
 ImageEditor.of(imageFile);
-// 开启自动矫正方向
+// 检测图像Exif方向，并校正为视觉方向
 ImageEditor.of(imageFile, true);
+// 传入图像Exif方向，并校正为视觉方向
+ImageEditor.of(imageFile, 6);
 
-InputStream imageInputStream;
-// 默认不开启自动矫正方向
-ImageEditor.of(imageInputStream);
-// 开启自动矫正方向
-ImageEditor.of(imageInputStream, true);
+InputStream inputStream;
+// 默认不校正视觉方向
+ImageEditor.of(inputStream);
+// 检测图像Exif方向，并校正为视觉方向
+ImageEditor.of(inputStream, true);
+// 传入图像Exif方向，并校正为视觉方向
+ImageEditor.of(inputStream, 6);
 
 ImageInputStream imageInputStream;
-ImageEditor.of(imageUrl);
+// 不检测图像Exif方向
+ImageEditor.of(imageInputStream);
+// 传入图像Exif方向，并校正为视觉方向
+ImageEditor.of(imageInputStream, 6);
 
 BufferedImage image;
+// 不检测图像Exif方向
 ImageEditor.of(image);
+// 传入图像Exif方向，并校正为视觉方向
+ImageEditor.of(image, 6);
 ```
 
 ## 设置重采样滤波器类型
@@ -105,28 +123,12 @@ ImageEditor.of(imageFile).resampleFilterType(ResampleOp.FILTER_LANCZOS);
 ```
 
 ## 设置输出图像的格式
-只能设置为`ImageIO`支持写入的格式。
+只能设置为`ImageIO`支持写入的格式（不区分大小写）。
 
 ```java
 File imageFile;
 ImageEditor.of(imageFile).outputFormat("jpg");
 ```
-
-## 校正图像方向
-根据EXIF方向信息校正图像方向。
-
-根据EXIF标准，方向值范围为1-8：
-- 1: 正常方向 (不需要校正)。
-- 2: 水平翻转。
-- 3: 旋转180度。
-- 4: 垂直翻转。
-- 5: 顺时针旋转90度后水平翻转。
-- 6: 顺时针旋转90度。
-- 7: 逆时针旋转90度后水平翻转。
-- 8: 逆时针旋转90度。
-
-> [!NOTE]
-> 对于方向值5-8，会同时调整输出图像的宽高比例。
 
 ## 旋转
 支持根据方向或角度两种旋转方式，方向值：
@@ -327,7 +329,7 @@ ImageEditor.cropByRect(100, 100, 500, 500); // 以图像100,100的位置为原�
 
 ```java
 File imageFile;
-ImageEditor.of(imageFile).scale(500, 400).restore(); // 重置图像所有处理效果
+ImageEditor.of(imageFile).scale(500, 400).reset(); // 重置图像所有处理效果
 ```
 
 ## 输出

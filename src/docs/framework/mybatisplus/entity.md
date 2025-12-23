@@ -32,7 +32,7 @@ layout: doc
 继承该实体类，数据库表必须定义以下字段：
 - create_time(datetime): 创建时间，默认为当前时间
 - update_time(datetime): 更新时间，数据更新时自动设置为当前时间
-- delete_status(必须与主键ID类型相同): 删除状态，`null`表示未删除，删除时自动设置为表数据行主键ID
+- delete_status(必须与主键ID类型相同): 删除状态，`0`表示未删除，删除时自动设置为表数据行主键ID
 
 > [!IMPORTANT]
 > 你的主键字段名称如果不是`id`的话，那么逻辑删除则不会生效。
@@ -65,7 +65,7 @@ layout: doc
 继承该实体类，数据库表必须定义以下字段：
 - create_time(datetime): 创建时间，默认为当前时间
 - update_time(datetime): 更新时间，数据更新时自动设置为当前时间
-- delete_status(必须与主键ID类型相同): 删除状态，`null`表示未删除，删除时自动设置为表数据行主键ID
+- delete_status(必须与主键ID类型相同): 删除状态，`0`表示未删除，删除时自动设置为表数据行主键ID
 - version(int): 版本号，用于乐观锁控制（`Mybatis Plus`自动填充对应值）
 
 ### 删除时间逻辑删除

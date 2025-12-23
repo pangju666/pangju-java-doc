@@ -7,6 +7,44 @@ layout: doc
 ## 图像尺寸
 `io.github.pangju666.commons.image.model.ImageSize`
 
+根据EXIF标准，方向值范围为1-8：
+- 1: 正常方向 (不需要校正)。
+- 2: 水平翻转。
+- 3: 旋转180度。
+- 4: 垂直翻转。
+- 5: 顺时针旋转90度后水平翻转。
+- 6: 顺时针旋转90度。
+- 7: 逆时针旋转90度后水平翻转。
+- 8: 逆时针旋转90度。
+
+### 构建
+
+```java
+// exif方向为null
+ImageSize size = new ImageSize(1920, 1080);
+// exif方向为6
+ImageSize size = new ImageSize(1920, 1080, 6);
+```
+
+### 获取视觉尺寸
+
+存在exif方向且大于5时会交换宽高，返回视觉尺寸。
+
+> [!NOTE]
+> 如果不存在exif方向，获取视觉尺寸时会返回一个方向为1（正常方向）的实例。
+
+```java
+// 构建时定义图像exif方向
+ImageSize size = new ImageSize(1920, 1080, 6);
+ImageSize visualSize = size.getVisualSize(); // 1080x1920
+
+ImageSize size = new ImageSize(1920, 1080, 4);
+ImageSize visualSize = size.getVisualSize(); // 1920x1080
+
+ImageSize size = new ImageSize(1920, 1080);
+ImageSize visualSize = size.getVisualSize(); // 1920x1080
+```
+
 ### 根据宽度计算缩放后的尺寸
 
 该方法不会修改当前对象，而是返回一个新的尺寸实例。
