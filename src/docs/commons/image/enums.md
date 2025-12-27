@@ -18,3 +18,20 @@ layout: doc
 | BOTTOM       | 底部居中，紧贴下边并水平居中 |
 | BOTTOM_RIGHT |  右下角，紧贴下边与右边   |
 | BOTTOM_LEFT  |  左下角，紧贴下边与左边   |
+
+## 旋转方向
+`io.github.pangju666.commons.image.enums.RotateDirection`
+
+| 枚举值                  |         说明          |                          
+|----------------------|:-------------------:|
+| CLOCKWISE_90         | 顺时针旋转 90 度（等价于向右转）  |
+| COUNTER_CLOCKWISE_90 | 逆时针旋转 90 度（等价于向左转）。 |
+| UPSIDE_DOWN          |   旋转 180 度（上下颠倒）    |
+
+## 翻转方向
+`io.github.pangju666.commons.image.enums.FlipDirection`
+
+| 枚举值        |     说明     |                          
+|------------|:----------:|
+| HORIZONTAL | 水平翻转（左右镜像） |
+| VERTICAL   | 垂直翻转（上下镜像） |

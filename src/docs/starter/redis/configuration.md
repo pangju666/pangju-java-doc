@@ -7,8 +7,8 @@ layout: doc
 ## 说明
 我定义[`ScanRedisTemplate`](/framework/redis/template)的自动装配。
 
-我自动装配了[`StringScanRedisTemplate`](/framework/redis/template.html#stringscanredistemplate)和
-[`JsonScanRedisTemplate`](/framework/redis/template.html#jsonscanredistemplate)两种Bean。
+我自动装配了[`StringScanRedisTemplate`](/framework/redis/template#stringscanredistemplate)和
+[`JsonScanRedisTemplate`](/framework/redis/template#jsonscanredistemplate)两种Bean。
 
 `JsonScanRedisTemplate`等价于`RedisTemplate<String, Object>`
 

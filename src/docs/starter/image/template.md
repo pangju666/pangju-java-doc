@@ -76,7 +76,7 @@ pangju:
 取决于具体的实现。
 
 ### 操作配置
-[`io.github.pangju666.framework.boot.image.model.GenericImageOperation`](/starter/image/model.html#通用)
+[`io.github.pangju666.framework.boot.image.model.GenericImageOperation`](/starter/image/model#通用)
 
 通用操作配置是不同实现都支持的操作，执行顺序取决于实现。
 
@@ -158,6 +158,9 @@ public class ImageService {
 ## BufferedImage 实现
 `io.github.pangju666.framework.boot.image.core.impl.BufferedImageTemplate`
 
+> [!IMPORTANT]
+> `ico`格式不支持旋转。
+
 ### 概述
 基于`ImageIO`的图像操作实现。
 
@@ -170,7 +173,7 @@ public class ImageService {
 - 写入格式以[`ImageIO`支持写入的类型](/commons/image/constants)判定。
 
 ### 操作配置
-[`io.github.pangju666.framework.boot.image.model.BufferedImageOperation`](/starter/image/model.html#bufferedimage)
+[`io.github.pangju666.framework.boot.image.model.BufferedImageOperation`](/starter/image/model#bufferedimage)
 
 执行顺序：
 1. 矫正方向（依据 EXIF 方向）。
@@ -196,6 +199,12 @@ public class ImageService {
 > GraphicsMagick 版本需要 >= 1.3.0
 > 
 > 输入/输出文件路径不支持包含中文或非 ASCII 字符的路径，需要使用纯英文路径，否则命令会执行失败
+>
+> 操作`svg`需要输出为其他格式，部分`svg`可能会操作失败。
+> 
+> `gif`格式不支持裁剪。
+> 
+> `gif`格式如果某些帧尺寸小于指定的锐化半径，会导致抛出[`ImageOperationException`](/starter/image/exception#图像操作异常)异常，但是图片会正常生成。
 
 ### 概述
 基于`GraphicsMagick`的图像操作实现。
@@ -208,7 +217,7 @@ public class ImageService {
 - 写入格式以[`GraphicsMagick`支持写入的类型](/starter/image/constants)判定。
 
 ### 操作配置
-[`io.github.pangju666.framework.boot.image.model.GMImageOperation`](/starter/image/model.html#graphicsmagick)
+[`io.github.pangju666.framework.boot.image.model.GMImageOperation`](/starter/image/model#graphicsmagick)
 
 操作流程：
 1. 计算目标尺寸
@@ -272,13 +281,6 @@ public class ImageService {
 	    GMOperation operation = new GMOperation();
 	    // ...定义操作
 		imageTemplate.execute(operation);
-
-        // 使用命令拼接操作
-		List<String> commands = List.of("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
-		imageTemplate.execute(commands);
-
-        // 执行命令并拼接参数
-		imageTemplate.execute("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
 		
 		// 直接使用 PooledGMService 执行命令
 		GMConnection connection = null;

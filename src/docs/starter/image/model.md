@@ -58,16 +58,36 @@ imageFile.setOrientation();
 `io.github.pangju666.framework.boot.image.model.GenericImageOperation`
 
 #### 概述
-通用图像处理操作配置模型，像[`ImageTemplate`](/starter/image/template.html##接口)提供操作配置。
+通用图像处理操作配置模型，像[`ImageTemplate`](/starter/image/template#接口)提供操作配置。
 
-#### 支持操作
-裁剪、缩放、图片水印、旋转、翻转与灰度化
+#### 操作说明
+- 裁剪 (Crop)：
+  - 中心裁剪：保留图像中心区域。
+  - 偏移裁剪：指定上下左右的裁剪偏移量。
+  - 矩形裁剪：指定裁剪区域的坐标与宽高。
+- 缩放 (Scale)：
+  - 强制缩放：忽略原图比例，强制拉伸至指定宽高。
+  - 等比缩放：支持按比例系数、固定宽度或固定高度进行等比缩放（互斥）。
+- 水印 (Watermark)：
+  - 类型：支持图片水印与文字水印（互斥）。
+  - 定位：支持[九宫格方位](/commons/image/enums#水印方向)与绝对坐标定位（互斥）。
+  - 样式：支持透明度、相对缩放比例（图片水印）、字体样式（文字水印）等配置。
+- 几何变换：
+  - 旋转：支持任意角度旋转（正数顺时针，负数逆时针）。
+  - 翻转：支持水平翻转与垂直翻转。
+- 色彩调整：
+  - 支持图像灰度化处理。
 
-> [!IMPORTANT]
-> 同类型操作互斥，后设置的操作会覆盖先设置的操作。
+#### 校验规则
+所有尺寸、坐标参数需为正数；非法参数将被自动忽略，不影响其他配置。
+
+#### 互斥策略
+- 设置水印坐标会自动清除水印方位配置。
+- 设置强制缩放会自动清除等比缩放配置；反之亦然。
+- 设置图片水印会自动清除文字水印内容；反之亦然。
 
 #### 使用示例
-以下的操作设置属于通用操作，所有[`ImageTemplate`](/starter/image/template.html##接口)实现都应支持。
+以下的操作设置属于通用操作，所有[`ImageTemplate`](/starter/image/template#接口)实现都应支持。
 
 ```java
 ImageOperation genericImageOperation = ImageOperationBuilders.generic()     
@@ -108,12 +128,52 @@ ImageOperation genericImageOperation = ImageOperationBuilders.generic()
 			.watermarkImageRelativeScale(0.15)
 			// 设置图像水印的透明度设置为40%（默认为40%）
 			.watermarkImageOpacity(0.4)
-			// 设置图像水印的最小宽度设置为40，最大宽度为200（默认为40-200）
-			// 如果缩放后的水印尺寸不在范围内，则使用最小/大宽度设置水印尺寸
-			.watermarkImageWidthRange(40, 200)
-			// 设置图像水印的最小高度设置为40，最大高度为200（默认为40-200）
-			// 如果缩放后的水印尺寸不在范围内，则使用最小/大高度设置水印尺寸
-			.watermarkImageHeightRange(40, 200)
+			// 如果没有定制策略的需求，不要修改这个
+			// 设置水印的尺寸范围策略（根据原始图像大小计算水印图像的最小和最大尺寸）
+			.watermarkImageSizeLimitStrategy(imageSize -> {
+                int shorter = Math.min(imageSize.getWidth(), imageSize.getHeight());
+                if (shorter < 600) { // 小图
+                    return Pair.of(new ImageSize(120, 120), new ImageSize(150, 150));
+                } else if (shorter >= 1920) { // 大图（注意：>=1920）
+                    return Pair.of(new ImageSize(250, 250), new ImageSize(400, 400));
+                } else { // 中等图
+                    return Pair.of(new ImageSize(150, 150), new ImageSize(250, 250));
+                }
+            })
+            // 设置水印文字（与图像水印互斥，反之亦然）
+			.watermarkText("水印")
+			// 文字水印的下列配置都是有默认值的，确认需要修改再设置
+			// 设置文字水印填充颜色（默认为白色）
+			.watermarkTextFillColor(Color.WHITE)
+			// 设置文字水印字体名称，默认为 SansSerif
+            .watermarkTextFontName(Font.SANS_SERIF)
+            // 设置文字水印字体样式，默认为加粗
+            .watermarkTextFontStyle(Font.BOLD)
+            // 如果没有定制策略的需求，不要修改这个
+            // 设置水印文字大小的计算策略（根据原始图像大小计算水印文字的大小）
+            .watermarkTextFontSizeStrategy(imageSize -> {
+                int shorter = Math.min(imageSize.getWidth(), imageSize.getHeight());
+                if (shorter < 600) {
+                    // 小图：强制 32pt
+                    return 32;
+                } else if (shorter >= 1920) {
+                    // 大图：48pt~80pt 缓慢增长
+                    double ratio = Math.min(1.0, (shorter - 1920.0) / 3000.0);
+                    return (int) Math.round(48 + ratio * (80 - 48));
+                } else {
+                    // 中等图：32pt~48pt 线性增长
+                    double ratio = (shorter - 600.0) / (1920.0 - 600.0);
+                    return (int) Math.round(32 + ratio * (48 - 32));
+                }
+            })
+			// 开启文字水印描边（默认为 开启）
+			.watermarkTextStroke(true)
+			// 设置文字水印描边颜色（默认为黑色）
+			.watermarkTextStrokeColor(Color.BLACK)
+			// 设置文字水印描边线宽（默认为 2 像素）
+			.watermarkTextStrokeWidth(2.0)
+			// 设置文字水印透明度（默认为 40%）
+			.watermarkTextOpacity(0.4)
 			.build()
 ```
 
@@ -121,25 +181,20 @@ ImageOperation genericImageOperation = ImageOperationBuilders.generic()
 `io.github.pangju666.framework.boot.image.model.BufferedImageOperation`
 
 #### 概述
-面向[`BufferedImageTemplate`](/starter/image/template.html#bufferedimage实现)的图像操作配置。
+面向[`BufferedImageTemplate`](/starter/image/template#bufferedimage实现)的图像操作配置。
 
-#### 拓展操作
-文字水印、缩放重采样策略、模糊、锐化、对比度、亮度调整与自定义滤镜管线。
+#### 拓展操作说明
+- 缩放优化：
+  - 支持指定[重采样过滤器](/starter/image/enums#重采样过滤器)以控制缩放质量。
+- 图像增强：
+  - 模糊：高斯模糊（支持自定义半径）；
+  - 锐化：非锐化掩模（USM，支持自定义强度）；
+  - 对比度/亮度：支持线性调整对比度与亮度。
+- 滤镜管线：
+  - 支持添加标准`ImageFilter`，按添加顺序依次处理。
 
-#### 说明
-- 使用说明：通过构建器链式设置参数；不满足校验规则的参数将被忽略。
-- 互斥规则：水印方向与坐标互斥；设置其中之一会清空另一种配置。
-- 定位规则：可使用[`WatermarkDirection`](/commons/image/enums#水印方向)或`watermarkPosition(x,y)`坐标需为正数。
-- 裁剪规则：支持[中心裁剪、偏移裁剪与矩形裁剪](/starter/image/enums#裁剪类型)；如果裁剪参数为空、非正数或越界，则不设置裁剪。
-- 缩放规则：`forceScale(width,height)`强制缩放到指定尺寸；按比例/按宽/按高缩放为等比，并会关闭强制缩放且清空其它尺寸/比例。
-- 透明度范围：取值区间`[0,1]`；水印透明度遵循该范围。
-- 旋转/翻转：旋转方向由[`RotateDirection`](/starter/image/enums#旋转方向)指定，旋转角度正数表示顺时针、负数表示逆时针；
-翻转方向由[`FlipDirection`](/starter/image/enums#翻转方向) 指定。
-- 灰度化：当开启灰度化时，输出图像为灰度模式。
-- 文字水印：提供文本内容与样式配置；与图片水印互斥。
-- 缩放重采样：支持[重采样滤镜类型](/starter/image/enums#重采样过滤器)选择。
-- 图像增强：支持模糊、锐化、对比度与亮度调节。
-- 滤镜管线：支持自定义`ImageFilter`，按添加顺序应用。
+#### 校验规则
+非法参数将被自动忽略，不影响其他配置。
 
 #### 使用示例
 ```java
@@ -148,7 +203,7 @@ ImageOperation genericImageOperation = ImageOperationBuilders.generic()
 ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered(genericImageOperation)    
 // 也可以直接使用 BufferedImageOperation 设置全部操作配置
 // ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered()
-            // 设置重采样策略（影响缩放质量和速度）
+            // 设置缩放重采样策略（影响缩放质量和速度）
             // 一般不建议设置这个，底层实现已经使用 LANCZOS 作为默认值
 			.resampleFilter(ResampleFilter.LANCZOS)
 			// 将图像模糊化，默认半径为1.5
@@ -165,31 +220,12 @@ ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered(genericI
 			.contrast(0.3)
 			// 调整图像亮度，设置幅度为2.0，取值范围：[-2,2] 且不能等于 0
 			.brightness(2.0)
-			// 增加图像滤镜，一般不建议设置这个，除非你知道自己要干啥
+			// 增加图像滤镜，一般不建议设置这个，除非你知道自己在干什么
 			.addFilter(new ImageFilter())
-			// 增加多个图像滤镜，一般不建议设置这个，除非你知道自己要干啥
+			// 增加多个图像滤镜，一般不建议设置这个，除非你知道自己在干什么
 			.addFilters(List.of(new ImageFilter()))
-			// 设置图像滤镜（会覆盖之前增加的滤镜），一般不建议设置这个，除非你知道自己要干啥
+			// 设置图像滤镜（会覆盖之前增加的滤镜），一般不建议设置这个，除非你知道自己在干什么
 			.setFilters(List.of(new ImageFilter()))
-			// 设置水印文字（与图像水印互斥，反之亦然）
-			.watermarkText("水印")
-			// 文字水印的下列配置都是有默认值的，确认需要修改再设置
-			// 设置文字水印填充颜色（默认为白色）
-			.watermarkTextFillColor(Color.WHITE)
-			// 设置文字水印字体名称，默认为 SansSerif
-            .watermarkTextFontName(Font.SANS_SERIF)
-            // 设置文字水印字体样式，默认为 PLAIN
-            .watermarkTextFontStyle(Font.PLAIN)
-            // 设置文字水印字体大小比例（相对原图的长边），默认为 4%
-            .watermarkTextFontSizeRatio(0.04)
-			// 开启文字水印描边（默认为 开启）
-			.watermarkTextStroke(true)
-			// 设置文字水印描边颜色（默认为 亮灰）
-			.watermarkTextStrokeColor(Color.LIGHT_GRAY)
-			// 设置文字水印描边线宽（默认为 3 像素）
-			.watermarkTextStrokeWidth(3.0)
-			// 设置文字水印透明度（默认为 40%）
-			.watermarkTextOpacity(0.4)
 			.build()
 ```
 
@@ -199,31 +235,25 @@ ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered(genericI
 #### 概述
 面向[`GMImageTemplate`](/starter/image/template#gm实现)的图像操作配置。
 
-#### 拓展操作
-文字水印、缩放重采样策略、模糊、锐化、输出质量、输出`DPI`与元数据清除。
+#### 拓展操作说明
+- 输出控制：
+  - 质量 (Quality)：支持设置`JPEG`等格式的压缩质量（1-100）。
+  - DPI：支持设置输出图像的分辨率（每英寸点数）。
+  - 元数据 (Profile)：支持移除`EXIF`、`IPTC`等元数据信息以减小文件体积。
+- 缩放优化：支持指定[重采样过滤器](/starter/image/enums#重采样过滤器)以控制缩放质量。
+- 图像增强：
+  - 模糊 (Blur)：高斯模糊（支持自定义半径与标准差）。
+  - 锐化 (Sharpen)：支持自定义半径与标准差的锐化处理。
 
-#### 说明
-- 使用说明：通过构建器链式设置参数；不满足校验规则的参数将被忽略。
-- 互斥规则：水印方向与坐标互斥；设置其中之一会清空另一种配置。
-- 定位规则：可使用[`WatermarkDirection`](/commons/image/enums#水印方向)或`watermarkPosition(x,y)`坐标需为正数。
-- 裁剪规则：支持中心裁剪、偏移裁剪与矩形裁剪；如果裁剪参数为空、非正数或越界，则不设置裁剪。
-- 缩放规则：`forceScale(width,height)` 强制缩放到指定尺寸；按比例/按宽/按高缩放为等比，并会关闭强制缩放且清空其它尺寸/比例。
-- 透明度范围：取值区间`[0,1]`；水印透明度遵循该范围。
-- 旋转/翻转：旋转方向由[`RotateDirection`](/starter/image/enums#旋转方向)指定，旋转角度正数表示顺时针、负数表示逆时针；
-翻转方向由[`FlipDirection`](/starter/image/enums#翻转方向) 指定。
-- 灰度化：当开启灰度化时，输出图像为灰度模式。
-- 质量设置：部分格式支持，如`JPEG`。
-- 移除元数据：移除`Profile/EXIF/IPTC`等。
-- `GM`缩放滤镜：支持滤镜类型选择以控制缩放质量与性能。
-- 文字水印：字体/大小比例（相对原图的长边）/颜色/透明度配置；与图片水印互斥。
-- 模糊/锐化：支持半径与标准差参数。
-- `DPI`设置：设置输出图像的每英寸点数。
+#### 校验规则
+非法参数将被自动忽略，不影响其他配置。
 
-#### 注意事项
-- 绘制文字水印必须设置字体，否则将不生效。
-- 字体名称：不支持中文字体名称；若要显示中文，需要在 GM 运行环境安装可用的中文字体并以可识别的英文名称引用。
-- 中文水印文本：在未正确安装中文字体或编码不兼容的情况下可能显示为空或乱码，建议优先使用英文文本；若必须使用中文，请确保环境字体与编码配置正确。
-- 水印图片路径：不支持包含中文或非 ASCII 字符的路径，需要使用纯英文路径。
+#### GM 兼容性与限制
+- 路径限制：水印图片路径建议使用纯英文，避免中文路径导致的兼容性问题。
+- 中文字体：若需使用中文水印，必须确保系统安装了相应字体，并指定正确的英文字体名称（如 "simhei"）。
+- 中文编码：建议优先使用英文水印文本，避免环境编码问题导致的乱码。
+- 字体设置：绘制文字水印必须设置字体，否则将不生效。
+- 文字样式：不支持设置文字样式（如粗体、斜体等），相关配置将被忽略。
 
 #### 使用示例
 ```java
@@ -232,7 +262,7 @@ ImageOperation bufferedImageOperation = ImageOperationBuilders.buffered(genericI
 ImageOperation gmImageOperation = ImageOperationBuilders.gm(genericImageOperation)    
 // 也可以直接使用 GMImageOperation 设置全部操作配置
 // ImageOperation gmImageOperation = ImageOperationBuilders.gm()
-            // 设置缩放策略（影响缩放质量和速度）
+            // 设置缩放重采样策略（影响缩放质量和速度）
             // 一般不建议设置这个，GraphicsMagick 已经使用 LANCZOS 作为默认值
 			.resizeFilter(ResampleFilter.LANCZOS)
 			// 高斯模糊，并设置标准差为0.5，半径使用 0 以由 GM 自动推导
@@ -260,12 +290,5 @@ ImageOperation gmImageOperation = ImageOperationBuilders.gm(genericImageOperatio
 			// 字体名称必须是英文
 			// 设置文字水印字体为黑体（不设置字体的话，无法绘制文字水印）
 			.watermarkTextFontName("simhei")
-			// 文字水印的下列配置都是有默认值的，确认需要修改再设置
-			// 设置文字水印透明度（默认为 40%）
-			.watermarkTextOpacity(0.4)
-			// 设置文字水印填充颜色（默认为白色）
-			.watermarkTextColor(Color.WHITE)
-			// 设置文字水印字体大小比例（相对原图的长边），默认为 4%
-			.watermarkTextFontSizeRatio(0.04)
 			.build()
 ```

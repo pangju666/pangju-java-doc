@@ -22,7 +22,7 @@ layout: doc
 继承该实体类，数据库表必须定义以下字段：
 - create_time(datetime): 创建时间，默认为当前时间
 - update_time(datetime): 更新时间，数据更新时自动设置为当前时间
-- delete_status(必须与主键ID类型相同): 删除状态，`null`表示未删除，删除时自动设置为表数据行主键ID
+- delete_status(必须与主键ID类型相同): 删除状态，`0`表示未删除，删除时自动设置为表数据行主键ID
 - delete_time(datetime): 删除时间，`null`表示未删除，删除时自动填充为当前时间戳
 
 ## 乐观锁+逻辑删除+填充删除时间
@@ -36,6 +36,6 @@ layout: doc
 继承该实体类，数据库表必须定义以下字段：
 - create_time(datetime): 创建时间，默认为当前时间
 - update_time(datetime): 更新时间，数据更新时自动设置为当前时间
-- delete_status(必须与主键ID类型相同): 删除状态，`null`表示未删除，删除时自动设置为表数据行主键ID
+- delete_status(必须与主键ID类型相同): 删除状态，`0`表示未删除，删除时自动设置为表数据行主键ID
 - delete_time(datetime): 删除时间，`null`表示未删除，删除时自动填充为当前时间戳
 - version(int): 版本号，用于乐观锁控制（`Mybatis Plus`自动填充对应值）

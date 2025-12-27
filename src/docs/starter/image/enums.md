@@ -11,24 +11,7 @@ layout: doc
 |--------|:---------------------:|
 | CENTER |   以图片中心为基准按目标尺寸进行裁剪   |
 | OFFSET | 根据偏移量（起点坐标）与目标尺寸进行裁剪  |
-| RECT   | 按给定矩形区域（左上角坐标与宽高）进行裁剪 |  
-
-## 翻转方向
-`io.github.pangju666.framework.boot.image.enums.FlipDirection`
-
-| 枚举值        |     说明     |                          
-|------------|:----------:|
-| HORIZONTAL | 水平翻转（左右镜像） |
-| VERTICAL   | 垂直翻转（上下镜像） |
-
-## 旋转方向
-`io.github.pangju666.framework.boot.image.enums.RotateDirection`
-
-| 枚举值                  |         说明         |                          
-|----------------------|:------------------:|
-| CLOCKWISE_90         | 顺时针旋转 90 度（等价于向右转） |
-| COUNTER_CLOCKWISE_90 | 逆时针旋转 90 度（等价于向左转） |
-| UPSIDE_DOWN          |   旋转 180 度（上下颠倒）   |
+| RECT   | 按给定矩形区域（左上角坐标与宽高）进行裁剪 |
 
 ## 重采样过滤器
 `io.github.pangju666.framework.boot.image.enums.ResampleFilter`
