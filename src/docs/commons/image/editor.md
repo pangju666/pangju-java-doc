@@ -281,7 +281,8 @@ ImageWatermarkOption watermarkOption = new ImageWatermarkOption();
 watermarkOption.setRelativeScale(0.15f);
 // 设置水印的水印透明度，默认为 0.4，有效范围为 [0.0f, 1.0f]
 watermarkOption.setOpacity(0.4f);
-// 设置水印的尺寸范围策略
+// 如果没有定制策略的需求，不要修改这个
+// 设置水印的尺寸范围策略（根据原始图像大小计算水印图像的最小和最大尺寸）
 watermarkOption.setSizeLimitStrategy(imageSize -> {
 	int shorter = Math.min(imageSize.getWidth(), imageSize.getHeight());
 	if (shorter < 600) { // 小图
@@ -326,15 +327,15 @@ watermarkOption.setFillColor(Color.WHITE);
 watermarkOption.setStrokeColor(Color.BLACK); 
 // 设置字体名称，默认为 SansSerif
 watermarkOption.setFontName(Font.SANS_SERIF);
-// 设置字体样式，默认为 BOLD
+// 设置字体样式，默认为加粗
 watermarkOption.setFontStyle(Font.BOLD);
-// 设置描边线宽，默认为3
-watermarkOption.setStrokeWidth(40, 200); 
+// 设置描边线宽，默认为2
+watermarkOption.setStrokeWidth(2.0f); 
 // 设置启用描边功能
-watermarkOption.setStroke(true); 
+watermarkOption.setStroke(true);
 // 设置水印的水印透明度，默认为 0.4，有效范围为 [0.0f, 1.0f]
 watermarkOption.setOpacity(0.4f);
-// 设置水印文字大小的计算策略
+// 设置水印文字大小的计算策略（根据原始图像大小计算水印文字的大小）
 watermarkOption.setFontSizeStrategy(imageSize -> {
 	int shorter = Math.min(imageSize.getWidth(), imageSize.getHeight());
 	if (shorter < 600) {

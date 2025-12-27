@@ -196,6 +196,8 @@ public class ImageService {
 > GraphicsMagick 版本需要 >= 1.3.0
 > 
 > 输入/输出文件路径不支持包含中文或非 ASCII 字符的路径，需要使用纯英文路径，否则命令会执行失败
+> 
+> svg 格式不支持缩放操作
 
 ### 概述
 基于`GraphicsMagick`的图像操作实现。
@@ -272,13 +274,6 @@ public class ImageService {
 	    GMOperation operation = new GMOperation();
 	    // ...定义操作
 		imageTemplate.execute(operation);
-
-        // 使用命令拼接操作
-		List<String> commands = List.of("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
-		imageTemplate.execute(commands);
-
-        // 执行命令并拼接参数
-		imageTemplate.execute("convert", "in.png", "-draw", "text 50 100 \"NO IMAGE\"", "out.png");
 		
 		// 直接使用 PooledGMService 执行命令
 		GMConnection connection = null;
