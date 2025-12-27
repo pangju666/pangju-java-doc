@@ -158,6 +158,9 @@ public class ImageService {
 ## BufferedImage 实现
 `io.github.pangju666.framework.boot.image.core.impl.BufferedImageTemplate`
 
+> [!IMPORTANT]
+> `ico`格式不支持旋转。
+
 ### 概述
 基于`ImageIO`的图像操作实现。
 
@@ -196,8 +199,12 @@ public class ImageService {
 > GraphicsMagick 版本需要 >= 1.3.0
 > 
 > 输入/输出文件路径不支持包含中文或非 ASCII 字符的路径，需要使用纯英文路径，否则命令会执行失败
+>
+> 操作`svg`需要输出为其他格式，部分`svg`可能会操作失败。
 > 
-> svg 格式不支持缩放操作
+> `gif`格式不支持裁剪。
+> 
+> `gif`格式如果某些帧尺寸小于指定的锐化半径，会导致抛出[`ImageOperationException`](/starter/image/exception#图像操作异常)异常，但是图片会正常生成。
 
 ### 概述
 基于`GraphicsMagick`的图像操作实现。
