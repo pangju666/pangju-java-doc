@@ -58,7 +58,7 @@ imageFile.setOrientation();
 `io.github.pangju666.framework.boot.image.model.GenericImageOperation`
 
 #### 概述
-通用图像处理操作配置模型，像[`ImageTemplate`](/starter/image/template.html##接口)提供操作配置。
+通用图像处理操作配置模型，像[`ImageTemplate`](/starter/image/template#接口)提供操作配置。
 
 #### 操作说明
 - 裁剪 (Crop)：
@@ -87,7 +87,7 @@ imageFile.setOrientation();
 - 设置图片水印会自动清除文字水印内容；反之亦然。
 
 #### 使用示例
-以下的操作设置属于通用操作，所有[`ImageTemplate`](/starter/image/template.html##接口)实现都应支持。
+以下的操作设置属于通用操作，所有[`ImageTemplate`](/starter/image/template#接口)实现都应支持。
 
 ```java
 ImageOperation genericImageOperation = ImageOperationBuilders.generic()     
@@ -181,7 +181,7 @@ ImageOperation genericImageOperation = ImageOperationBuilders.generic()
 `io.github.pangju666.framework.boot.image.model.BufferedImageOperation`
 
 #### 概述
-面向[`BufferedImageTemplate`](/starter/image/template.html#bufferedimage实现)的图像操作配置。
+面向[`BufferedImageTemplate`](/starter/image/template#bufferedimage实现)的图像操作配置。
 
 #### 拓展操作说明
 - 缩放优化：

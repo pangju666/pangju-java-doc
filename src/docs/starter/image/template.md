@@ -76,7 +76,7 @@ pangju:
 取决于具体的实现。
 
 ### 操作配置
-[`io.github.pangju666.framework.boot.image.model.GenericImageOperation`](/starter/image/model.html#通用)
+[`io.github.pangju666.framework.boot.image.model.GenericImageOperation`](/starter/image/model#通用)
 
 通用操作配置是不同实现都支持的操作，执行顺序取决于实现。
 
@@ -170,7 +170,7 @@ public class ImageService {
 - 写入格式以[`ImageIO`支持写入的类型](/commons/image/constants)判定。
 
 ### 操作配置
-[`io.github.pangju666.framework.boot.image.model.BufferedImageOperation`](/starter/image/model.html#bufferedimage)
+[`io.github.pangju666.framework.boot.image.model.BufferedImageOperation`](/starter/image/model#bufferedimage)
 
 执行顺序：
 1. 矫正方向（依据 EXIF 方向）。
@@ -210,7 +210,7 @@ public class ImageService {
 - 写入格式以[`GraphicsMagick`支持写入的类型](/starter/image/constants)判定。
 
 ### 操作配置
-[`io.github.pangju666.framework.boot.image.model.GMImageOperation`](/starter/image/model.html#graphicsmagick)
+[`io.github.pangju666.framework.boot.image.model.GMImageOperation`](/starter/image/model#graphicsmagick)
 
 操作流程：
 1. 计算目标尺寸
