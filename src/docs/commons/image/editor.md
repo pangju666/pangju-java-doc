@@ -13,6 +13,8 @@ layout: doc
 >
 > 推荐调用顺序：裁剪 -\> 缩放 -\> 旋转 -\> 翻转 -\> 灰度化 -\> 调整亮度 -\> 调整对比度 -\>
 > 锐化或模糊（这两个效果互斥，一般不会同时用） -\> 滤镜 -\> 添加水印
+> 
+> 所有操作都是基于图像的[视觉尺寸](/commons/image/model#获取视觉尺寸)。
 
 > [!TIP]
 > 注意事项：
@@ -146,7 +148,7 @@ ImageEditor.of(imageFile).outputFormat("jpg");
 
 支持根据[方向](/commons/image/enums#旋转方向)或角度两种旋转方式。
 
-> [!TIP]
+> [!IMPORTANT]
 > `ico`格式不支持旋转。
 
 ```java
@@ -229,7 +231,6 @@ ImageEditor.of(imageFile).filter(new GrayFilter()); // 对图像使用灰度化�
 ```java
 File imageFile;
 ImageEditor.of(imageFile).resize(500, 500); // 强制将图像缩放为500x500
-ImageEditor.of(imageFile).resize(new ImageSize(500, 500)); // 强制将图像缩放为500x500
 ```
 
 ## 等比例缩放
@@ -399,6 +400,9 @@ ImageEditor.of(imageFile).scale(500, 400).reset(); // 重置图像所有处理�
 ```
 
 ## 输出
+
+> [!NOTE]
+> 如果输出格式不存在透明通道且输出图像存在透明通道时，会转换输出图像的颜色类型。
 
 ### 直接获取输出图像
 
