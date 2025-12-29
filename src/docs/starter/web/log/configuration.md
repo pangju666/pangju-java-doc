@@ -14,7 +14,7 @@ pangju:
         receiver-type: slf4j # 日志接收器类型，默认为slf4J（可选值：slf4J、mongoDb）
         kafka: # Kafka 日志发送器配置
           kafka-template-ref: myKafkaTemplate # 用于指定要使用的 KafkaTemplate 实例。如果未指定，则默认使用应用中存在的 KafkaTemplate
-          topic: web-log # 日志发送目标 Topic
+          topic: web-log # 日志发送目标 Topic，默认 web-log
         mongo: # MongoDB 日志收集器配置
           mongo-template-ref: myMongoTemplate # 用于指定应用中某个 MongoTemplate 实例来操作 MongoDB 集合。如果未指定，则使用默认的 MongoTemplate
           base-collection-name: web-log # MongoDB 日志集合的基础名称，默认 web-log。实际集合名可据模块或业务在此基础上扩展。

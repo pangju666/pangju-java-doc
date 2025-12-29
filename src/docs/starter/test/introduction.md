@@ -7,7 +7,7 @@ layout: doc
 ## Junit
 
 ### 概述
-这个模块我集成了`spring-boot-starter-test`、`json-path-assert`和`datafaker`。
+这个模块我集成了`spring-boot-starter-test`、`json-path-assert`、`jsonassert`和`datafaker`。
 
 ### 依赖
 
@@ -63,20 +63,10 @@ layout: doc
 <dependency>
     <groupId>io.rest-assured</groupId>
     <artifactId>rest-assured</artifactId>
-    <exclusions>
-        <exclusion>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-json</artifactId>
-        </exclusion>
-        <exclusion>
-            <groupId>org.codehaus.groovy</groupId>
-            <artifactId>groovy-xml</artifactId>
-        </exclusion>
-    </exclusions>
+</dependency>
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>spring-web-test-client</artifactId>
 </dependency>
 ```
 
