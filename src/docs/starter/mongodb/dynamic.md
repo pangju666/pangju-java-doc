@@ -21,10 +21,14 @@ public class Application {
 }
 ```
 
-`DynamicMongoRepositoryFactoryBean`用于通过`@DynamicMongo`注解给不同数据源的`MongoRepository`接口注入`MongoTemplate`。
+> [!NOTE]
+> `DynamicMongoRepositoryFactoryBean`用于通过`@DynamicMongo`注解给不同数据源的`MongoRepository`接口注入`MongoTemplate`。
 
-如果你不想使用`SimpleBaseMongoRepository`作为`MongoRepository`的实现类，
-也需要在`EnableMongoRepositories`注解上配置`DynamicMongoRepositoryFactoryBean`来适配动态数据源。
+> [!IMPORTANT]
+> 如果你不想使用`SimpleBaseMongoRepository`作为`MongoRepository`的实现类，
+> 也需要在`EnableMongoRepositories`注解上配置`repositoryFactoryBeanClass = DynamicMongoRepositoryFactoryBean`来适配动态数据源。
+> 
+> 如果需要自定义其他配置，记得把`repositoryBaseClass = SimpleBaseMongoRepository.class`也加上。
 
 ## 注册的Bean
 `name`为数据源名称
