@@ -16,3 +16,6 @@ public class Application {
 	}
 }
 ```
+
+> [!IMPORTANT]
+> 如果需要自定义其他配置，记得把`repositoryBaseClass = SimpleBaseMongoRepository.class`加上。
