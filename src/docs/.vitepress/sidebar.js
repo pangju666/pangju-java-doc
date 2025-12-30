@@ -1,7 +1,7 @@
 export default [
     {
         text: '快速开始',
-        link: '/getting-started'
+        link: '/starter/getting-started#引入'
     },
     {
         text: '依赖管理',
