@@ -14,9 +14,6 @@ layout: doc
 | BigIntegerTypeAdapter    | 类型适配器 |   在 JSON 与 BigInteger 之间转换   |
 | DateTypeAdapter          | 类型适配器 |      在 JSON 与 Date 之间转换      |
 | InstantTypeAdapter       | 类型适配器 |    在 JSON 与 Instant 之间转换     |
-| LocalDateTimeTypeAdapter | 类型适配器 | 在 JSON 与 LocalDateTime 之间转换  |
-| LocalDateTypeAdapter     | 类型适配器 |   在 JSON 与 LocalDate 之间转换    |
-| LocalTimeTypeAdapter     | 类型适配器 |   在 JSON 与 LocalTime 之间转换    |
 | JsonUtils                | 工具类   | 解析\生成JSON字符串、JSON/Java对象互相转换 |
 
 ## 类型适配器
@@ -68,42 +65,6 @@ Gson gson = builder.create();
 
 gson.fromJson("1640995200000", Instant.class); // 2022-01-01 08:00:00
 gson.toJsonTree(Instant.now(), Instant.class); // 1761310267319
-```
-
-### LocalDate
-`io.github.pangju666.commons.lang.gson.type.LocalDateTypeAdapter`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter());
-Gson gson = builder.create();
-
-gson.toJsonTree(LocalDate.of(2022, 1, 1), LocalDate.class); // 2022-01-01
-gson.fromJson("1640995200000", LocalDate.class); // 2022-01-01
-gson.fromJson("\"2022-01-01\"", LocalDate.class); // 2022-01-01
-```
-
-### LocalDateTime
-`io.github.pangju666.commons.lang.gson.type.LocalDateTimeTypeAdapter`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, new LocalDateTimeTypeAdapter());
-Gson gson = builder.create();
-
-gson.toJsonTree(LocalDateTime.of(2022, 1, 1, 8, 0, 0), LocalDateTime.class); // 2022-01-01 08:00:00
-gson.fromJson("1640995200000", LocalDateTime.class); // 2022-01-01 08:00:00
-gson.fromJson("\"2022-01-01T00:00:00\"", LocalDateTime.class); // 2022-01-01 00:00:00
-```
-
-### LocalTime
-`io.github.pangju666.commons.lang.gson.type.LocalTimeTypeAdapter`
-
-```java
-GsonBuilder builder = new GsonBuilder().registerTypeAdapter(LocalTime.class, new LocalTimeTypeAdapter());
-Gson gson = builder.create();
-
-gson.toJsonTree(LocalTime.of(8, 0, 0), LocalTime.class); // 08:00:00
-gson.fromJson("1640995200000", LocalTime.class); // 00:00:00
-gson.fromJson("\"10:15:30\"", LocalTime.class); // 10:15:30
 ```
 
 ## 工具类
