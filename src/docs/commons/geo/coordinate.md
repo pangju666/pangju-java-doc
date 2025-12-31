@@ -44,13 +44,17 @@ coordinate.toString(); // 116°23'29.40"E,39°54'15.12"N
 ## 工具类
 `io.github.pangju666.commons.geo.utils.CoordinateUtils`
 
-| 方法名            | 返回值        |         用途          |
-|----------------|:-----------|:-------------------:|
-| toLatitudeDMS  | String     |   将十进制纬度转换为度分秒格式    |
-| toLongitudeDms | String     |   将十进制经度转换为度分秒格式    |
-| fromDMS        | BigDecimal |  将度分秒格式经纬度转换为十进制度   |
-| GCJ02ToWGS84   | Coordinate | GCJ-02坐标系转WGS-84坐标系 |
-| WGS84ToGCJ02   | Coordinate | WGS-84坐标系转GCJ-02坐标系 |
+| 方法名                | 返回值        |             用途              |
+|--------------------|:-----------|:---------------------------:|
+| toLatitudeDMS      | String     |       将十进制纬度转换为度分秒格式        |
+| toLongitudeDms     | String     |       将十进制经度转换为度分秒格式        |
+| fromDMS            | BigDecimal |      将度分秒格式经纬度转换为十进制度       |
+| GCJ02ToWGS84       | Coordinate |     GCJ-02坐标系转WGS-84坐标系     |
+| WGS84ToGCJ02       | Coordinate |     WGS-84坐标系转GCJ-02坐标系     |
+| calculateDistance  | double     |     计算两坐标间的大地线距离（单位：米）      |
+| calculatePerimeter | BigDecimal |    计算 WGS84 多边形的周长（单位：米）    |
+| calculateArea      | BigDecimal |   计算 WGS84 多边形的面积（单位：平方米）   |
+| isPointInPolygon   | boolean    | 判断给定点是否位于简单多边形内部或边界上（射线交叉法） |
 
 ### 格式化
 ```java
@@ -74,4 +78,49 @@ CoordinateUtils.GCJ02ToWGS84(new Coordinate(116.3915, 39.9042)); // 116.38525913
 
 ```java
 CoordinateUtils.WGS84ToGCJ02(new Coordinate(116.3915, 39.9042)); // 116.397740865,39.905601226
+```
+
+#### 计算两点间的距离
+```java
+Coordinate beijing = new Coordinate(116.4074, 39.9042);
+Coordinate shanghai = new Coordinate(121.4737, 31.2304);
+double distance = CoordinateUtils.calculateDistance(beijing, shanghai);
+```
+
+#### 计算多个点之间的周长
+```java
+List<Coordinate> coordinates = [
+	new Coordinate(0.0, 0.0),
+	new Coordinate(0.1, 0.0),
+	new Coordinate(0.1, 0.1),
+	new Coordinate(0.0, 0.1)
+];
+
+BigDecimal perimeter = CoordinateUtils.calculatePerimeter(coordinates);
+```
+
+#### 计算多个点之间的面积
+```java
+List<Coordinate> coordinates = [
+	new Coordinate(0.0, 0.0),
+	new Coordinate(0.1, 0.0),
+	new Coordinate(0.1, 0.1),
+	new Coordinate(0.0, 0.1)
+];
+
+BigDecimal perimeter = CoordinateUtils.calculateArea(coordinates);
+```
+
+#### 判断点是否位于内部或边界
+```java
+List<Coordinate> polygon = [
+	new Coordinate(179.5, 10.0),
+	new Coordinate(-179.5, 10.0),
+	new Coordinate(-179.5, 11.0),
+	new Coordinate(179.5, 11.0)
+];
+
+Coordinate point = new Coordinate(179.9, 10.5);
+
+CoordinateUtils.isPointInPolygon(point, polygon);		
 ```
