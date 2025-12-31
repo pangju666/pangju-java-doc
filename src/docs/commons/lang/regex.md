@@ -28,6 +28,89 @@ layout: doc
 ## 常量池
 `io.github.pangju666.commons.lang.pool.RegExPool`
 
+### 数字
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| NUMBER                     |            数字            |
+| POSITIVE_NUMBER            |            正数            |
+| FLOAT_NUMBER               |           浮点数            |
+| POSITIVE_FLOAT_NUMBER      |           正浮点数           |
+
+### 格式
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| MIME_TYPE                  |       文件Mime Type        |
+| IDENTIFIER                 |           标识符            |
+| MD5                        |           MD5            |
+| BANK_CARD                  |  银行卡号（10到30位, 覆盖对公/私账户）  |
+| FILENAME                   |           文件名称           |
+| FILENAME_WITHOUT_EXTENSION |        文件名称（无拓展名）        |
+
+### UUID
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| UUID                       |           UUID           |
+| UUID_SIMPLE                |        不带横线的UUID         |
+| JAVA_UUID                  |   Java版本的UUID（没有大写字母）    |
+| JAVA_UUID_SIMPLE           | Java版本的不带横线的UUID（没有大写字母） |
+
+### 进制
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| HEX                        |           16进制           |
+
+### 日期时间
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| DATE                       |     日期，YYYY-MM-DD格式      |
+| TIME_12                    |         十二小时制时间          |
+| TIME_24                    |         二十四小时制时间         |
+
+### 数字/金额
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| MONEY                      |    货币金额（支持负数、千分位分隔符）     |
+
+### 车辆/组织
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| VEHICLE_PLATE_NUMBER       |           车牌号码           |
+| VEHICLE_FRAME_NUMBER       |           车架号            |
+| VEHICLE_DRIVING_NUMBER     |           驾驶证            |
+| CREDIT_CODE                |         统一社会信用代码         |
+
+### 姓名/设备
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| CHINESE_NAME               |           中文姓名           |
+| PHONE_IMEI                 |         手机IMEI码          |
+
+### 路径/版本/媒体
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| LINUX_DIR_PATH             |        Linux目录路径         |
+| LINUX_FILE_PATH            |        Linux文件路径         |
+| WINDOWS_DIR_PATH           |       Windows目录路径        |
+| WINDOWS_FILE_PATH          |       Windows文件路径        |
+| IMAGE_URL                  |           图片链接           |
+| VIDEO_URL                  |           视频链接           |
+
+### 护照
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
+| PASSPORT                   |            护照            |
+
+### 基础字符
+
 | 常量名                        |            说明            |
 |----------------------------|:------------------------:|
 | HEX_COLOR                  |          十六进制颜色          |
@@ -37,55 +120,37 @@ layout: doc
 | CHINESE_CHARACTERS         |          多个中文汉字          |
 | SYMBOLS_CHARACTER          |            字符            |
 | SYMBOLS_CHARACTERS         |           多个字符           |
+
+### 网络地址
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
 | IPV4                       |           Ipv4           |
 | IPV6                       |           IPv6           |
-| MONEY                      |    货币金额（支持负数、千分位分隔符）     |
+| MAC                        |          MAC地址           |
+| NET_MASK                   |           子网掩码           |
+| DOMAIN                     |            域名            |
+
+### 通讯与身份
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
 | EMAIL                      |     邮件，符合RFC 5322规范      |
 | MOBILE_PHONE_STRONG        |         电话号码（强）          |
 | MOBILE_PHONE_WEAK          |         电话号码（弱）          |
 | TEL_PHONE                  |           座机号码           |
 | ID_CARD                    |          身份证号码           |
 | ZIP_CODE                   |         邮编，兼容港澳台         |
+
+### 链接与资源
+
+| 常量名                        |            说明            |
+|----------------------------|:------------------------:|
 | URI                        |           URI            |
 | URL                        |           URL            |
 | HTTP_URL                   |       Http、Https链接       |
 | FTP_URL                    |        Ftp、Ftps链接        |
 | FILE_URL                   |           文件链接           |
-| NUMBER                     |            数字            |
-| POSITIVE_NUMBER            |            正数            |
-| FLOAT_NUMBER               |           浮点数            |
-| POSITIVE_FLOAT_NUMBER      |           正浮点数           |
-| MIME_TYPE                  |       文件Mime Type        |
-| IDENTIFIER                 |           标识符            |
-| MD5                        |           MD5            |
-| BANK_CARD                  |  银行卡号（10到30位, 覆盖对公/私账户）  |
-| FILENAME                   |           文件名称           |
-| FILENAME_WITHOUT_EXTENSION |        文件名称（无拓展名）        |
-| UUID                       |           UUID           |
-| UUID_SIMPLE                |        不带横线的UUID         |
-| JAVA_UUID                  |   Java版本的UUID（没有大写字母）    |
-| JAVA_UUID_SIMPLE           | Java版本的不带横线的UUID（没有大写字母） |
-| MAC                        |          MAC地址           |
-| HEX                        |           16进制           |
-| DATE                       |     日期，YYYY-MM-DD格式      |
-| TIME_12                    |         十二小时制时间          |
-| TIME_24                    |         二十四小时制时间         |
-| VEHICLE_PLATE_NUMBER       |           车牌号码           |
-| CREDIT_CODE                |         统一社会信用代码         |
-| NET_MASK                   |           子网掩码           |
-| VEHICLE_FRAME_NUMBER       |           车架号            |
-| VEHICLE_DRIVING_NUMBER     |           驾驶证            |
-| CHINESE_NAME               |           中文姓名           |
-| PHONE_IMEI                 |         手机IMEI码          |
-| LINUX_DIR_PATH             |        Linux目录路径         |
-| LINUX_FILE_PATH            |        Linux文件路径         |
-| WINDOWS_DIR_PATH           |       Windows目录路径        |
-| WINDOWS_FILE_PATH          |       Windows文件路径        |
-| VERSION                    |           版本号            |
-| IMAGE_URL                  |           图片链接           |
-| VIDEO_URL                  |           视频链接           |
-| PASSPORT                   |            护照            |
-| DOMAIN                     |            域名            |
 
 ## 工具类
 `io.github.pangju666.commons.lang.utils.RegExUtils`

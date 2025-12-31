@@ -22,7 +22,7 @@ layout: doc
 | computeMemoryUsageSetting | MemoryUsageSetting   |     根据PDF文件大小获取最优内存处理策略     |
 | isPDF                     | boolean              |      验证指定文件是否为有效的PDF文档      |
 | createDocument            | PDDocument           |    创建新的PDF文档并完整复制源文档元数据     |
-| getDocument               | PDDocument           |        从文件系统加载PDF文档         |
+| getDocument               | PDDocument           |     从文件、字节数组或输入流加载PDF文档     |
 | addImage                  | void                 |         将图像添加到PDF文档         |
 | getPagesAsImage           | List\<BufferedImage> |     将PDF文档指定页面渲染为图像并返回      |
 | getPageAsImageWithDPI     | List\<BufferedImage> | 将PDF文档指定页面渲染为图像并返回(使用指定DPI) |
@@ -80,6 +80,14 @@ File file = new File("test.pdf");
 PDDocument document = PDDocumentUtils.getDocument(file);
 // 如果文档存在密码，需要传入密码
 PDDocument document = PDDocumentUtils.getDocument(file, "123456");
+
+PDDocument document = PDDocumentUtils.getDocument(FileUtils.readFileToByteArray(file));
+// 如果文档存在密码，需要传入密码
+PDDocument document = PDDocumentUtils.getDocument(FileUtils.readFileToByteArray(file), "123456");
+
+PDDocument document = PDDocumentUtils.getDocument((FileUtils.openInputStream(file));
+// 如果文档存在密码，需要传入密码
+PDDocument document = PDDocumentUtils.getDocument((FileUtils.openInputStream(file), "123456");
 ```
 
 ### 将图像添加到文档
