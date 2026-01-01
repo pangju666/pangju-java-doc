@@ -743,7 +743,9 @@ outagedetectioninterval=2
 ```xml
 <dependency>
     <groupId>org.spockframework</groupId>
-    <artifactId>spock-core</artifactId>
+    <artifactId>spock-bom</artifactId>
+    <type>pom</type>
+    <scope>import</scope>
 </dependency>
 ```
 
