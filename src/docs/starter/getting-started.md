@@ -5,7 +5,7 @@ layout: doc
 <script setup>
 const frameworkBootVersion = import.meta.env.VITE_FRAMEWORK_SPRING_BOOT_STARTER_VERSION;
 const springBootVersion = import.meta.env.VITE_SPRING_BOOT_VERSION;
-const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
+const frameworkVersion = import.meta.env.VITE_FRAMEWORK_VERSION;
 </script>
 
 # 简介
@@ -17,9 +17,9 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 
 \>= JDK 17
 
-## Pangju Dependencies 版本
+## Pangju Framework 版本
 
-{{ dependenciesVersion }}
+{{ frameworkVersion }}
 
 ## Spring Boot 版本
 
@@ -49,7 +49,7 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 | framework-starter-web-log           |              Web 日志模块               |
 
 ## 引入
-基于[Pangju Dependencies](/dependencies/getting-started)，可以像`Spring Boot Starter Parent`一样引入：
+基于`Spring Boot Starter Parent`，可以像`Spring Boot Starter Parent`一样引入：
 
 ```xml-vue
 <parent>
@@ -116,6 +116,61 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 </plugin>
 ```
 
+### Javadoc 插件
+
+#### 默认配置
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+    <configuration>
+        <doclint>none</doclint>
+    </configuration>
+    <executions>
+        <execution>
+            <id>attach-javadocs</id>
+            <goals>
+                <goal>jar</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+#### 用法示例
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-javadoc-plugin</artifactId>
+</plugin>
+```
+
+### 源码插件
+
+#### 默认配置
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>attach-sources</id>
+            <goals>
+                <goal>jar-no-fork</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+#### 用法示例
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-source-plugin</artifactId>
+</plugin>
+```
+
 ### Spring Boot 插件
 我排除了打包时对`lombok`的依赖
 
@@ -160,9 +215,6 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
             </goals>
         </execution>
     </executions>
-    <configuration>
-        <skipTests>true</skipTests>
-    </configuration>
 </plugin>
 ```
 
@@ -180,8 +232,8 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
 </build>
 ```
 
-### Smart Doc 插件
-我增加了配置文件路径，具体的插件说明请参考：[传送门](/dependencies/plugin-management#smart-doc-接口文档插件)
+### [Smart Doc 接口文档插件](https://smart-doc-group.github.io/zh/guide/getting-started)
+`Smart Doc` 是一个用于生成 API 文档的工具，特别适合与 Java 项目集成，尤其是基于 Spring Boot 的应用。它能够自动生成 RESTful API 文档，并支持多种输出格式（如 Markdown、HTML 和 Postman Collection）。`smart-doc` 的主要优势在于其简洁性、灵活性和对代码注释的高度依赖，通过解析代码中的注释来生成文档，减少了手动编写文档的工作量。
 
 #### 默认配置
 ```xml
@@ -209,5 +261,36 @@ const dependenciesVersion = import.meta.env.VITE_DEPENDENCIES_VERSION;
             <!--<include>org.springframework.data:spring-data-commons</include>-->
         </includes>
     </configuration>
+</plugin>
+```
+
+### GPG 插件
+主要是用来在打包时生成签名摘要防止篡改的。
+
+#### 默认配置
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <executions>
+        <execution>
+            <id>sign-artifacts</id>
+            <phase>verify</phase>
+            <goals>
+                <goal>sign</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+#### 用法示例
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-gpg-plugin</artifactId>
+    <!--<configuration>
+        <skip>true</skip>
+    </configuration>-->
 </plugin>
 ```
