@@ -28,9 +28,6 @@ KeyPairUtils.generateKeyPair(CryptoConstants.RSA_ALGORITHM);
 
 // 生成长度为2048的密钥对
 KeyPairUtils.generateKeyPair(CryptoConstants.RSA_ALGORITHM, 2048);
-
-// 指定随机数生成器并生成长度为2048的密钥对
-KeyPairUtils.generateKeyPair(CryptoConstants.RSA_ALGORITHM, 2048, new SecureRandom());
 ```
 
 ### 解析PKCS#8格式私钥
