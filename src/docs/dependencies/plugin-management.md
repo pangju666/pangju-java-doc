@@ -96,6 +96,10 @@ layout: doc
             </goals>
         </execution>
     </executions>
+    <!-- 编译时跳过测试（看情况加吧，如果只是自己做测试的话可以加上，避免编译失败）-->
+    <configuration>
+        <skipTests>true</skipTests>
+    </configuration>
 </plugin>
 ```
 评价：我主要用来跑spock测试
