@@ -282,24 +282,6 @@ zero-allocation-hashing 是一个 高性能、无垃圾回收（GC-free）、零
 ```
 评价：只支持docx，如果可以把输出文档抽象成模板，那么用它渲染总是没错的，比poi方便太多
 
-### [poi-tl-plugin-highlight](https://deepoove.com/poi-tl/#plugin-highlight)
-HighlightRenderPolicy 插件对Word代码块进行高亮展示。
-```xml
-<dependency>
-    <groupId>com.deepoove</groupId>
-    <artifactId>poi-tl-plugin-highlight</artifactId>
-</dependency>
-```
-
-### [poi-tl-plugin-markdown](https://deepoove.com/poi-tl/#plugin-markdown)
-MarkdownRenderPolicy 插件支持通过Markdown生成word文档。
-```xml
-<dependency>
-    <groupId>com.deepoove</groupId>
-    <artifactId>poi-tl-plugin-markdown</artifactId>
-</dependency>
-```
-
 ### [fastexcel](https://idev.cn/fastexcel/zh-CN/docs)
 **FastExcel** 是一个用于快速读取和写入 Excel 文件的 Java 库。它旨在提供比 Apache POI 更快的性能，特别是在处理大型 Excel 文件时。FastExcel 通过减少内存占用和优化数据处理流程来实现高效的数据操作。它支持 Excel 的多种格式（如 XLSX），并且提供了简洁易用的 API。
 ```xml
@@ -707,7 +689,7 @@ outagedetectioninterval=2
 评价：主要用来在开发和测试环境打印**SQL**用的，挺方便的，比**mybatis**的日志强多了
 
 ### [spring-vault](https://projects.spring.io/spring-vault/spring-vault-core/)
-`Spring Vault Core` 是 Spring 提供的一个库，用于简化与 HashiCorp Vault 的集成。HashiCorp Vault 是一个用于安全访问秘密（如 API 密钥、密码、证书等）的工具，它提供了统一的接口来管理、存储和访问这些敏感信息。通过使用 Spring Vault，开发者可以在 Spring 应用中方便地与 Vault 进行交互，并安全地获取和使用敏感数据。
+`Spring Vault Core` 是 Spring 提供的一个库，用于简化与 HashiCorp Vault 的集成。HashiCorp Vault 是一个用于安全访问敏感数据（如 API 密钥、密码、证书等）的工具，它提供了统一的接口来管理、存储和访问这些敏感信息。通过使用 Spring Vault，开发者可以在 Spring 应用中方便地与 Vault 进行交互，并安全地获取和使用敏感数据。
 ```xml
 <dependency>
     <groupId>org.springframework.vault</groupId>

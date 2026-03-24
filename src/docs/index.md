@@ -15,7 +15,7 @@ hero:
 
 features:
   - title: 依赖管理
-    details: 基于spring-boot-starter-parent，包含了常用的各种库的依赖管理和插件管理
+    details: 基于spring-boot-dependencies，包含了常用的各种库的依赖管理和插件管理
   - title: 工具库
     details: 基于Apache Commons、jasypt、twelvemonkeys、poi-tl等工具库，包含了基础、文件压缩、加解密、地理信息、图像、IO、PDF、OFFICE、Jakarta参数校验用途的工具类
   - title: 框架

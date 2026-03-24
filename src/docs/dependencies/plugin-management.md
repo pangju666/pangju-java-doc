@@ -4,7 +4,7 @@ layout: doc
 
 # 插件管理
 
-## [编译插件](https://maven.apache.org/plugins/maven-compiler-plugin/usage.html)
+## [Java 编译插件](https://maven.apache.org/plugins/maven-compiler-plugin/usage.html)
 
 ### 默认配置
 ```xml
