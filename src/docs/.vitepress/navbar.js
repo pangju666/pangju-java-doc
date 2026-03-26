@@ -1,23 +1,15 @@
 export default [
     {
-        text: '指南',
+        text: '版本',
         items: [
             {
-                text: '依赖管理',
-                link: '/dependencies/getting-started',
+                text: 'v1',
+                link: '/v1/starter/getting-started.html',
             },
             {
-                text: '工具库',
-                link: '/commons/getting-started',
+                text: 'v2',
+                link: '/v2/starter/getting-started.html',
             },
-            {
-                text: '框架',
-                link: '/framework/getting-started',
-            },
-            {
-                text: 'Starter',
-                link: '/starter/getting-started',
-            }
         ]
     },
     {

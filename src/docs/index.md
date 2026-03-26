@@ -4,14 +4,17 @@ layout: home
 
 hero:
   name: Pangju Java
-  text: Java 项目开发辅助工具
+  text: Java 项目开发辅助
   tagline: 简化项目开发，统一开发规范，写的一般，多多包涵
   image:
     src: /logo.jpg
   actions:
     - theme: brand
-      text: 快速开始
-      link: /starter/getting-started#引入
+      text: 快速开始（v1，适用于 Spring Boot 3.x）
+      link: /v1/starter/getting-started#引入
+    - theme: brand
+      text: 快速开始（v2，适用于 Spring Boot 4.x）
+      link: /v2/starter/getting-started#引入
 
 features:
   - title: 依赖管理

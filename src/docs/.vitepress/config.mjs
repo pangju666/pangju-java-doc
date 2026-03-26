@@ -10,7 +10,7 @@ dotenv.config({ path: path.resolve('.env') })
 export default defineConfig({
     lang: "zh-CN",
     title: "Pangju Java",
-    base: '/pangju-java-doc/',
+    base: '/pangju-java-doc',
     outDir: "../../docs",
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
@@ -51,7 +51,7 @@ export default defineConfig({
         },
         footer: {
             message: '基于 Apache 许可发布',
-            copyright: '版权所有 © 2025-至今 pangju666'
+            copyright: '版权所有 © 2026-至今 pangju666'
         }
     }
 })

@@ -1,0 +1,36 @@
+---
+layout: doc
+---
+
+# MongoDB
+
+## 概述
+这个模块我集成了[`Pangju Framework Starter Spring`](/v2/starter/spring/introduction)、`spring-boot-starter-data-mongodb`和[`Pangju Framework Data MongoDB`](/v2/framework/mongodb/introduction)。
+
+## 依赖
+
+```xml
+<dependency>
+    <groupId>io.github.pangju666.framework.boot</groupId>
+    <artifactId>framework-starter-spring</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>io.github.pangju666.framework</groupId>
+    <artifactId>framework-data-mongodb</artifactId>
+</dependency>
+```
+
+## 引入
+```xml
+<dependency>
+    <dependency>
+        <groupId>io.github.pangju666.framework.boot</groupId>
+		<artifactId>framework-starter-data-mongodb</artifactId>
+    </dependency>
+</dependency>
+```
