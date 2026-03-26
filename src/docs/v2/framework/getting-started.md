@@ -19,13 +19,13 @@ const springFrameworkVersion = import.meta.env.VITE_V2_SPRING_FRAMEWORK_VERSION;
 {{ springFrameworkVersion }}
 
 ## 模块列表
-| 模块                                                  |                  介绍                  |
-|-----------------------------------------------------|:------------------------------------:|
-| [mongodb](/v2/framework/mongodb/introduction)       |   MongoDB模块，基于spring-data-mongodb    |
-| [mybatis-plus](/v2//framework/mybatisplus/introduction) | Mybatis Plus模块，基于mybatis-plus-spring |
-| [redis](/v2//framework/redis/introduction)              |     Redis模块，基于spring-data-redis      |
-| [spring](/v2//framework/spring/introduction)            |      Spring模块，基于spring-context       |
-| [web](/v2//framework/web/introduction)                  |        Web模块，基于spring-webmvc         |
+| 模块                                                     |                  介绍                  |
+|--------------------------------------------------------|:------------------------------------:|
+| [mongodb](/v2/framework/mongodb/introduction)          |   MongoDB模块，基于spring-data-mongodb    |
+| [mybatis-plus](/v2/framework/mybatisplus/introduction) | Mybatis Plus模块，基于mybatis-plus-spring |
+| [redis](/v2/framework/redis/introduction)              |     Redis模块，基于spring-data-redis      |
+| [spring](/v2/framework/spring/introduction)            |      Spring模块，基于spring-context       |
+| [web](/v2/framework/web/introduction)                  |        Web模块，基于spring-webmvc         |
 
 ## 引入
 
