@@ -2,17 +2,21 @@
 layout: doc
 ---
 
-# JSON 加/解密
+# Jackson 加/解密
 
 ## 概述
-这个模块我集成了[`Pangju Starter JSON`](/v2/starter/json/introduction)和[`Pangju Starter Crypto`](/v2/starter/crypto/introduction)。
+这个模块我集成了[`Pangju Framework Starter Spring`](/v2/starter/spring/introduction)、[`Pangju Framework Starter Jackson`](/v2/starter/json/introduction)和[`Pangju Framework Starter Crypto`](/v2/starter/crypto/introduction)。
 
 ## 依赖
 
 ```xml
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-starter-json</artifactId>
+    <artifactId>framework-starter-spring</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.github.pangju666.framework.boot</groupId>
+    <artifactId>framework-starter-jackson</artifactId>
 </dependency>
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
@@ -25,7 +29,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-starter-json-crypto</artifactId>
+		<artifactId>framework-starter-jackson-crypto</artifactId>
     </dependency>
 </dependency>
 ```

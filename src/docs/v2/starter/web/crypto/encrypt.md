@@ -9,7 +9,7 @@ layout: doc
 支持对`String`、`byte[]`和`JSON`类型的响应体进行加密，加密失败则抛出[`ServerException`](/v2/framework/web/exception#服务器内部异常)。
 
 ### 注解
-`io.github.pangju666.framework.boot.web.annotation.EncryptResponseBody`
+`io.github.pangju666.framework.boot.web.crypto.annotation.EncryptResponseBody`
 
 > [!IMPORTANT]
 > 注解的`key`属性支持`SpEl`表达式，如：

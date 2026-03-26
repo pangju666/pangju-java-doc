@@ -2,10 +2,10 @@
 layout: doc
 ---
 
-# Web 加密
+# Web 校验
 
 ## 概述
-这个模块我集成了[`Pangju Framework Starter Web`](/v2/starter/web/introduction)和[`Pangju Framework Starter Jackson Crypto`](/v2/starter/json/crypto/introduction)。
+这个模块我集成了[`Pangju Framework Starter Web`](/v2/starter/web/introduction)和`commons-codec`。
 
 ## 依赖
 
@@ -16,8 +16,8 @@ layout: doc
 </dependency>
 
 <dependency>
-    <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-starter-jackson-crypto</artifactId>
+    <groupId>commons-codec</groupId>
+    <artifactId>commons-codec</artifactId>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-starter-web-crypto</artifactId>
+		<artifactId>framework-starter-web-signature</artifactId>
     </dependency>
 </dependency>
 ```

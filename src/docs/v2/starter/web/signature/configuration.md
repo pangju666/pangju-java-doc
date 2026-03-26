@@ -53,7 +53,7 @@ appId&secretKey&http%3a%2f%2f127.0.0.1%2fapi%2ftest%3fusername%3dtest_user
 appId&secretKey&http://127.0.0.1/api/test?username=test_user
 
 ## 注解
-`io.github.pangju666.framework.boot.web.annotation.Signature`
+`io.github.pangju666.framework.boot.web.signature.annotation.Signature`
 
 ### 属性
 - appId: 指定支持的应用 ID 列表，默认为空列表（请求中应用 ID 必须与此处配置的 appId 匹配，为空则不校验）。
@@ -66,7 +66,7 @@ appId&secretKey&http://127.0.0.1/api/test?username=test_user
 - timeUnit：超时时间单位，默认为分钟（指定 timeout 的时间单位）。
 
 ## 签名算法
-`io.github.pangju666.framework.boot.web.enums.SignatureAlgorithm`
+`io.github.pangju666.framework.boot.web.signature.enums.SignatureAlgorithm`
 
 | 枚举值    |                   说明                    |                          
 |--------|:---------------------------------------:|
@@ -86,7 +86,7 @@ public interface SecretKeyStorer {
 ```
 
 ### 默认实现
-`io.github.pangju666.framework.boot.web.signature.impl.DefaultSecretKeyStorer`
+`io.github.pangju666.framework.boot.web.signature.DefaultSecretKeyStorer`
 
 从`Map`中读取应用ID和密钥
 

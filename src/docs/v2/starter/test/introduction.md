@@ -45,7 +45,7 @@ layout: doc
 基于`groovy`的一个测试框架，我现在写测试用的都是这个。
 
 ### 概述
-这个模块我集成了`framework-starter-test`、`spock-spring`和`rest-assured`。
+这个模块我集成了`framework-starter-test`和`spock-spring`。
 
 ### 依赖
 
@@ -59,14 +59,6 @@ layout: doc
 <dependency>
     <groupId>org.spockframework</groupId>
     <artifactId>spock-spring</artifactId>
-</dependency>
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>rest-assured</artifactId>
-</dependency>
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>spring-web-test-client</artifactId>
 </dependency>
 ```
 

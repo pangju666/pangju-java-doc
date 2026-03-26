@@ -4,6 +4,10 @@ layout: doc
 
 # 更新记录
 
+## 1.2.0（2026-3-26）
+
+- chore: 修改父级为spring-boot-dependencies 3.5.12
+
 ## 1.1.0（2026-3-24）
 
 - 修改父级为spring-boot-dependencies 3.5.11
@@ -60,5 +64,3 @@ layout: doc
 - 去除expiringmap
 - 去除poi-tl-plugin-highlight
 - 去除poi-tl-plugin-markdown
-
- 202

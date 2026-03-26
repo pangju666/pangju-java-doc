@@ -5,7 +5,7 @@ layout: doc
 # Mybatis Plus
 
 ## 概述
-这个模块我集成了`spring-boot-starter`、`mybatis-plus-spring-boot3-starter`、`mybatis-plus-jsqlparser`和[`Pangju Framework Data Mybatis Plus`](/v2/framework/mybatisplus/introduction)。
+这个模块我集成了`spring-boot-starter`、`mybatis-plus-spring-boot4-starter`、`mybatis-plus-jsqlparser`和[`Pangju Framework Data Mybatis Plus`](/v2/framework/mybatisplus/introduction)。
 
 ## 依赖
 
@@ -16,7 +16,7 @@ layout: doc
 </dependency>
 <dependency>
     <groupId>com.baomidou</groupId>
-    <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+    <artifactId>mybatis-plus-spring-boot4-starter</artifactId>
 </dependency>
 
 <dependency>

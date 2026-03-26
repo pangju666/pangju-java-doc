@@ -5,7 +5,7 @@ layout: doc
 # 图像
 
 ## 概述
-这个模块我集成了`spring-boot-starter`、`tika-parser-image-module`和[`Pangju Commons Image`](/v2/commons/image/introduction)。
+这个模块我集成了`spring-boot-starter`、[`Pangju Commons Lang`](/v2/commons/lang/introduction)、[`Pangju Commons Image`](/v2/commons/image/introduction)和`tika-parser-image-module`。
 
 ## 依赖
 
@@ -15,6 +15,10 @@ layout: doc
     <artifactId>spring-boot-starter</artifactId>
 </dependency>
 
+<dependency>
+    <groupId>io.github.pangju666.commons</groupId>
+    <artifactId>commons-lang</artifactId>
+</dependency>
 <dependency>
     <groupId>io.github.pangju666.commons</groupId>
     <artifactId>commons-image</artifactId>

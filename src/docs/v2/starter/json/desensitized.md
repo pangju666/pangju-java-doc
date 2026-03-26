@@ -73,7 +73,7 @@ public class TestVO {
 ### 手动序列化
 ```java
 // 注入获取
-ObjectMapper objectMapper;
+JsonMapper objectMapper;
 
 TestVO testVO = new TestVO();
 testVO.setName("东方不败");

@@ -2,26 +2,27 @@
 layout: doc
 ---
 
-# MongoDB
+# Web
 
 ## 概述
-这个模块我集成了[`Pangju Framework Starter Spring`](/v2/starter/spring/introduction)、`spring-boot-starter-data-redis`和[`Pangju Framework Data Redis`](/v2/framework/redis/introduction)。
+这个模块我集成了`spring-boot-starter-restclient`、[`Pangju Framework Starter Jackson`](/v2/starter/json/introduction)和[`Pangju Framework Web`](/v2/framework/web/introduction)。
 
 ## 依赖
 
 ```xml
 <dependency>
     <groupId>io.github.pangju666.framework.boot</groupId>
-    <artifactId>framework-starter-spring</artifactId>
+    <artifactId>framework-starter-jackson</artifactId>
 </dependency>
+
 <dependency>
     <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-data-redis</artifactId>
+    <artifactId>spring-boot-starter-restclient</artifactId>
 </dependency>
 
 <dependency>
     <groupId>io.github.pangju666.framework</groupId>
-    <artifactId>framework-data-redis</artifactId>
+    <artifactId>framework-web</artifactId>
 </dependency>
 ```
 
@@ -30,7 +31,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-starter-data-redis</artifactId>
+		<artifactId>framework-starter-restclient</artifactId>
     </dependency>
 </dependency>
 ```

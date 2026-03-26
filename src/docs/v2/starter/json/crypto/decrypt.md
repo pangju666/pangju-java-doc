@@ -81,7 +81,7 @@ public class TestCryptoDTO {
 ### 手动序列化
 ```java
 // 注入获取
-ObjectMapper objectMapper;
+JsonMapper objectMapper;
 
 String json = """
 		{

@@ -599,7 +599,7 @@ export default {
                     ]
                 },
                 {
-                    text: 'JSON',
+                    text: 'Jackson',
                     collapsed: true,
                     items: [
                         {text: '概述', link: '/v2/starter/json/introduction'},
@@ -658,6 +658,14 @@ export default {
                     ]
                 },
                 {
+                    text: 'Rest 客户端',
+                    collapsed: true,
+                    items: [
+                        {text: '概述', link: '/v2/starter/restclient/introduction'},
+                        {text: '自动装配', link: '/v2/starter/restclient/configuration'},
+                    ]
+                },
+                {
                     text: 'Web',
                     collapsed: true,
                     items: [
@@ -676,12 +684,19 @@ export default {
                             ]
                         },
                         {
-                            text: '校验',
+                            text: '限流',
                             collapsed: true,
                             items: [
-                                {text: '概述', link: '/v2/starter/web/validation/introduction'},
-                                {text: '接口签名', link: '/v2/starter/web/validation/signature'},
-                                {text: '接口限流', link: '/v2/starter/web/validation/limit'},
+                                {text: '概述', link: '/v2/starter/web/limit/introduction'},
+                                {text: '接口限流', link: '/v2/starter/web/limit/configuration'},
+                            ]
+                        },
+                        {
+                            text: '接口签名',
+                            collapsed: true,
+                            items: [
+                                {text: '概述', link: '/v2/starter/web/signature/introduction'},
+                                {text: '接口签名', link: '/v2/starter/web/signature/configuration'},
                             ]
                         },
                         {
@@ -690,7 +705,6 @@ export default {
                             items: [
                                 {text: '概述', link: '/v2/starter/web/log/introduction'},
                                 {text: '自动装配', link: '/v2/starter/web/log/configuration'},
-                                {text: '数据结构', link: '/v2/starter/web/log/data'},
                             ]
                         },
                     ]

@@ -10,7 +10,7 @@ const frameworkVersion = import.meta.env.VITE_V2_FRAMEWORK_VERSION;
 
 # 简介
 
-基于`Pangju Framework`开发的`Spring Boot`自动装配，主要包含并发、加密、`MongoDB`、`Redis`、`Mybatis Plus`、`jackson`、图像、
+基于`Pangju Framework`开发的`Spring Boot`自动装配，主要包含并发、加解密、`MongoDB`、`Redis`、`Mybatis Plus`、`Jackson`、图像、
 `Web`和测试几个方面
 
 ## 使用要求
@@ -32,21 +32,23 @@ const frameworkVersion = import.meta.env.VITE_V2_FRAMEWORK_VERSION;
 | 模块                                  |                 介绍                  |
 |-------------------------------------|:-----------------------------------:|
 | framework-starter-parent            | 父级模块，对标`spring-boot-starter-parent` |
-| framework-starter                   |             `Spring`模块              |
-| framework-starter-crypto            |                加密模块                 |
-| framework-starter-json              |               JSON模块                |
-| framework-starter-json-crypto       |              JSON加密模块               |
-| framework-starter-image             |                图像模块                 |
-| framework-starter-validation        |                校验模块                 |
+| framework-starter-spring            |             `Spring`模块              |
+| framework-starter-crypto            |               `加解密`模块               |
+| framework-starter-jackson           |             `Jackson`模块             |
+| framework-starter-jackson-crypto    |           `Jackson`加解密模块            |
+| framework-starter-image             |               `图像`模块                |
+| framework-starter-validation        |               `校验`模块                |
 | framework-starter-data-mybatis-plus |          `Mybatis Plus`模块           |
-| framework-starter-data-mongodb      |              MongoDB模块              |
-| framework-starter-data-redis        |              Redis 模块               |
-| framework-starter-test              |                测试模块                 |
-| framework-starter-test-spock        |             Spock框架测试模块             |
-| framework-starter-web               |               Web 模块                |
-| framework-starter-web-crypto        |              Web 加密模块               |
-| framework-starter-web-validation    |              Web 校验模块               |
-| framework-starter-web-log           |              Web 日志模块               |
+| framework-starter-data-mongodb      |             `MongoDB`模块             |
+| framework-starter-data-redis        |              `Redis`模块              |
+| framework-starter-test              |               `测试`模块                |
+| framework-starter-test-spock        |           `Spock`测试框架集成模块           |
+| framework-starter-restclient        |             `Rest`客户端模块             |
+| framework-starter-web               |               `Web`模块               |
+| framework-starter-web-crypto        |             `Web`加解密模块              |
+| framework-starter-web-limit         |              `Web`限流模块              |
+| framework-starter-web-signature     |             `Web`签名校验模块             |
+| framework-starter-web-log           |              `Web`日志模块              |
 
 ## 引入
 基于`Spring Boot Starter Parent`，可以像`Spring Boot Starter Parent`一样引入：

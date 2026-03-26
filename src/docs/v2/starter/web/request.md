@@ -43,7 +43,7 @@ public class UserController {
 对于枚举类型，我做了对应的注解来处理。
 
 ### 注解
-`io.github.pangju666.framework.boot.web.EnumRequestParam`
+`io.github.pangju666.framework.boot.web.annotation.EnumRequestParam`
 
 ### 属性
 - value: 请求参数的名称（指定HTTP请求中参数的名称。如果不指定或为空字符串，则默认使用方法参数的名称）。

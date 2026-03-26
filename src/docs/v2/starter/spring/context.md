@@ -21,7 +21,6 @@ layout: doc
 | getContext     | ApplicationContext |         获取Spring应用上下文          |
 | getEnvironment | Environment        |          获取Spring环境配置          |
 | getBeanFactory | BeanFactory        |        获取Spring Bean工厂         |
-| getProperty    | String             | 获取配置属性值（支持${property}格式的属性名解析） |
 
 ## 用法
 ```java

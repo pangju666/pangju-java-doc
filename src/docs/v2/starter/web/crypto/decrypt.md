@@ -12,7 +12,7 @@ layout: doc
 > 传递JSON请求体密文时，需要将请求体的`Content-Type`设置为`application/json`，否则`Spring`会将其视作字符串类型请求体。
 
 ### 注解
-`io.github.pangju666.framework.boot.web.annotation.DecryptRequestBody`
+`io.github.pangju666.framework.boot.web.crypto.annotation.DecryptRequestBody`
 
 #### 属性
 - key: 明文密钥或占位符，支持两种形式：
@@ -77,7 +77,7 @@ public class DemoController {
 支持对`String`类型请求参数进行解密，解密/解码失败则抛出[`RequestDataDecryptFailureException`](/v2/starter/web/crypto/decrypt#异常)。
 
 ### 注解
-`io.github.pangju666.framework.boot.web.annotation.EncryptRequestParam`
+`io.github.pangju666.framework.boot.web.crypto.annotation.EncryptRequestParam`
 
 #### 属性
 - value: 请求参数的名称（指定HTTP请求中参数的名称。如果不指定或为空字符串，则默认使用方法参数的名称）。
@@ -129,7 +129,7 @@ public class DemoController {
 ```
 
 ## 解密异常
-`io.github.pangju666.framework.boot.web.exception.RequestDataDecryptFailureException`
+`io.github.pangju666.framework.boot.web.crypto.exception.RequestDataDecryptFailureException`
 
 用于标识请求参数或请求体在解密过程中发生的校验类错误。
 

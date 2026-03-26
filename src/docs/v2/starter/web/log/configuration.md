@@ -62,7 +62,7 @@ public UserVO test3(@RequestBody UserVO userVO) {
 ```
 
 ## 日志结构
-`io.github.pangju666.framework.boot.web.log.model.WebLog`
+`io.github.pangju666.framework.boot.web.log.WebLog`
 
 ```json
 {

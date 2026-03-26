@@ -33,7 +33,7 @@ pangju:
 ```
 
 ## 注解
-`io.github.pangju666.framework.boot.web.annotation.RateLimit`
+`io.github.pangju666.framework.boot.web.limit.annotation.RateLimit`
 
 ### 属性
 - key: 限流的业务键 ID 列表，默认为 请求URL+请求方法（用于标识一个特定的限流规则。同一个键会共享限流计数，不同的键维护独立的限流计数）。
@@ -108,7 +108,7 @@ public class BeanConfig {
 ```
 
 ## 限流异常
-`io.github.pangju666.framework.boot.web.exception.RateLimitException`
+`io.github.pangju666.framework.boot.web.limit.exception.RateLimitException`
 
 当请求超过设定的限流阈值时抛出该异常。
 

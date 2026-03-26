@@ -36,43 +36,44 @@ public class Application {
 > [!NOTE]
 > 各个类型的`Bean`注册逻辑与`Spring`一致。
 
-| Bean 类型                |           Bean 名称            |       说明       |
-|------------------------|:----------------------------:|:--------------:|
-| MongoConnectionDetails | {name}MongoConnectionDetails |  MongoDB 连接详情  |
-| MongoClientSettings    |  {name}MongoClientSettings   | MongoDB 客户端设置  |
-| MongoMappingContext    |  {name}MongoMappingContext   | MongoDB 映射上下文  |
-| MongoClient            |      {name}MongoClient       |  MongoDB 客户端   |
-| MongoDatabaseFactory   |  {name}MongoDatabaseFactory  | MongoDB 数据库工厂  |
-| MongoConverter         |     {name}MongoConverter     | MongoDB 类型转换器  |
-| MongoTemplate          |     {name}MongoTemplate      | MongoTemplate  |
-| GridFsTemplate         |     {name}GridFsTemplate     | GridFsTemplate |
+| Bean 类型                |           Bean 名称            |       说明        |
+|------------------------|:----------------------------:|:---------------:|
+| MongoConnectionDetails | {name}MongoConnectionDetails |  MongoDB 连接详情   |
+| MongoCustomConversions | {name}MongoCustomConversions | MongoDB 自定义类型转换 |
+| MongoMappingContext    |  {name}MongoMappingContext   |  MongoDB 映射上下文  |
+| MongoClient            |      {name}MongoClient       |   MongoDB 客户端   |
+| MongoDatabaseFactory   |  {name}MongoDatabaseFactory  |  MongoDB 数据库工厂  |
+| MappingMongoConverter  | {name}MappingMongoConverter  |  MongoDB 类型转换器  |
+| MongoTemplate          |     {name}MongoTemplate      |  MongoTemplate  |
+| GridFsTemplate         |     {name}GridFsTemplate     | GridFsTemplate  |
 
 ## 配置
 数据源的配置，我直接使用了`spring`的配置。
 
 ```yaml
 spring:
-  data:
-    mongodb:
-      dynamic:
-        primary: test1
-        databases:
-          test1:
-            host: 192.168.0.100
-            port: 27017
-            database: test1
-          test2:
-            host: 192.168.0.100
-            port: 27017
-            database: test2
-          test3:
-              host: 192.168.0.100
-              port: 27018
-              database: test
-          test4:
-              host: 192.168.0.101
-              port: 27017
-              database: test
+  mongodb:
+    dynamic:
+      primary: test1
+      databases:
+        test1: # org.springframework.boot.mongodb.autoconfigure.MongoProperties
+          host: 192.168.0.100
+          port: 27017
+          database: test1
+          data: # org.springframework.boot.data.mongodb.autoconfigure.DataMongoProperties
+            # ...
+        test2:
+          host: 192.168.0.100
+          port: 27017
+          database: test2
+        test3:
+          host: 192.168.0.100
+          port: 27018
+          database: test
+        test4:
+          host: 192.168.0.101
+          port: 27017
+          database: test
 ```
 
 ## 使用示例

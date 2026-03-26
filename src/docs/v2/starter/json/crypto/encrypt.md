@@ -76,7 +76,7 @@ public class TestCryptoVO {
 ### 手动序列化
 ```java
 // 注入获取
-ObjectMapper objectMapper;
+JsonMapper objectMapper;
 
 TestCryptoVO cryptoVO = new TestCryptoVO();
 cryptoVO.setContent("测试内容");

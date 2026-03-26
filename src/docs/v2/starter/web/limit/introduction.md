@@ -5,7 +5,7 @@ layout: doc
 # Web 校验
 
 ## 概述
-这个模块我集成了[`Pangju Starter Spring`](/v2/starter/spring/introduction)、[`Pangju Starter Web`](/v2/starter/web/introduction)和`resilience4j-ratelimiter`。
+这个模块我集成了[`Pangju Framework Starter Spring`](/v2/starter/spring/introduction)、[`Pangju Framework Starter Web`](/v2/starter/web/introduction)和`resilience4j-ratelimiter`。
 
 ## 依赖
 
@@ -30,7 +30,7 @@ layout: doc
 <dependency>
     <dependency>
         <groupId>io.github.pangju666.framework.boot</groupId>
-		<artifactId>framework-starter-web-validation</artifactId>
+		<artifactId>framework-starter-web-limit</artifactId>
     </dependency>
 </dependency>
 ```
