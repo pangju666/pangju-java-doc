@@ -10,10 +10,10 @@ hero:
     src: /logo.jpg
   actions:
     - theme: brand
-      text: 快速开始（v1，基于 spring-boot-dependencies 3.x）
+      text: 快速开始（v1，适用于 Spring Boot 3.x）
       link: /v1/starter/getting-started#引入
     - theme: brand
-      text: 快速开始（v2，基于 spring-boot-dependencies 4.x）
+      text: 快速开始（v2，适用于 Spring Boot 4.x）
       link: /v2/starter/getting-started#引入
 
 features:
