@@ -182,8 +182,8 @@ ResponseEntity<Void> response2 = RestRequestBuilder.fromUriString(restClient, "h
 ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1")
 		.method(HttpMethod.GET)
 		.path("/user")
-		.headers(MultiValueMap.of(HttpHeaders.AUTHORIZATION, "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 
-				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE))
+		.headers(new HttpHeaders(MultiValueMap.of(HttpHeaders.AUTHORIZATION, "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", 
+				HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)))
 		.toBodilessEntity();
 		
 // http://xxxxx/api/v1/user
@@ -227,7 +227,7 @@ ResponseEntity<Void> response3 = RestRequestBuilder.fromUriString(restClient, "h
 ```
 
 #### application/json
-依赖于`org.springframework.http.converter.json.MappingJackson2HttpMessageConverter`Http消息处理器
+默认依赖于`org.springframework.http.converter.json.JacksonJsonHttpMessageConverter`Http消息处理器
 
 ```java
 RestClient restClient = RestClient.builder().build();
@@ -563,7 +563,7 @@ String str2 = RestRequestBuilder.fromUriString(restClient, "http://xxxxx/api/v1"
 ```
 
 #### 返回Java对象
-依赖于`org.springframework.http.converter.json.MappingJackson2HttpMessageConverter`Http消息处理器
+默认依赖于`org.springframework.http.converter.json.JacksonJsonHttpMessageConverter`Http消息处理器
 
 ```java
 RestClient restClient = RestClient.builder().build();
@@ -633,7 +633,7 @@ ResponseEntity<String> responseEntity = RestRequestBuilder.fromUriString(restCli
 > 
 > 建议将拦截器的排序设置第1位。
 
-默认会将`application/json`和`application/json;charset=UTF-8`类型的响应内容进行缓存，当然也可以自行设置要缓存的类型。
+默认会将`application/json`类型的响应内容进行缓存，当然也可以自行设置要缓存的类型。
 
 > [!TIP]
 > 别对`application/octet-stream`这种流类型进行缓存，内存开销过大且没有意义。
@@ -644,7 +644,7 @@ RestClient restClient = RestClient.builder()
 .build();
 
 // 设置要缓存的响应内容类型
-BufferingResponseInterceptor interceptor = new BufferingResponseInterceptor(MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE);
+BufferingResponseInterceptor interceptor = new BufferingResponseInterceptor(Set.of(MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE));
 RestClient restClient = RestClient.builder()
 .requestInterceptors(interceptors -> interceptors.add(0, interceptor))
 .build();
