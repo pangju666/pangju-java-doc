@@ -1,8 +1,8 @@
 import {defineConfig} from 'vitepress'
+import sidebar from "./sidebar.js"
+import { fileURLToPath, URL } from 'node:url'
 import dotenv from 'dotenv'
 import path from 'path'
-import navbar from "./navbar.js"
-import sidebar from "./sidebar.js"
 
 dotenv.config({ path: path.resolve('.env') })
 
@@ -12,9 +12,20 @@ export default defineConfig({
     title: "Pangju Java",
     base: '/pangju-java-doc',
     outDir: "../../docs",
+    vite: {
+        resolve: {
+            alias: [
+                {
+                    find: /^.*\/VPNavBarMenu\.vue$/,
+                    replacement: fileURLToPath(
+                        new URL('./components/VersionNavBarMenu.vue', import.meta.url)
+                    )
+                }
+            ]
+        }
+    },
     themeConfig: {
         // https://vitepress.dev/reference/default-theme-config
-        nav: navbar,
         sidebar: sidebar,
         search: {
             provider: 'local',

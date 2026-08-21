@@ -7,7 +7,6 @@ export default {
                 {text: '快速开始', link: '/v1/dependencies/getting-started'},
                 {text: '依赖管理', link: '/v1/dependencies/dependency-management'},
                 {text: '插件管理', link: '/v1/dependencies/plugin-management'},
-                {text: '更新记录', link: '/v1/dependencies/change-log'},
             ]
         },
         {
@@ -131,7 +130,6 @@ export default {
                         {text: '坐标', link: '/v1/commons/geo/coordinate'},
                     ]
                 },
-                {text: '更新记录', link: '/v1/commons/change-log'},
             ]
         },
         {
@@ -209,7 +207,6 @@ export default {
                         {text: 'CRUD', link: '/v1/framework/mongodb/crud'},
                     ]
                 },
-                {text: '更新记录', link: '/v1/framework/change-log'},
             ]
         },
         {
@@ -349,7 +346,6 @@ export default {
                         {text: 'Spock教程', link: '/v1/starter/test/lesson'},
                     ]
                 },
-                {text: '更新记录', link: '/v1/starter/change-log'},
             ],
         }
     ],
@@ -361,7 +357,6 @@ export default {
                 {text: '快速开始', link: '/v2/dependencies/getting-started'},
                 {text: '依赖管理', link: '/v2/dependencies/dependency-management'},
                 {text: '插件管理', link: '/v2/dependencies/plugin-management'},
-                {text: '更新记录', link: '/v2/dependencies/change-log'},
             ]
         },
         {
@@ -485,7 +480,6 @@ export default {
                         {text: '坐标', link: '/v2/commons/geo/coordinate'},
                     ]
                 },
-                {text: '更新记录', link: '/v2/commons/change-log'},
             ]
         },
         {
@@ -563,7 +557,6 @@ export default {
                         {text: 'CRUD', link: '/v2/framework/mongodb/crud'},
                     ]
                 },
-                {text: '更新记录', link: '/v2/framework/change-log'},
             ]
         },
         {
@@ -717,7 +710,6 @@ export default {
                         {text: 'Spock教程', link: '/v2/starter/test/lesson'},
                     ]
                 },
-                {text: '更新记录', link: '/v2/starter/change-log'},
             ],
         }
     ]
